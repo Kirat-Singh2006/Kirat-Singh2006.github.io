@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Kirat Singh | Aspiring Computer Science Student</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Kirat Singh</h1>
+    <p class="subtitle">Aspiring Computer Science Student | BCA '27</p>
+    <div class="contact">
+      <a href="mailto:kirat152006@gmail.com">kirat152006@gmail.com</a> |
+      <a href="tel:+919560106353">+91 9560106353</a> |
+      <span>Faridabad, IN 121002, India</span> |
+      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank">LinkedIn</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="profile">
+      <h2>Profile</h2>
+      <p>
+        First-year BCA student with a keen interest in Computer Science, programming, and emerging technologies. Enthusiastic about developing real-world skills through projects and internships. Fast learner and team player with strong analytical thinking and a proactive mindset.
+      </p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="edu">
+        <div>
+          <strong>Bachelor of Computer Applications</strong>, Don Bosco Institute of Technology, New Delhi, India
+          <span class="date">Expected Jun 2027</span>
+          <br>
+          <em>Relevant coursework:</em> Programming Fundamentals, Data Structures, Computer Networks (in progress)
+        </div>
+        <div>
+          <strong>High School Diploma (CBSE)</strong>, K R Mangalam World School, New Delhi, India
+          <span class="date">Apr 2024</span>
+          <br>
+          Commerce Stream with Computer Science
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li>
+          <strong>Python:</strong>
+          <div class="progress-bar" data-percent="60"><div class="bar"></div></div>
+        </li>
+        <li>
+          <strong>C:</strong>
+          <div class="progress-bar" data-percent="40"><div class="bar"></div></div>
+        </li>
+        <li>
+          <strong>Java:</strong>
+          <div class="progress-bar" data-percent="40"><div class="bar"></div></div>
+        </li>
+        <li>
+          <strong>JavaScript:</strong>
+          <div class="progress-bar" data-percent="40"><div class="bar"></div></div>
+        </li>
+        <li>
+          <strong>HTML/CSS:</strong>
+          <div class="progress-bar" data-percent="70"><div class="bar"></div></div>
+        </li>
+      </ul>
+      <ul class="skills-other">
+        <li><strong>Tools:</strong> MS Office, Canva, Google Workspace</li>
+        <li><strong>Soft Skills:</strong> Problem-solving, Critical thinking, Teamwork</li>
+        <li><strong>Other Skills:</strong> Time management, Adaptability, Communication</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>Java MP3 player (2025):</strong> Developed a basic GUI mp3 player using Java.</li>
+        <li><strong>Student Record System (2024):</strong> Developed a basic student record system using C.</li>
+        <li><strong>Personal Portfolio Website (2025):</strong> Designed a simple HTML/CSS-based personal website (in progress).</li>
+         <li><strong> 2048 game(2025):</strong> developed a basic version of the classic game 2048 in Python.</li>
+         <li><strong> Password Strength tester(2025):</strong> developed a basic password strength tester in Python.</li>
+         <li><strong> rock-paper-scissor game(2025):</strong> developed a basic version of the classic game in C.</li>
+      </ul>
+    </section>
+
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <ul>
+        <li><strong>Generative AI Training (2025):</strong> Completed an introductory course on prompt engineering and large language models.</li>
+        <li><strong>Brainiacs Competition (2025):</strong> Participated in a college-level tech quiz; placed in top 10%.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    // Animate skill progress bars when in view
+    function animateProgressBars() {
+      document.querySelectorAll('.progress-bar').forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (inView && !bar.classList.contains('animated')) {
+          const percent = bar.getAttribute('data-percent');
+          bar.querySelector('.bar').style.width = percent + '%';
+          bar.classList.add('animated');
+        }
+      });
+    }
+
+    // Highlight section in view
+    function highlightSection() {
+      let sections = document.querySelectorAll('main > section');
+      let scrollPos = window.scrollY || window.pageYOffset;
+      let offset = 100;
+      sections.forEach(section => {
+        let top = section.offsetTop - offset;
+        let bottom = top + section.offsetHeight;
+        if (scrollPos >= top && scrollPos < bottom) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    }
+
+    // Run on scroll and load
+    window.addEventListener('scroll', () => {
+      animateProgressBars();
+      highlightSection();
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      animateProgressBars();
+      highlightSection();
+    });
+  </script>
+</body>
+</html>

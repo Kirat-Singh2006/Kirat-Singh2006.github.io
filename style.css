@@ -1,0 +1,133 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7faf7;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #2e7d32;
+  color: #fff;
+  padding: 2rem 1rem 1rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.contact {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+}
+
+.contact a {
+  color: #b2ff59;
+  text-decoration: none;
+  margin: 0 0.2em;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem 2rem 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(46,125,50,0.08);
+}
+
+section {
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s;
+}
+
+h2 {
+  color: #2e7d32;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #b2ff59;
+  padding-bottom: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.edu > div {
+  margin-bottom: 1.2rem;
+}
+
+.date {
+  float: right;
+  color: #388e3c;
+  font-size: 0.95em;
+}
+
+.skills {
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+  margin-bottom: 1.2em;
+}
+
+.skills-other {
+  list-style: none;
+  padding: 0;
+  margin-top: 1em;
+}
+
+.skills-other li {
+  margin-bottom: 0.5em;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  background: #e0e0e0;
+  border-radius: 10px;
+  height: 12px;
+  width: 200px;
+  margin: 0.3em 0 0.7em 0;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(46,125,50,0.10);
+}
+
+.progress-bar .bar {
+  background: linear-gradient(90deg, #43a047, #b2ff59);
+  height: 100%;
+  width: 0%;
+  border-radius: 10px;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+
+/* Section highlight on scroll */
+section.active {
+  box-shadow: 0 0 12px #b2ff59;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
+  .date {
+    float: none;
+    display: block;
+    margin-top: 0.3em;
+  }
+  .progress-bar {
+    width: 100%;
+    min-width: 120px;
+    max-width: 100%;
+  }
+}
