@@ -1,38 +1,132 @@
-// Animate skill progress bars when in view
-function animateProgressBars() {
-  document.querySelectorAll('.progress-bar').forEach(bar => {
-    const rect = bar.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (inView && !bar.classList.contains('animated')) {
-      const percent = bar.getAttribute('data-percent');
-      bar.querySelector('.bar').style.width = percent + '%';
-      bar.classList.add('animated');
-    }
-  });
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f2fa;
+  color: #222;
+  margin: 0;
+  padding: 0;
 }
 
-// Highlight section in view
-function highlightSection() {
-  let sections = document.querySelectorAll('main > section');
-  let scrollPos = window.scrollY || window.pageYOffset;
-  let offset = 100;
-  sections.forEach(section => {
-    let top = section.offsetTop - offset;
-    let bottom = top + section.offsetHeight;
-    if (scrollPos >= top && scrollPos < bottom) {
-      section.classList.add('active');
-    } else {
-      section.classList.remove('active');
-    }
-  });
+header {
+  background: linear-gradient(to right, #6a1b9a, #ab47bc);
+  color: #fff;
+  padding: 2rem 1rem 1rem 1rem;
+  text-align: center;
 }
 
-// Run on scroll and load
-window.addEventListener('scroll', () => {
-  animateProgressBars();
-  highlightSection();
-});
-window.addEventListener('DOMContentLoaded', () => {
-  animateProgressBars();
-  highlightSection();
-});
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.contact {
+  margin-top: 0.7rem;
+  font-size: 1rem;
+}
+
+.contact a {
+  color: #e1bee7;
+  text-decoration: none;
+  margin: 0 0.2em;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(106, 27, 154, 0.1);
+}
+
+section {
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s;
+}
+
+h2 {
+  color: #6a1b9a;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #ce93d8;
+  padding-bottom: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.edu > div {
+  margin-bottom: 1.2rem;
+}
+
+.date {
+  float: right;
+  color: #8e24aa;
+  font-size: 0.95em;
+}
+
+.skills, .skills-other {
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+  margin-bottom: 1.2em;
+}
+
+.skills-other li {
+  margin-bottom: 0.5em;
+}
+
+.progress-bar {
+  background: #e0e0e0;
+  border-radius: 10px;
+  height: 12px;
+  width: 200px;
+  margin: 0.3em 0 0.7em 0;
+  display: inline-block;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(106,27,154,0.1);
+}
+
+.progress-bar .bar {
+  background: linear-gradient(90deg, #8e24aa, #ce93d8);
+  height: 100%;
+  width: 0%;
+  border-radius: 10px;
+  transition: width 1.2s ease-in-out;
+}
+
+section.active {
+  box-shadow: 0 0 12px #ce93d8;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
+  .date {
+    float: none;
+    display: block;
+    margin-top: 0.3em;
+  }
+  .progress-bar {
+    width: 100%;
+    min-width: 120px;
+    max-width: 100%;
+  }
+  .navbar {
+  margin-top: 1rem;
+}
+.navbar a {
+  color: #e1bee7;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+}
+
