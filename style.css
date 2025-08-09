@@ -119,18 +119,4 @@ section.active {
     min-width: 120px;
     max-width: 100%;
   }
-  .navbar {
-  margin-top: 1rem;
 }
-.navbar a {
-  color: #e1bee7;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-}
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-}
-
