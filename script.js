@@ -1,4 +1,4 @@
-// Animate skill progress bars when in view
+// Animate skill progress bars
 function animateProgressBars() {
   document.querySelectorAll('.progress-bar').forEach(bar => {
     const rect = bar.getBoundingClientRect();
@@ -26,6 +26,11 @@ function highlightSection() {
     }
   });
 }
+
+// Cursor glow effect
+document.body.addEventListener('mousemove', (e) => {
+  document.body.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, #ff85b3, #6a1b9a 80%)`;
+});
 
 // Run on scroll and load
 window.addEventListener('scroll', () => {
