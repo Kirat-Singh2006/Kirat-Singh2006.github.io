@@ -119,4 +119,31 @@ section.active {
     min-width: 120px;
     max-width: 100%;
   }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
+.project-card {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.project-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.project-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #8e24aa;
+  font-weight: bold;
+  text-decoration: none;
+}
+.project-card a:hover {
+  text-decoration: underline;
+}}
+
