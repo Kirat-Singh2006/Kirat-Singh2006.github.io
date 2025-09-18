@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // A simple function to get the base URL for the GitHub repo
     function getRepoUrl() {
         // You MUST replace 'your-repo-name'
-        return 'https://api.github.com/repos/kirat-singh2006/your-repo-name/contents/_blog';
+        return 'https://api.github.com/repos/kirat-singh2006/Kirat-Singh2006.github.io/contents/_blog';
     }
 
     // Function to parse front matter from markdown files
