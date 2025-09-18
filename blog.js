@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // A simple function to get the base URL for the GitHub repo
     function getRepoUrl() {
-        // You MUST replace 'your-github-username' and 'your-repo-name'
+        // You MUST replace 'your-repo-name'
         return 'https://api.github.com/repos/kirat-singh2006/your-repo-name/contents/_blog';
     }
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = {};
         lines.forEach(line => {
             const [key, ...valueParts] = line.split(':');
-            const value = valueParts.join(':').trim().replace(/"/g, ''); // Handle values with colons
+            const value = valueParts.join(':').trim().replace(/"/g, '');
             data[key.trim()] = value;
         });
         
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to render markdown to HTML
     function renderMarkdown(markdown) {
-        // Simple Markdown to HTML conversion. For production, a library is better.
         let html = markdown
             .replace(/^### (.*$)/gim, '<h3>$1</h3>')
             .replace(/^## (.*$)/gim, '<h2>$1</h2>')
@@ -40,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>')
             .replace(/^(?!<h|<ul|<p|<l).*$/gim, '<p>$&</p>');
 
-        // Basic image and link support
         html = html.replace(/!\[(.*?)\]\((.*?)\)/gim, '<img alt="$1" src="$2">');
         html = html.replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2">$1</a>');
 
@@ -77,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching post:', error);
             });
     } else if (blogListContainer) {
-        // Fetch posts for the homepage
         fetch(getRepoUrl())
             .then(response => {
                 if (!response.ok) {
@@ -86,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(files => {
-                // Limit to the 3 most recent posts
                 const markdownFiles = files
                     .filter(file => file.name.endsWith('.md'))
                     .slice(0, 3);
