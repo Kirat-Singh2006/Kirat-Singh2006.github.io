@@ -1,17 +1,28 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main # or 'master' if that's your main branch
 
-media_folder: "static/img"
-public_folder: "/img"
+media_folder: "assets/images" # The path where uploaded media will be saved
 
 collections:
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "blog"
+  # Collection for managing projects
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects" # A new folder to store each project entry
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - {label: "Project Title", name: "title", widget: "string"}
+      - {label: "Year", name: "year", widget: "number"}
+      - {label: "Description", name: "description", widget: "text"}
+
+  # Collection for managing certifications
+  - name: "certifications"
+    label: "Certifications"
+    folder: "_certifications" # A new folder to store each certification
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Certification Title", name: "title", widget: "string"}
+      - {label: "Year", name: "year", widget: "number"}
+      - {label: "Issuer/Competition", name: "issuer", widget: "string"}
