@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // A simple function to get the base URL for the GitHub repo
-    function getRepoUrl() {
-        // You MUST replace 'your-repo-name'
-        return 'https://api.github.com/repos/kirat-singh2006/Kirat-Singh2006.github.io/contents/_blog';
+    // A simple function to get the blog folder URL
+    function getBlogFolderUrl() {
+        // Since we are using Netlify to serve the folder, we can use a relative path
+        return '/_blog/';
     }
 
     // Function to parse front matter from markdown files
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = {};
         lines.forEach(line => {
             const [key, ...valueParts] = line.split(':');
-            const value = valueParts.join(':').trim().replace(/"/g, '');
+            const value = valueParts.join(':').trim().replace(/"/g, ''); // Handle values with colons
             data[key.trim()] = value;
         });
         
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
-        fetch(`/_blog/${slug}.md`)
+        fetch(`${getBlogFolderUrl()}${slug}.md`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Post not found');
@@ -75,20 +75,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching post:', error);
             });
     } else if (blogListContainer) {
-        fetch(getRepoUrl())
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Could not fetch blog posts from GitHub.');
+        fetch('/_redirects')
+            .then(response => response.text())
+            .then(redirectsText => {
+                const redirects = redirectsText.split('\n').map(line => line.split(' ').filter(Boolean)).filter(parts => parts.length === 3);
+                const blogRedirect = redirects.find(r => r[0] === '/_blog/*');
+                if (blogRedirect) {
+                    return fetch(getBlogFolderUrl());
+                } else {
+                    throw new Error('Blog folder not configured in Netlify redirects.');
                 }
-                return response.json();
             })
+            .then(response => response.json())
             .then(files => {
                 const markdownFiles = files
                     .filter(file => file.name.endsWith('.md'))
                     .slice(0, 3);
-
+                
                 markdownFiles.forEach(file => {
-                    fetch(file.download_url)
+                    fetch(`${getBlogFolderUrl()}${file.name}`)
                         .then(response => response.text())
                         .then(markdown => {
                             const { data } = parseMarkdown(markdown);
