@@ -1,5 +1,5 @@
 [build]
-  publish="/"
+  publish="."
 [[redirects]]
   from="/_blog/*"
   to= "/_blog/:splat"
