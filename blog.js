@@ -2,12 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to parse front matter from markdown files
     function parseMarkdown(markdown) {
         const parts = markdown.split('---');
-        if (parts.length < 3) {
-            return { data: {}, body: markdown };
-        }
+        if (parts.length < 3) return { data: {}, body: markdown };
         const frontMatter = parts[1];
         const body = parts.slice(2).join('---').trim();
-        
         const lines = frontMatter.split('\n').filter(line => line.trim() !== '');
         const data = {};
         lines.forEach(line => {
@@ -30,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/<\/li>\n<li>/gim, '</li><li>')
             .replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>')
             .replace(/^(?!<h|<ul|<p|<l).*$/gim, '<p>$&</p>');
-
         html = html.replace(/!\[(.*?)\]\((.*?)\)/gim, '<img alt="$1" src="$2">');
         html = html.replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2">$1</a>');
         return html;
@@ -64,30 +60,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching post:', error);
             });
     } else if (blogListContainer) {
-        // Fetch posts for the homepage
-        fetch('/_blog/')
-            .then(response => response.json())
-            .then(files => {
-                const markdownFiles = files
-                    .filter(file => file.name.endsWith('.md'))
-                    .slice(0, 3);
-                
-                markdownFiles.forEach(file => {
-                    fetch(`/_blog/${file.name}`)
-                        .then(response => response.text())
-                        .then(markdown => {
-                            const { data } = parseMarkdown(markdown);
-                            const slug = file.name.replace('.md', '');
-                            const postLink = `blog.html#${slug}`;
-                            const postDate = new Date(data.date).toDateString();
-                            const postHtml = `
-                                <div class="blog-card">
-                                    <h3><a href="${postLink}">${data.title}</a></h3>
-                                    <p class="post-date">${postDate}</p>
-                                </div>
-                            `;
-                            blogListContainer.innerHTML += postHtml;
-                        });
+        fetch('/_blog/posts.json')
+            .then(response => {
+                if (!response.ok) throw new Error('posts.json not found');
+                return response.json();
+            })
+            .then(posts => {
+                const recentPosts = posts.slice(0, 3);
+                recentPosts.forEach(post => {
+                    const postLink = `blog.html#${post.slug}`;
+                    const postDate = new Date(post.date).toDateString();
+                    const postHtml = `
+                        <div class="blog-card">
+                            <h3><a href="${postLink}">${post.title}</a></h3>
+                            <p class="post-date">${postDate}</p>
+                        </div>
+                    `;
+                    blogListContainer.innerHTML += postHtml;
                 });
             })
             .catch(error => {
