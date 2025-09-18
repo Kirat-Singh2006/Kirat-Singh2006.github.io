@@ -1,6 +1,6 @@
 [build]
   publish="/"
 [[redirects]]
-  from="/_blog/*
-  to="/_blog/:splat"
+  from="/_blog/*"
+  to= "/_blog/:splat"
   status=200
