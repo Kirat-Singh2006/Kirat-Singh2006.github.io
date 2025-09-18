@@ -1,15 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // A simple function to get the blog folder URL
-    function getBlogFolderUrl() {
-        // Since we are using Netlify to serve the folder, we can use a relative path
-        return '/_blog/';
-    }
-
     // Function to parse front matter from markdown files
     function parseMarkdown(markdown) {
         const parts = markdown.split('---');
         if (parts.length < 3) {
-            console.error('Invalid markdown format: missing front matter delimiters.');
             return { data: {}, body: markdown };
         }
         const frontMatter = parts[1];
@@ -19,10 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = {};
         lines.forEach(line => {
             const [key, ...valueParts] = line.split(':');
-            const value = valueParts.join(':').trim().replace(/"/g, ''); // Handle values with colons
+            const value = valueParts.join(':').trim().replace(/"/g, '');
             data[key.trim()] = value;
         });
-        
         return { data, body };
     }
 
@@ -41,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         html = html.replace(/!\[(.*?)\]\((.*?)\)/gim, '<img alt="$1" src="$2">');
         html = html.replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2">$1</a>');
-
         return html;
     }
 
@@ -52,11 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
-        fetch(`${getBlogFolderUrl()}${slug}.md`)
+        fetch(`/_blog/${slug}.md`)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Post not found');
-                }
+                if (!response.ok) throw new Error('Post not found');
                 return response.text();
             })
             .then(markdown => {
@@ -75,17 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching post:', error);
             });
     } else if (blogListContainer) {
-        fetch('/_redirects')
-            .then(response => response.text())
-            .then(redirectsText => {
-                const redirects = redirectsText.split('\n').map(line => line.split(' ').filter(Boolean)).filter(parts => parts.length === 3);
-                const blogRedirect = redirects.find(r => r[0] === '/_blog/*');
-                if (blogRedirect) {
-                    return fetch(getBlogFolderUrl());
-                } else {
-                    throw new Error('Blog folder not configured in Netlify redirects.');
-                }
-            })
+        // Fetch posts for the homepage
+        fetch('/_blog/')
             .then(response => response.json())
             .then(files => {
                 const markdownFiles = files
@@ -93,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .slice(0, 3);
                 
                 markdownFiles.forEach(file => {
-                    fetch(`${getBlogFolderUrl()}${file.name}`)
+                    fetch(`/_blog/${file.name}`)
                         .then(response => response.text())
                         .then(markdown => {
                             const { data } = parseMarkdown(markdown);
