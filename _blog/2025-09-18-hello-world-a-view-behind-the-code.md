@@ -1,5 +1,5 @@
 ---
-title: Hello World! a view behind the code
+title: Hello World! welcome to my corner of the web
 date: 2025-09-18T21:46:00.000+05:30
 ---
 
