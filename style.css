@@ -152,7 +152,7 @@ ul, ol {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     justify-content: center; 
     margin: 0 auto;
-    width: fit-content;
+    width: 100%; /* Changed from fit-content to use available space */
 }
 
 .project-card,
@@ -239,7 +239,7 @@ li {
     margin-bottom: 15px;
 }
 
-#projects-list ul li, #certifications ul li { /* Updated ID */
+#projects-list ul li, #certifications ul li {
     border-left: none; 
     padding-left: 0;
     margin-bottom: 10px;
