@@ -3,20 +3,6 @@
  * FINAL FIX: Includes robust tab navigation logic and skill bar animation.
  */
 
-// --- 1. Utility Function for Throttling (Kept for efficiency, though scroll is gone) ---
-const throttle = (func, limit) => {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
 // 2. Animate skill progress bars
 function animateProgressBars() {
     // Reset the animation state before re-animating
@@ -69,7 +55,9 @@ function setupTabNavigation() {
                 }
 
                 // 5. Scroll to the top of the main content area for a clean view
-                mainContent.scrollIntoView({ behavior: 'smooth' });
+                if (mainContent) {
+                    mainContent.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         }
     });
@@ -93,8 +81,6 @@ function setupTabNavigation() {
 }
 
 // 4. Run on load
-// We use DOMContentLoaded, which is faster than 'load' and safe now that we're only
-// manipulating visibility and not relying on complex scroll positions.
 window.addEventListener('DOMContentLoaded', () => { 
     setupTabNavigation();
 });
