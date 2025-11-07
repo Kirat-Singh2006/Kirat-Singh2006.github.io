@@ -1,17 +1,20 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Tabbed Layout - FINAL CONTENT ALIGNMENT FIX)
+ * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Multi-Color Tabbed Layout)
  */
 
 /* --- 1. Global Reset & Typography --- */
 :root {
-    --primary-color: #00e676;         /* Neo-Mint/Green (Single Bold Accent) */
+    /* NEW: Define the colors for each theme */
+    --color-home-blue: #4a90e2;
+    --color-blog-orange: #e67e22;
+    --color-skills-green: #00e676;
+    
     --accent-color: #ffffff;          /* Pure White (Text/Highlight) */
     --background-dark: #222222;       /* Deep Dark Gray (Base background) */
     --border-subtle: #444444;         /* Dark border/separator */
     --text-light: #ffffff;            /* Main text color */
     --text-subtle: #aaaaaa;           /* Subdued text color */
-    --shadow-base: none;
     --font-stack: 'Poppins', sans-serif;
 }
 
@@ -38,6 +41,27 @@ header {
     text-align: center;
     margin-bottom: 0; 
     box-shadow: none;
+}
+
+/* NEW: Styles for the profile picture and name container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between image and text */
+    flex-wrap: wrap; /* Allows text to wrap on small screens */
+}
+
+.profile-pic {
+    width: 100px; /* Set image size */
+    height: 100px;
+    border-radius: 50%; /* Makes the image circular */
+    border: 3px solid var(--border-subtle); /* Optional: adds a border */
+    object-fit: cover; /* Ensures image fills the circle */
+}
+
+.profile-info {
+    text-align: left; /* Aligns name/subtitle to the left */
 }
 
 header h1 {
@@ -78,12 +102,7 @@ header h1 {
     text-decoration: none;
 }
 
-.tab-link.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-}
-
-/* --- 3. Main Content Layout (FINAL FIX) --- */
+/* --- 3. Main Content Layout --- */
 
 main {
     max-width: 800px; 
@@ -101,30 +120,16 @@ section {
     display: none; 
 }
 
-/* NEW WRAPPER FIX: Max width and left-alignment for all content inside the section */
 .content-wrapper {
     max-width: 650px; 
-    margin: 0 auto; /* Centers the content block */
-    text-align: left !important; /* Forces all text/lists inside to be left-aligned */
+    margin: 0 auto;
+    text-align: left !important;
 }
 
 section.active {
     display: block;
 }
 
-h2 {
-    font-size: 2em;
-    color: var(--primary-color); 
-    border-bottom: 1px solid var(--border-subtle); 
-    padding-bottom: 10px; 
-    margin-bottom: 25px;
-    font-weight: 600;
-    width: fit-content; 
-    margin-left: auto;   
-    margin-right: auto;  
-}
-
-/* Paragraphs, lists, and other text elements inherit left-align from .content-wrapper */
 main p {
     text-align: left !important;
     max-width: 650px; 
@@ -136,7 +141,26 @@ main p {
 ul, ol {
     padding-left: 0; 
     list-style-type: none; 
-    /* Lists now get centering and alignment from .content-wrapper */
+    max-width: 650px; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left !important;
+}
+
+li {
+    margin-bottom: 15px;
+    text-align: left !important;
+}
+
+h2 {
+    font-size: 2em;
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-bottom: 10px; 
+    margin-bottom: 25px;
+    font-weight: 600;
+    width: fit-content; 
+    margin-left: auto;   
+    margin-right: auto;  
 }
 
 /* --- 4. Project & Blog Grids --- */
@@ -152,7 +176,7 @@ ul, ol {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     justify-content: center; 
     margin: 0 auto;
-    width: 100%; /* Changed from fit-content to use available space */
+    width: fit-content;
 }
 
 .project-card,
@@ -190,7 +214,6 @@ ul, ol {
 .project-card a,
 .read-more-link {
     display: block;
-    color: var(--primary-color); 
     text-decoration: underline;
     margin-top: 10px;
     font-weight: 600;
@@ -225,19 +248,7 @@ ul, ol {
     overflow: hidden;
 }
 
-.progress-bar .bar {
-    height: 100%;
-    width: 0; 
-    background: var(--primary-color); 
-    transition: width 1.5s ease-out; 
-}
-
-
 /* --- 6. Education, Projects (List), Certifications --- */
-
-li {
-    margin-bottom: 15px;
-}
 
 #projects-list ul li, #certifications ul li {
     border-left: none; 
@@ -259,31 +270,76 @@ li {
     margin-top: 3px;
 }
 
-/* --- 7. Links and General Text Styling --- */
+/* --- 7. DYNAMIC THEME STYLES --- */
 
-a {
-    color: var(--primary-color); 
-    text-decoration: none;
+/* Default / Home Theme (Blue) */
+html.theme-about h2,
+html.theme-about a,
+html.theme-about .project-card a,
+html.theme-about .read-more-link {
+    color: var(--color-home-blue);
+}
+html.theme-about .tab-link.active {
+    color: var(--color-home-blue);
+    border-bottom-color: var(--color-home-blue);
+}
+html.theme-about .progress-bar .bar {
+    background: var(--color-home-blue);
 }
 
+/* Blog Theme (Orange) */
+html.theme-blog-posts h2,
+html.theme-blog-posts a,
+html.theme-blog-posts .project-card a,
+html.theme-blog-posts .read-more-link {
+    color: var(--color-blog-orange);
+}
+html.theme-blog-posts .tab-link.active {
+    color: var(--color-blog-orange);
+    border-bottom-color: var(--color-blog-orange);
+}
+html.theme-blog-posts .progress-bar .bar {
+    background: var(--color-blog-orange);
+}
+
+/* Skills Theme (Green) */
+html.theme-skills h2,
+html.theme-skills a,
+html.theme-skills .project-card a,
+html.theme-skills .read-more-link {
+    color: var(--color-skills-green);
+}
+html.theme-skills .tab-link.active {
+    color: var(--color-skills-green);
+    border-bottom-color: var(--color-skills-green);
+}
+html.theme-skills .progress-bar .bar {
+    background: var(--color-skills-green);
+}
+
+/* General Link Hover (Overwrites theme colors on hover) */
 a:hover {
     text-decoration: underline;
-    color: var(--primary-color); 
+    color: var(--text-subtle); /* A neutral hover color */
 }
-
 p a {
-    color: var(--primary-color) !important; 
+    text-decoration: underline;
 }
 
 
 /* --- 8. Responsive Adjustments --- */
-
 @media (max-width: 768px) {
     main {
         padding: 0 15px;
     }
-    
     header h1 {
         font-size: 2.2em;
+    }
+    /* Stacks the image on top of the text on small screens */
+    .profile-container {
+        flex-direction: column;
+    }
+    .profile-info {
+        text-align: center; /* Center text when stacked */
     }
 }
