@@ -1,6 +1,6 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - FINALIZED NEO-MINT & ELECTRIC TEAL THEME
+ * Kirat Singh's Portfolio Styles - FINALIZED NEO-MINT & ELECTRIC TEAL THEME (List View)
  */
 
 /* --- 1. Global Reset & Typography --- */
@@ -9,7 +9,7 @@
     --primary-color: #00e676;         /* Neo-Mint / Emerald Green (Primary accent) */
     --accent-color: #18ffff;          /* Electric Cyan / Teal (Highlight/Hover) */
     --background-dark: #0d0d0d;       /* Ultra Deep Black */
-    --text-light: #ffffff;            /* Pure White Text */
+    --text-light: #ffffff;            /* Pure White White Text */
     --card-bg: #1a1a1a;               /* Dark Gray for card contrast */
     --border-dark: #333333;           
     --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4); 
@@ -94,8 +94,8 @@ section {
 }
 
 section.active {
-    /* Dramatic scroll animation: Background change and border highlight */
-    background-color: var(--card-bg); /* Lighter background for the active section (THE REVEAL) */
+    /* Dramatic scroll animation: Background change and border highlight (THE REVEAL) */
+    background-color: var(--card-bg); 
     border-left: 5px solid var(--accent-color); /* Bright border highlight */
     box-shadow: var(--shadow-hover); /* Shadow pop */
 }
@@ -109,14 +109,19 @@ h2 {
     font-weight: 600;
 }
 
-/* --- 4. Project & Blog Grids --- (Renumbered) */
+/* --- 4. Project & Blog Grids --- */
 
-.project-grid,
+.project-grid {
+    /* FIX: Changed back to a block layout (no grid) */
+    display: block;
+}
 .blog-grid {
+    /* Blog still uses a grid layout */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
     gap: 30px; 
 }
+
 
 .project-card,
 .blog-post-card {
@@ -126,11 +131,12 @@ h2 {
     box-shadow: var(--shadow-base); 
     border-left: 5px solid var(--primary-color); /* Green left border */
     transition: all 0.3s ease-in-out;
+    margin-bottom: 25px; /* Added spacing between list items */
 }
 
 .project-card:hover,
 .blog-post-card:hover {
-    transform: translateY(-8px); 
+    transform: translateY(-5px); /* Reduced lift on hover for list items */
     box-shadow: var(--shadow-hover); 
     border-left-color: var(--accent-color); /* Teal/Cyan on hover */
 }
@@ -164,7 +170,7 @@ h2 {
     font-weight: 500;
 }
 
-/* --- 5. Skills Section --- (Renumbered) */
+/* --- 5. Skills Section --- */
 
 .skills li {
     list-style: none;
@@ -193,7 +199,7 @@ h2 {
 }
 
 
-/* --- 6. Education, Projects (List), Certifications --- (Renumbered) */
+/* --- 6. Education, Projects (List), Certifications --- */
 
 ul, ol {
     padding-left: 20px;
@@ -201,6 +207,12 @@ ul, ol {
 
 li {
     margin-bottom: 12px;
+}
+/* Style the listed projects differently than list items in other sections */
+#projects ul li {
+    margin-bottom: 20px;
+    padding-left: 5px;
+    border-left: 3px solid var(--accent-color); 
 }
 
 .edu > div {
@@ -217,7 +229,7 @@ li {
     margin-top: 3px;
 }
 
-/* --- 7. Links and General Text Styling --- (Renumbered) */
+/* --- 7. Links and General Text Styling --- */
 
 a {
     color: var(--primary-color); /* Green link color */
@@ -234,7 +246,7 @@ p a {
 }
 
 
-/* --- 8. Responsive Adjustments --- (Renumbered) */
+/* --- 8. Responsive Adjustments --- */
 
 @media (max-width: 768px) {
     main {
