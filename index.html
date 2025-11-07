@@ -10,16 +10,18 @@
 <body>
   
 <header>
-    <div class="profile-info">
-      <h1>Kirat Singh</h1>
-      <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
-    </div>
+        <div class="profile-container">
+      <img src="me.jpg" alt="A photo of Kirat Singh" class="profile-pic" />
+      <div class="profile-info">
+        <h1>Kirat Singh</h1>
+        <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
+      </div>
+    </div>
     
     <nav class="tab-navigation">
       <a href="#about" class="tab-link active">Home</a>
       <a href="#blog-posts" class="tab-link">Blog</a>
       <a href="#skills" class="tab-link">Skills</a>
-      <a href="#projects" class="tab-link">Projects</a>
       <a href="https://github.com/kirat-singh2006" target="_blank" class="tab-link external-link">GitHub</a>
       <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank" class="tab-link external-link">LinkedIn</a>
     </nav>
@@ -32,8 +34,8 @@
         <p>
           I’m Kirat Singh — a second-year BCA student who builds things that shouldn’t work… but do. Whether it’s a 3D ASCII donut spinning in a terminal, a Java MP3 player that vibes with the playlist in my head, or a Python script quietly monitoring logs like a detective, I’m always chasing that sweet spot between “how does this even work?” and “this is actually useful.” I like my code like I like my music — layered, unexpected, and a little bit psychedelic. My projects mix the retro and the modern: old-school C console games, AI object detection, and interfaces that feel like they were designed on a rainy afternoon with too much coffee. Right now, I’m sharpening my skills in Python, C, Java, and JavaScript, while exploring cybersecurity, computer vision, and anything else that feels like uncharted territory. I’m here to learn, break, fix, and build — sometimes in that order
         </p>
-        <p style="text-align: center;"> <!-- Centering just this one link -->
-          <a href="https://github.com/kirat-singh2006" target="_blank" style="color:#00e676;font-weight:bold;">
+        <p>
+          <a href="https://github.com/kirat-singh2006" target="_blank" style="font-weight:bold;">
             👉 View All Projects on GitHub
           </a>
         </p>
@@ -44,17 +46,16 @@
       <h2>Recent Blog Posts</h2>
       <div class="content-wrapper">
         <div id="blog-list" class="blog-grid">
-          <!-- Blog posts will be injected here by blog.js -->
-        </div>
+                </div>
         <p style="text-align: center; margin-top: 20px;">
-          <a href="blog.html" style="color:#00e676;font-weight:bold;">
+          <a href="blog.html" style="font-weight:bold;">
             👉 View All Blog Posts
           </a>
         </p>
       </div>
     </section>
     
-    <section id="projects"> <!-- This ID must match the tab link href="#projects" -->
+    <section id="projects">
       <h2>Featured Projects</h2>
       <div class="content-wrapper">
         <div class="project-grid">
@@ -113,8 +114,7 @@
       </div>
     </section>
 
-    <section id="projects-list"> <!-- This section is no longer linked by a tab and will be hidden -->
-      <h2>Projects</h2>
+    <section id="projects-list">       <h2>Projects</h2>
       <div class="content-wrapper">
         <ul>
           <li><strong>Personal Website (2025):</strong> Built a responsive portfolio to showcase my skills and projects.</li>
