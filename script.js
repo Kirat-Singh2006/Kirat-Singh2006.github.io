@@ -1,9 +1,9 @@
 /**
  * Kirat Singh Portfolio Script (script.js)
- * Includes tab navigation logic and skill bar animation.
+ * FINAL FIX: Includes robust tab navigation logic and skill bar animation.
  */
 
-// --- 1. Utility Function for Throttling (Kept for efficiency) ---
+// --- 1. Utility Function for Throttling (Kept for efficiency, though scroll is gone) ---
 const throttle = (func, limit) => {
     let inThrottle;
     return function() {
@@ -19,31 +19,36 @@ const throttle = (func, limit) => {
 
 // 2. Animate skill progress bars
 function animateProgressBars() {
-    document.querySelectorAll('.progress-bar').forEach(bar => {
-        const rect = bar.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (inView && !bar.classList.contains('animated')) {
-            const percent = bar.getAttribute('data-percent');
+    // Reset the animation state before re-animating
+    document.querySelectorAll('.progress-bar.animated').forEach(bar => {
+        bar.querySelector('.bar').style.width = '0%';
+        bar.classList.remove('animated');
+    });
+
+    // Animate only the visible bars (which should be all of them when the skills tab is active)
+    document.querySelectorAll('#skills .progress-bar').forEach(bar => {
+        const percent = bar.getAttribute('data-percent');
+        // A short delay ensures the CSS reset above is processed before starting the transition
+        setTimeout(() => {
             bar.querySelector('.bar').style.width = percent + '%';
             bar.classList.add('animated');
-        }
+        }, 50); 
     });
 }
 
-// 🌟 3. Tab Navigation Logic 🌟
+// 🌟 3. Tab Navigation Logic - FIXED 🌟
 function setupTabNavigation() {
-    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabLinks = document.querySelectorAll('.tab-navigation .tab-link');
     const sections = document.querySelectorAll('main section');
     const mainContent = document.querySelector('main');
 
     tabLinks.forEach(link => {
-        // Stop browser from navigating/scrolling for internal links
+        // Only attach event listeners to internal navigation links
         if (!link.classList.contains('external-link')) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                // 1. Get the target section ID from the href (e.g., #about)
+                // 1. Get the target section ID (e.g., #about)
                 const targetId = this.getAttribute('href');
                 
                 // 2. Hide all sections and remove 'active' from all links
@@ -57,21 +62,22 @@ function setupTabNavigation() {
                 }
                 this.classList.add('active');
                 
-                // 4. Run skill bar animation if the skills section is opened
+                // 4. Special handling for the Skills tab
                 if (targetId === '#skills') {
+                    // Animate bars only when the skills tab is clicked
                     animateProgressBars();
                 }
-                
-                // 5. Scroll to the top of the main content area
+
+                // 5. Scroll to the top of the main content area for a clean view
                 mainContent.scrollIntoView({ behavior: 'smooth' });
             });
         }
     });
 
-    // Initial load: Force the '#about' section to be visible
-    const initialSectionId = window.location.hash || '#about';
-    const initialLink = document.querySelector(`.tab-link[href="${initialSectionId}"]`);
-    const initialSection = document.querySelector(initialSectionId);
+    // Initial load: Determine which section should be visible
+    const initialHash = window.location.hash || '#about';
+    const initialLink = document.querySelector(`.tab-link[href="${initialHash}"]`);
+    const initialSection = document.querySelector(initialHash);
 
     if (initialSection) {
         initialSection.classList.add('active');
@@ -79,17 +85,18 @@ function setupTabNavigation() {
     if (initialLink) {
         initialLink.classList.add('active');
     }
+    
+    // Initial skill animation if the page loads directly on the Skills tab
+    if (initialHash === '#skills') {
+        animateProgressBars();
+    }
 }
 
-// 4. Run on load (Scroll and section highlighting removed)
-window.addEventListener('load', () => { 
-    // Set up the tab functionality
+// 4. Run on load
+// We use DOMContentLoaded, which is faster than 'load' and safe now that we're only
+// manipulating visibility and not relying on complex scroll positions.
+window.addEventListener('DOMContentLoaded', () => { 
     setupTabNavigation();
-    
-    // Animate skill bars if the initial section is 'skills'
-    if (window.location.hash === '#skills' || !window.location.hash) {
-         animateProgressBars();
-    }
 });
 
-// REMOVED: Scroll handler is no longer needed since we are not scrolling between sections.
+// REMOVED: All previous scroll handlers and event listeners are removed.
