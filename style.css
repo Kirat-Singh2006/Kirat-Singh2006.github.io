@@ -25,7 +25,9 @@
 
 body {
     font-family: var(--font-stack);
-    background-color: var(--background-dark); /* Very Deep Dark Gray Body */
+    /* --- FIX: Using !important to override any rogue inline JS styles --- */
+    background-color: var(--background-dark) !important; 
+    /* -------------------------------------------------------------------- */
     color: var(--text-light);                 
     line-height: 1.6;
     padding-bottom: 50px;
@@ -67,7 +69,7 @@ header h1 {
 }
 
 .contact a:hover {
-    color: var(--background-dark); /* Dark hover color for contrast on gradient */
+    color: var(--background-dark); 
 }
 
 
@@ -75,7 +77,7 @@ header h1 {
 
 main {
     max-width: 1100px; 
-    margin: 0 auto; /* Ensures content is centered */
+    margin: 0 auto; 
     padding: 0 25px; 
 }
 
@@ -88,12 +90,12 @@ section {
 }
 
 section.active {
-    border-left: 3px solid var(--accent-color); /* Blue accent */
+    border-left: 3px solid var(--accent-color); 
 }
 
 h2 {
     font-size: 2em;
-    color: var(--primary-color); /* Purple color for section titles */
+    color: var(--primary-color); 
     border-bottom: 1px solid var(--border-dark); 
     padding-bottom: 10px; 
     margin-bottom: 25px;
@@ -111,7 +113,7 @@ h2 {
 
 .project-card,
 .blog-post-card {
-    background-color: var(--card-bg); /* Darkened card background */
+    background-color: var(--card-bg); 
     padding: 30px; 
     border-radius: 10px; 
     box-shadow: var(--shadow-base); 
@@ -123,7 +125,7 @@ h2 {
 .blog-post-card:hover {
     transform: translateY(-8px); 
     box-shadow: var(--shadow-hover); 
-    border-left-color: var(--accent-color); /* Blue accent on hover */
+    border-left-color: var(--accent-color); 
 }
 
 .project-card h3,
@@ -141,7 +143,7 @@ h2 {
 .project-card a,
 .read-more-link {
     display: inline-block;
-    color: var(--accent-color); /* Blue accent */
+    color: var(--accent-color); 
     text-decoration: none;
     margin-top: 15px;
     font-weight: 600;
@@ -178,7 +180,6 @@ h2 {
 .progress-bar .bar {
     height: 100%;
     width: 0; 
-    /* Purple to Blue Gradient in progress bars */
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
     transition: width 1.5s ease-out; 
 }
@@ -217,11 +218,11 @@ a {
 
 a:hover {
     text-decoration: underline;
-    color: var(--accent-color); /* Blue on hover */
+    color: var(--accent-color); 
 }
 
 p a {
-    color: var(--accent-color) !important; /* Blue for inline links */
+    color: var(--accent-color) !important; 
 }
 
 
