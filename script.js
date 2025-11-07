@@ -1,6 +1,6 @@
 /**
  * Kirat Singh Portfolio Script (script.js)
- * Includes skill bar animation (FIXED), section highlighting, and the Liquid Cursor Effect.
+ * Includes skill bar animation, and section highlighting for scroll-reveal effect.
  */
 
 // --- 1. Utility Function for Throttling ---
@@ -32,7 +32,7 @@ function animateProgressBars() {
     });
 }
 
-// 3. Highlight section in view
+// 3. Highlight section in view (Applies the .active class that triggers the CSS visual change)
 function highlightSection() {
     let sections = document.querySelectorAll('main > section');
     let scrollPos = window.scrollY || window.pageYOffset;
@@ -50,47 +50,8 @@ function highlightSection() {
     });
 }
 
-// 🌟 4. Liquid Cursor Effect Logic 🌟
-const primaryDot = document.querySelector('.primary-dot');
-const accentDot = document.querySelector('.accent-dot');
 
-let targetX = 0;
-let targetY = 0;
-let currentX = 0;
-let currentY = 0;
-const damping = 0.08; // Controls the "lag" or "flow" speed
-
-document.body.addEventListener('mousemove', (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-    
-    // Move the accent dot (the smaller, faster one) directly with the cursor
-    if (accentDot) {
-        accentDot.style.transform = `translate(${targetX - 5}px, ${targetY - 5}px)`;
-    }
-});
-
-function updateLiquidCursor() {
-    // Smoothly interpolate the primary dot's position towards the cursor
-    currentX += (targetX - currentX) * damping;
-    currentY += (targetY - currentY) * damping;
-
-    // Apply the lagged position to the primary dot (the larger, trailing one)
-    if (primaryDot) {
-        primaryDot.style.transform = `translate(${currentX}px, ${currentY}px)`;
-    }
-
-    // Loop the animation
-    requestAnimationFrame(updateLiquidCursor);
-}
-
-// Start the liquid effect loop
-if (primaryDot && accentDot) {
-    requestAnimationFrame(updateLiquidCursor);
-}
-
-
-// 5. Run on scroll and load (using throttling for efficiency)
+// 4. Run on scroll and load (using throttling for efficiency)
 const scrollHandler = throttle(() => {
     animateProgressBars();
     highlightSection();
@@ -98,8 +59,7 @@ const scrollHandler = throttle(() => {
 
 window.addEventListener('scroll', scrollHandler);
 
-// FIX IMPLEMENTED HERE: Using 'load' ensures all elements are rendered 
-// and positioned correctly before running the initial skill bar animation.
+// Using 'load' ensures all elements are rendered and positioned correctly before initial checks
 window.addEventListener('load', () => { 
     animateProgressBars();
     highlightSection();
