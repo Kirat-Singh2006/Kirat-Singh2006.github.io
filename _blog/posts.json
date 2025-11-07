@@ -3,8 +3,12 @@
     "slug": "2025-09-18-hello-world-a-view-behind-the-code",
     "title": "Hello, World! Welcome to My Corner of the Web",
     "date": "2025-09-18T10:00:00Z",
-    "slug":"2025-11-07-surviving-mid-sems-somehow-x",
-    "title":"surviving mid-sems somehow...X]",
-    "date":"2025-11-08T01:33:00.000+05:30"
+    "snippet": "My first blog post: a quick introduction to my journey into computer science and what I plan to build."
+  },
+  {
+    "slug": "2025-11-07-surviving-mid-sems-somehow-x",
+    "title": "Surviving Mid-Sems Somehow... X",
+    "date": "2025-11-08T01:33:00Z",
+    "snippet": "A candid look at the chaos, code, and coffee that fueled my attempt to pass this semester's exams."
   }
 ]
