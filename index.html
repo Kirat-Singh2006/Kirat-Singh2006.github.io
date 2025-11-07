@@ -8,119 +8,316 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Kirat Singh</h1>
-    <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
-    <div class="contact">
-      <a href="mailto:kirat152006@gmail.com">📧 kirat152006@gmail.com</a> |
-      <a href="tel:+919560106353">📞 +91 9560106353</a> |
-      <span>📍 Faridabad, IN</span> |
-      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank">LinkedIn</a> |
-      <a href="Kirat_Singh_Resume.pdf" download>Resume (PDF)</a>
+  
+<header>
+    <div class="profile-info">
+      <h1>Kirat Singh</h1>
+      <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
     </div>
+    
+        <nav class="tab-navigation">
+      <a href="#about" class="tab-link active">Home</a>
+      <a href="#blog-posts" class="tab-link">Blog</a>
+      <a href="#skills" class="tab-link">Skills</a>
+            <a href="https://github.com/kirat-singh2006" target="_blank" class="tab-link external-link">GitHub</a>
+      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank" class="tab-link external-link">LinkedIn</a>
+    </nav>
   </header>
 
   <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I’m Kirat Singh — a second-year BCA student who builds things that shouldn’t work… but do. Whether it’s a 3D ASCII donut spinning in a terminal, a Java MP3 player that vibes with the playlist in my head, or a Python script quietly monitoring logs like a detective, I’m always chasing that sweet spot between “how does this even work?” and “this is actually useful.” I like my code like I like my music — layered, unexpected, and a little bit psychedelic. My projects mix the retro and the modern: old-school C console games, AI object detection, and interfaces that feel like they were designed on a rainy afternoon with too much coffee. Right now, I’m sharpening my skills in Python, C, Java, and JavaScript, while exploring cybersecurity, computer vision, and anything else that feels like uncharted territory. I’m here to learn, break, fix, and build — sometimes in that order
-      </p>
-           <p>
-        <a href="https://github.com/kirat-singh2006" target="_blank" style="color:#00e676;font-weight:bold;">
-          👉 View All Projects on GitHub
-        </a>
-      </p>
-    </section>
+    ```
 
-    <section id="blog-posts">
-      <h2>Recent Blog Posts</h2>
-      <div id="blog-list" class="blog-grid">
-        </div>
-      <p style="text-align: center; margin-top: 20px;">
-        <a href="blog.html" style="color:#00e676;font-weight:bold;">
-          👉 View All Blog Posts
-        </a>
-      </p>
-    </section>
-    
-    <section id="projects">
-      <h2>Featured Projects</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <h3>YOLOv8 Object Detection</h3>
-          <p>Real-time object detection system with OpenCV (90%+ accuracy, 20 FPS).</p>
-          <a href="https://github.com/..." target="_blank">View Code</a>
-        </div>
-        <div class="project-card">
-          <h3>Lightweight SIEM Solution</h3>
-          <p>Event monitoring and alerting system for small-scale networks.</p>
-          <a href="https://github.com/..." target="_blank">View Code</a>
-        </div>
-        <div class="project-card">
-          <h3>Port Scanner with Banner Grabbing</h3>
-          <p>Scans 500+ hosts in under 10 seconds using multi-threaded sockets.</p>
-          <a href="https://github.com/..." target="_blank">View Code</a>
-        </div>
-      </div>
-    </section>
+---
+
+## 2. 🎨 `style.css` Fixes
+
+We need to style the new navigation and, critically, **hide all content sections by default** except for the one marked as `active`.
+
+Please **replace the content of your existing `style.css` file** with this full update.
+
+```css
+/*
+ * style.css
+ * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Tabbed Layout)
+ */
+
+/* --- 1. Global Reset & Typography --- */
+
+:root {
+    --primary-color: #00e676;         /* Neo-Mint/Green (Single Bold Accent) */
+    --accent-color: #ffffff;          /* Pure White (Text/Highlight) */
+    --background-dark: #222222;       /* Deep Dark Gray (Base background) */
+    --border-subtle: #444444;         /* Dark border/separator */
+    --text-light: #ffffff;            /* Main text color */
+    --text-subtle: #aaaaaa;           /* Subdued text color */
+    --shadow-base: none;
+    --font-stack: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: #000000 !important; 
+    color: var(--text-light);                 
+    line-height: 1.6;
+    padding-bottom: 50px;
+    position: relative; 
+}
+
+/* --- 2. Header & Navigation --- */
+
+header {
+    background: var(--background-dark);
+    border-bottom: none;
+    padding: 40px 0 10px 0; /* Adjusted padding to accommodate nav */
+    text-align: center;
+    margin-bottom: 0; 
+    box-shadow: none;
+}
+
+header h1 {
+    font-size: 2.8em;
+    color: var(--text-light); 
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--text-subtle); 
+    font-weight: 400;
+    font-style: normal; 
+    margin-bottom: 25px;
+}
+
+/* NEW NAVIGATION STYLES */
+.tab-navigation {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tab-link {
+    color: var(--text-subtle);
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 15px 15px;
+    padding: 5px 0;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-link:hover {
+    color: var(--text-light);
+    border-bottom-color: var(--border-subtle);
+    text-decoration: none;
+}
+
+.tab-link.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* --- 3. Main Content Layout (TAB LOGIC APPLIED) --- */
+
+main {
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 25px 25px 0; /* Added top padding for content separation */
+    background-color: #000000;
+    text-align: center;
+}
+
+section {
+    padding: 30px 0; 
+    margin-bottom: 40px; 
+    border-left: none; 
+    background-color: #000000;
+    transition: none; 
+    text-align: center;
+    
+    /* CRITICAL: Hide all sections by default */
+    display: none; 
+}
+
+/* Only show the section with the 'active' class */
+section.active {
+    display: block;
+}
 
 
-    <section id="education">
-      <h2>Education</h2>
-      <div class="edu">
-        <div>
-          <strong>Bachelor of Computer Applications</strong>, Don Bosco Institute of Technology, New Delhi
-          <span class="date">Expected Jun 2027</span><br>
-          <em>Relevant coursework:</em> Programming Fundamentals, Data Structures, Computer Networks
-        </div>
-        <div>
-          <strong>High School Diploma (CBSE)</strong>, K R Mangalam World School, New Delhi
-          <span class="date">Apr 2024</span>
-        </div>
-      </div>
-    </section>
+h2 {
+    font-size: 2em;
+    color: var(--primary-color); 
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-bottom: 10px; 
+    margin-bottom: 25px;
+    font-weight: 600;
+    width: fit-content; 
+    margin-left: auto;   
+    margin-right: auto;  
+}
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <ul class="skills">
-        <li><strong>Python:</strong><div class="progress-bar" data-percent="70"><div class="bar"></div></div></li>
-        <li><strong>C:</strong><div class="progress-bar" data-percent="60"><div class="bar"></div></div></li>
-        <li><strong>Java:</strong><div class="progress-bar" data-percent="50"><div class="bar"></div></div></li>
-        <li><strong>JavaScript:</strong><div class="progress-bar" data-percent="40"><div class="bar"></div></div></li>
-        <li><strong>HTML/CSS:</strong><div class="progress-bar" data-percent="70"><div class="bar"></div></div></li>
-        <li><strong>MySQL:</strong><div class="progress-bar" data-percent="50"><div class="bar"></div></div></li>
-      </ul>
-      <ul class="skills-other">
-        <li><strong>Tools:</strong> MS Office, Canva, Google Workspace</li>
-        <li><strong>Soft Skills:</strong> Problem-solving, Critical thinking, Teamwork, Adaptability</li>
-      </ul>
-    </section>
+/* --- 4. Project & Blog Grids (Modified for Centered Layout) --- */
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>Personal Website (2025):</strong> Built a responsive portfolio to showcase my skills and projects.</li>
-        <li><strong>Donut Renderer (2025):</strong> Terminal-based 3D donut in C — just because donuts are cool.</li>
-        <li><strong>Cybersecurity Scripts (2025):</strong> Password tester & port scanner in Python for learning security basics.</li>
-        <li><strong>Classic Games (2025):</strong> 2048 and RPS in C/Python — nostalgia meets code.</li>
-        <li><strong>Java MP3 Player (2025):</strong> A custom MP3 player GUI for my personal playlists.</li>
-        <li><strong>Computer Vision (2025):</strong> YOLOv8 object detection using OpenCV and webcam integration.</li>
-        <li><strong>Log Monitor & IP Blocker (2025):</strong> Python script for real-time log monitoring and security automation.</li>
-      </ul>
-    </section>
+.project-grid, .blog-grid {
+    text-align: left; 
+    display: block;
+    gap: 30px; 
+}
 
-    <section id="certifications">
-      <h2>Certifications</h2>
-      <ul>
-        <li><strong>Generative AI Training (2025):</strong> Prompt engineering and LLM fundamentals.</li>
-        <li><strong>Brainiacs Competition (2025):</strong> Tech quiz — top 10% performer.</li>
-        <li><strong>Commonwealth Bank of Australia Job Simulation (Forage)</strong></li>
-      </ul>
-    </section>
-  </main>
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center; 
+    margin: 0 auto;
+    width: fit-content;
+}
 
-  <script src="script.js"></script>
-  <script src="blog.js"></script>
-</body>
-</html>
+.project-card,
+.blog-post-card {
+    background-color: #000000; 
+    padding: 20px 0; 
+    border-radius: 0; 
+    box-shadow: none; 
+    border: none; 
+    border-bottom: 1px solid var(--border-subtle); 
+    margin-bottom: 20px;
+    transition: opacity 0.3s;
+    text-align: left; 
+}
+
+.project-card:hover,
+.blog-post-card:hover {
+    transform: none; 
+    box-shadow: none; 
+    opacity: 0.8; 
+}
+
+.project-card h3,
+.blog-post-card h3 {
+    color: var(--text-light); 
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.project-card p,
+.blog-post-card p {
+    color: var(--text-subtle); 
+}
+
+.project-card a,
+.read-more-link {
+    display: block;
+    color: var(--primary-color); 
+    text-decoration: underline;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.blog-date {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-subtle); 
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+/* --- 5. Skills Section (Centering Applied) --- */
+
+.skills li {
+    list-style: none;
+    margin-bottom: 20px; 
+    text-align: left; 
+}
+
+.skills-other {
+    margin-top: 25px;
+    padding-left: 0;
+}
+
+.progress-bar {
+    background-color: var(--border-subtle); 
+    border-radius: 6px; 
+    height: 10px; 
+    margin-top: 8px; 
+    overflow: hidden;
+}
+
+.progress-bar .bar {
+    height: 100%;
+    width: 0; 
+    background: var(--primary-color); 
+    transition: width 1.5s ease-out; 
+}
+
+
+/* --- 6. Education, Projects (List), Certifications --- */
+
+ul, ol {
+    padding-left: 0; 
+    list-style-type: none; 
+    display: inline-block; 
+    text-align: left; 
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+#projects ul li, #certifications ul li {
+    border-left: none; 
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.edu > div {
+    margin-bottom: 20px;
+    border-left: 4px solid var(--border-subtle); 
+    padding-left: 20px;
+}
+
+.date {
+    display: block;
+    font-style: italic;
+    color: var(--text-subtle); 
+    font-size: 0.9em;
+    margin-top: 3px;
+}
+
+/* --- 7. Links and General Text Styling --- */
+
+a {
+    color: var(--primary-color); 
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--primary-color); 
+}
+
+p a {
+    color: var(--primary-color) !important; 
+}
+
+
+/* --- 8. Responsive Adjustments --- */
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 15px;
+    }
+    
+    header h1 {
+        font-size: 2.2em;
+    }
+    
+    /* ... rest of media query ... */
+}
