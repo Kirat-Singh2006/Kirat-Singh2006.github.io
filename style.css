@@ -14,7 +14,7 @@
     --card-bg: #2a2a2a; /* Slightly lighter dark for cards */
     --font-stack: 'Poppins', sans-serif;
     
-    /* Variables for the optimized cursor glow (updated by script.js) */
+    /* 🌟 Variables for the optimized cursor glow (Restored) 🌟 */
     --mouse-x: 50%;
     --mouse-y: 50%;
 }
@@ -30,23 +30,21 @@ body {
     background-color: var(--background-dark);
     color: var(--text-light);
     line-height: 1.6;
-    padding-bottom: 50px; /* Space for content below the fold */
-    position: relative; /* Needed for the ::before glow element */
+    padding-bottom: 50px;
+    position: relative; /* Essential for the ::before glow element */
 }
 
-/* --- 2. Optimized Cursor Glow Effect --- */
+/* --- 2. Optimized Cursor Glow Effect (Restored) --- */
 
-/* Create the fixed, glowing pseudo-element */
 body::before {
   content: '';
   position: fixed;
   top: var(--mouse-y);
   left: var(--mouse-x);
   
-  /* Center the glow relative to the mouse point */
   transform: translate(-50%, -50%); 
   
-  width: 500px; 
+  width: 500px;
   height: 500px;
   
   /* Semi-transparent radial gradient using your colors */
@@ -54,8 +52,8 @@ body::before {
   
   border-radius: 50%;
   opacity: 1; 
-  pointer-events: none; /* Allows user to click elements underneath the glow */
-  z-index: -1; /* Ensures the glow stays behind the content */
+  pointer-events: none; 
+  z-index: -1; 
   
   transition: opacity 0.5s ease;
 }
@@ -109,7 +107,6 @@ main {
 section {
     padding: 25px 0;
     margin-bottom: 30px;
-    /* Optional: CSS for Section Highlighting (active class from script.js) */
     border-left: 3px solid transparent; 
     padding-left: 20px;
     transition: border-left 0.3s;
@@ -197,10 +194,8 @@ h2 {
 
 .progress-bar .bar {
     height: 100%;
-    width: 0; /* JS sets the final width */
-    /* Gradient for the bar fill */
+    width: 0; 
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
-    /* The animation magic! */
     transition: width 1.5s ease-out; 
 }
 
@@ -275,6 +270,6 @@ p a {
     }
 
     section {
-        padding-left: 10px; /* Adjust padding for smaller screens */
+        padding-left: 10px;
     }
 }
