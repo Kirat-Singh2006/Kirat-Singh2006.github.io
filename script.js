@@ -1,6 +1,6 @@
 /**
  * Kirat Singh Portfolio Script (script.js)
- * Cursor Glow Effect (Section 4) has been disabled to maintain solid black background.
+ * Includes skill bar animation, section highlighting, and the NEW Liquid Cursor Effect.
  */
 
 // --- 1. Utility Function for Throttling ---
@@ -49,14 +49,42 @@ function highlightSection() {
     });
 }
 
-// 🌟 4. Cursor Glow Effect (Original Simple Framework Restored) 🌟
-// THIS BLOCK HAS BEEN COMMENTED OUT TO PREVENT THE BACKGROUND COLOR OVERRIDE.
-/*
+// 🌟 4. Liquid Cursor Effect Logic 🌟
+// Select the dots for manipulation
+const primaryDot = document.querySelector('.primary-dot');
+const accentDot = document.querySelector('.accent-dot');
+
+let targetX = 0;
+let targetY = 0;
+let currentX = 0;
+let currentY = 0;
+const damping = 0.08; // Controls the "lag" or "flow" speed
+
 document.body.addEventListener('mousemove', (e) => {
-    // This line causes the pink/purple glow and overrides the CSS background.
-    document.body.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, #ff85b3, #6a1b9a 80%)`;
+    targetX = e.clientX;
+    targetY = e.clientY;
+    
+    // Move the accent dot (the smaller, faster one) directly with the cursor
+    accentDot.style.transform = `translate(${targetX - 5}px, ${targetY - 5}px)`;
 });
-*/
+
+function updateLiquidCursor() {
+    // Smoothly interpolate the primary dot's position towards the cursor
+    currentX += (targetX - currentX) * damping;
+    currentY += (targetY - currentY) * damping;
+
+    // Apply the lagged position to the primary dot (the larger, trailing one)
+    primaryDot.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+    // Loop the animation
+    requestAnimationFrame(updateLiquidCursor);
+}
+
+// Start the liquid effect loop
+if (primaryDot && accentDot) {
+    requestAnimationFrame(updateLiquidCursor);
+}
+
 
 // 5. Run on scroll and load (using throttling for efficiency)
 const scrollHandler = throttle(() => {
