@@ -1,20 +1,19 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - MODERN LIGHT THEME (Enhanced)
+ * Kirat Singh's Portfolio Styles - VIBRANT DARK THEME (Based on user request)
  */
 
 /* --- 1. Global Reset & Typography --- */
 
 :root {
     --primary-color: #8e24aa;         /* Deep Purple */
-    --accent-color: #e91e63;          /* Vibrant Pink */
-    --background-light: #fafafa;      /* Soft Off-White Background */
-    --text-dark: #2c3e50;             /* Dark Navy/Slate Text (Excellent readability) */
-    --card-bg: #ffffff;               /* Pure White for Card Elevation */
-    --header-bg: #f5f5f5;             /* Light Gray Header */
-    --border-light: #e0e0e0;          /* Very light gray border */
-    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft Shadow */
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15); /* Elevated Shadow on Hover */
+    --accent-color: #ff85b3;          /* Vibrant Pink */
+    --background-dark: #1c1c1c;       /* Deep Dark Gray Background */
+    --text-light: #ffffff;            /* Pure White Text (User Request) */
+    --card-bg: #2a2a2a;               /* Slightly lighter dark for cards */
+    --border-dark: #333333;           /* Dark border for separation */
+    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4); 
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.7);
     --font-stack: 'Poppins', sans-serif;
 }
 
@@ -26,8 +25,8 @@
 
 body {
     font-family: var(--font-stack);
-    background-color: var(--background-light); 
-    color: var(--text-dark);                 
+    background-color: var(--background-dark); 
+    color: var(--text-light);                 /* White Text */
     line-height: 1.6;
     padding-bottom: 50px;
     position: relative; 
@@ -36,22 +35,24 @@ body {
 /* --- 2. Header & Navigation --- */
 
 header {
-    background: var(--header-bg); 
+    /* --- USER REQUEST: Pink-Purple Gradient Background --- */
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    /* ---------------------------------------------------- */
     padding: 40px 0;
     text-align: center;
-    border-bottom: 1px solid var(--border-light); /* Softer header border */
-    margin-bottom: 40px; /* Increased margin for breathing room */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow beneath header */
+    border-bottom: none; /* Gradient is bold enough, no border needed */
+    margin-bottom: 40px; 
+    box-shadow: var(--shadow-base);
 }
 
 header h1 {
-    font-size: 2.8em; /* Slightly larger title */
-    color: var(--primary-color); 
+    font-size: 2.8em;
+    color: var(--text-light); /* White Text for high contrast */
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: #7f8c8d; /* Muted gray for subtitle */
+    color: var(--text-light); /* White Text */
     font-weight: 400;
     font-style: italic;
     margin-bottom: 25px;
@@ -59,29 +60,29 @@ header h1 {
 
 .contact a,
 .contact span {
-    color: var(--text-dark); /* Dark text for contrast */
+    color: var(--text-light); /* White Text for all contact info */
     text-decoration: none;
-    font-size: 1em; /* Slightly larger contact text */
+    font-size: 1em; 
     margin: 0 15px;
     transition: color 0.3s;
 }
 
 .contact a:hover {
-    color: var(--accent-color); 
+    color: var(--background-dark); /* Dark hover color for contrast on gradient */
 }
 
 
 /* --- 3. Main Content Layout --- */
 
 main {
-    max-width: 1100px; /* Wider content area */
+    max-width: 1100px; 
     margin: 0 auto;
-    padding: 0 25px; /* Increased side padding */
+    padding: 0 25px; 
 }
 
 section {
-    padding: 30px 0; /* More vertical padding */
-    margin-bottom: 40px; /* More space between sections */
+    padding: 30px 0; 
+    margin-bottom: 40px; 
     border-left: 3px solid transparent; 
     padding-left: 20px;
     transition: border-left 0.3s;
@@ -93,9 +94,9 @@ section.active {
 
 h2 {
     font-size: 2em;
-    color: var(--primary-color); 
-    border-bottom: 1px solid var(--border-light); /* Thinner, lighter border */
-    padding-bottom: 10px; /* More space below header */
+    color: var(--accent-color); /* Pink color for section titles */
+    border-bottom: 1px solid var(--border-dark); 
+    padding-bottom: 10px; 
     margin-bottom: 25px;
     font-weight: 600;
 }
@@ -105,37 +106,37 @@ h2 {
 .project-grid,
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly wider min column */
-    gap: 30px; /* More space between cards */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px; 
 }
 
 .project-card,
 .blog-post-card {
-    background-color: var(--card-bg); /* Pure white background */
-    padding: 30px; /* Increased internal padding */
-    border-radius: 10px; /* Softer rounded corners */
-    box-shadow: var(--shadow-base); /* Soft shadow for elevation */
-    border-left: 5px solid var(--primary-color); /* Thicker accent border on the left */
+    background-color: var(--card-bg); 
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: var(--shadow-base); 
+    border-left: 5px solid var(--primary-color); 
     transition: all 0.3s ease-in-out;
 }
 
 .project-card:hover,
 .blog-post-card:hover {
-    transform: translateY(-8px); /* More noticeable lift */
-    box-shadow: var(--shadow-hover); /* Deeper shadow on hover */
-    border-left-color: var(--accent-color); /* Pink accent on hover */
+    transform: translateY(-8px); 
+    box-shadow: var(--shadow-hover); 
+    border-left-color: var(--accent-color); 
 }
 
 .project-card h3,
 .blog-post-card h3 {
-    color: var(--text-dark); 
+    color: var(--text-light); /* White text */
     margin-bottom: 12px;
     font-size: 1.3em;
 }
 
 .project-card p,
 .blog-post-card p {
-    color: #555555; /* Slightly lighter body text for contrast */
+    color: #b3b3b3; /* Light gray body text for contrast */
 }
 
 .project-card a,
@@ -150,16 +151,16 @@ h2 {
 .blog-date {
     display: block;
     font-size: 0.9em;
-    color: #95a5a6; /* Muted date color */
+    color: #7f8c8d; /* Muted date color */
     margin-bottom: 8px;
     font-weight: 500;
 }
 
-/* --- 5. Skills Section --- */
+/* --- 5. Skills Section (Bar Colors remain the same) --- */
 
 .skills li {
     list-style: none;
-    margin-bottom: 20px; /* More vertical space */
+    margin-bottom: 20px; 
 }
 
 .skills-other {
@@ -168,9 +169,9 @@ h2 {
 }
 
 .progress-bar {
-    background-color: var(--border-light); 
-    border-radius: 6px; /* Softer corners */
-    height: 10px; /* Taller bar */
+    background-color: var(--border-dark); 
+    border-radius: 6px; 
+    height: 10px; 
     margin-top: 8px; 
     overflow: hidden;
 }
@@ -195,14 +196,14 @@ li {
 
 .edu > div {
     margin-bottom: 20px;
-    border-left: 4px solid var(--primary-color); /* Thicker timeline bar */
+    border-left: 4px solid var(--primary-color); 
     padding-left: 20px;
 }
 
 .date {
     display: block;
     font-style: italic;
-    color: #95a5a6; 
+    color: #7f8c8d; 
     font-size: 0.9em;
     margin-top: 3px;
 }
