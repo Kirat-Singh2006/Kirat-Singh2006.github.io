@@ -35,7 +35,7 @@ body {
 header {
     background: var(--background-dark);
     padding: 40px 0 10px 0;
-    text-align: center; 
+    text-align: center; /* Header content remains centered */
     margin-bottom: 0; 
     box-shadow: none;
 }
@@ -119,17 +119,17 @@ h2 {
 
 /* FIX: Ensure all paragraphs (p) in the main content area are centered blocks with LEFT-ALIGNED text */
 main p {
-    text-align: left !important; /* CRITICAL OVERRIDE */
+    text-align: left !important; 
     max-width: 650px; 
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
 }
 
-/* --- 4. Project & Blog Grids (Modified for Centered Layout) --- */
+/* --- 4. Project & Blog Grids --- */
 
 .project-grid, .blog-grid {
-    text-align: left; /* Block alignment reset */
+    text-align: left; 
     display: block;
     gap: 30px; 
 }
@@ -196,7 +196,7 @@ main p {
 .skills li {
     list-style: none;
     margin-bottom: 20px; 
-    text-align: left !important; /* CRITICAL OVERRIDE */
+    text-align: left !important; 
     max-width: 450px; 
     margin-left: auto;
     margin-right: auto;
