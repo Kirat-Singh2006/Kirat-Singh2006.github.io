@@ -14,7 +14,7 @@
     --background-dark: #222222;       /* Deep Dark Gray (Base background) */
     --border-subtle: #444444;         /* Dark border/separator */
     --text-light: #ffffff;            /* Main text color */
-    --text-subtle: #aaaaaa;           /* Subdued text color */
+    --text-subtle: #cccccc;           /* Slightly brighter subdued text color for better readability */
     --font-stack: 'Poppins', sans-serif;
 }
 
@@ -33,6 +33,12 @@ body {
     position: relative; 
 }
 
+/* FIX: This rule ensures ALL images, including the profile picture, don't break out of their container */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* --- 2. Header & Navigation --- */
 
 header {
@@ -41,6 +47,33 @@ header {
     text-align: center;
     margin-bottom: 0; 
     box-shadow: none;
+    /* FIX: Added max-width to the header content to help stabilize centering */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Styles for the profile picture and name container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+    flex-wrap: wrap; 
+    margin-bottom: 20px; /* Added slight spacing below the container */
+}
+
+.profile-pic {
+    width: 100px; /* Set image size */
+    height: 100px;
+    border-radius: 50%; /* Makes the image circular */
+    border: 3px solid var(--color-home-blue); /* Used a theme color for a nice accent border */
+    object-fit: cover; /* Ensures image fills the circle */
+    /* FIX: Added 'display: block' for better rendering consistency */
+    display: block; 
+}
+
+.profile-info {
+    text-align: left; 
 }
 
 header h1 {
@@ -53,7 +86,7 @@ header h1 {
     color: var(--text-subtle); 
     font-weight: 400;
     font-style: normal; 
-    margin-bottom: 25px;
+    margin-bottom: 0; /* Adjusted since the container has bottom margin */
 }
 
 .tab-navigation {
@@ -131,6 +164,17 @@ li {
     text-align: left !important;
 }
 
+h2 {
+    font-size: 2em;
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-bottom: 10px; 
+    margin-bottom: 25px;
+    font-weight: 600;
+    width: fit-content; 
+    margin-left: auto;   
+    margin-right: auto;  
+}
+
 /* --- 4. Project & Blog Grids --- */
 
 .project-grid, .blog-grid {
@@ -179,6 +223,14 @@ li {
     color: var(--text-subtle); 
 }
 
+.project-card a,
+.read-more-link {
+    display: block;
+    text-decoration: underline;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
 .blog-date {
     display: block;
     font-size: 0.9em;
@@ -208,6 +260,13 @@ li {
     overflow: hidden;
 }
 
+.progress-bar .bar {
+    height: 100%;
+    width: 0; 
+    /* Background color will be set by the theme-specific styles below */
+    transition: width 1.5s ease-out; 
+}
+
 /* --- 6. Education, Projects (List), Certifications --- */
 
 #projects-list ul li, #certifications ul li {
@@ -230,7 +289,7 @@ li {
     margin-top: 3px;
 }
 
-/* --- 7. DYNAMIC THEME STYLES --- */
+/* --- 7. DYNAMIC THEME STYLES (BRIGHTER LINKS) --- */
 
 /* Default / Home Theme (Blue) */
 html.theme-about h2,
@@ -245,6 +304,9 @@ html.theme-about .tab-link.active {
 }
 html.theme-about .progress-bar .bar {
     background: var(--color-home-blue);
+}
+html.theme-about .profile-pic {
+    border-color: var(--color-home-blue);
 }
 
 /* Blog Theme (Orange) */
@@ -261,6 +323,10 @@ html.theme-blog-posts .tab-link.active {
 html.theme-blog-posts .progress-bar .bar {
     background: var(--color-blog-orange);
 }
+html.theme-blog-posts .profile-pic {
+    border-color: var(--color-blog-orange);
+}
+
 
 /* Skills Theme (Green) */
 html.theme-skills h2,
@@ -276,11 +342,15 @@ html.theme-skills .tab-link.active {
 html.theme-skills .progress-bar .bar {
     background: var(--color-skills-green);
 }
+html.theme-skills .profile-pic {
+    border-color: var(--color-skills-green);
+}
+
 
 /* General Link Hover (Overwrites theme colors on hover) */
 a:hover {
     text-decoration: underline;
-    color: var(--text-subtle); /* A neutral hover color */
+    color: var(--text-light); /* Brighter hover color (pure white) */
 }
 p a {
     text-decoration: underline;
@@ -294,5 +364,11 @@ p a {
     }
     header h1 {
         font-size: 2.2em;
+    }
+    .profile-container {
+        flex-direction: column;
+    }
+    .profile-info {
+        text-align: center;
     }
 }
