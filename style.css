@@ -1,20 +1,19 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - SOLID BLACK BODY THEME
+ * Kirat Singh's Portfolio Styles - PURPLE TO BLUE THEME
  */
 
 /* --- 1. Global Reset & Typography --- */
 
 :root {
     --primary-color: #8e24aa;         /* Deep Purple */
-    --accent-color: #ff85b3;          /* Vibrant Pink */
-    --background-black: #000000;      /* Solid Black Background (User Request) */
+    --accent-color: #4a90e2;          /* Vibrant Blue (Replaced Pink) */
+    --background-dark: #1c1c1c;       /* Deep Dark Gray Background */
     --text-light: #ffffff;            /* Pure White Text */
-    --card-bg: #1a1a1a;               /* Dark Gray for cards */
-    --header-bg: #121212;             /* Very Dark Gray for Header/Contrast */
+    --card-bg: #2a2a2a;               /* Slightly lighter dark for cards */
     --border-dark: #333333;           /* Dark border for separation */
-    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.6); 
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.9);
+    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4); 
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.7);
     --font-stack: 'Poppins', sans-serif;
 }
 
@@ -26,33 +25,29 @@
 
 body {
     font-family: var(--font-stack);
-    /* --- BODY BACKGROUND: Solid Black --- */
-    background-color: var(--background-black); 
-    /* ------------------------------------ */
-    color: var(--text-light);                 
+    background-color: var(--background-dark); 
+    color: var(--text-light);                 /* White Text */
     line-height: 1.6;
     padding-bottom: 50px;
     position: relative; 
 }
 
----
-
 /* --- 2. Header & Navigation --- */
 
 header {
-    /* --- HEADER BACKGROUND: Very Dark Gray for subtle contrast --- */
-    background: var(--header-bg); 
-    /* ------------------------------------------------------------ */
+    /* --- Purple to Blue Gradient Background --- */
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    /* ----------------------------------------- */
     padding: 40px 0;
     text-align: center;
-    border-bottom: 2px solid var(--primary-color); 
+    border-bottom: none; 
     margin-bottom: 40px; 
     box-shadow: var(--shadow-base);
 }
 
 header h1 {
     font-size: 2.8em;
-    color: var(--accent-color); 
+    color: var(--text-light); 
     margin-bottom: 5px;
 }
 
@@ -73,16 +68,15 @@ header h1 {
 }
 
 .contact a:hover {
-    color: var(--accent-color); 
+    color: var(--background-dark); /* Dark hover color for contrast on gradient */
 }
 
----
 
-/* --- 3. Main Content Layout --- */
+/* --- 3. Main Content Layout (Centering Fix Applied) --- */
 
 main {
     max-width: 1100px; 
-    margin: 0 auto;
+    margin: 0 auto; /* Ensures content is centered */
     padding: 0 25px; 
 }
 
@@ -95,12 +89,12 @@ section {
 }
 
 section.active {
-    border-left: 3px solid var(--accent-color); 
+    border-left: 3px solid var(--accent-color); /* Blue accent */
 }
 
 h2 {
     font-size: 2em;
-    color: var(--primary-color); 
+    color: var(--primary-color); /* Purple color for section titles */
     border-bottom: 1px solid var(--border-dark); 
     padding-bottom: 10px; 
     margin-bottom: 25px;
@@ -130,7 +124,7 @@ h2 {
 .blog-post-card:hover {
     transform: translateY(-8px); 
     box-shadow: var(--shadow-hover); 
-    border-left-color: var(--accent-color); 
+    border-left-color: var(--accent-color); /* Blue accent on hover */
 }
 
 .project-card h3,
@@ -148,7 +142,7 @@ h2 {
 .project-card a,
 .read-more-link {
     display: inline-block;
-    color: var(--accent-color); 
+    color: var(--accent-color); /* Blue accent */
     text-decoration: none;
     margin-top: 15px;
     font-weight: 600;
@@ -161,8 +155,6 @@ h2 {
     margin-bottom: 8px;
     font-weight: 500;
 }
-
----
 
 /* --- 5. Skills Section --- */
 
@@ -187,11 +179,11 @@ h2 {
 .progress-bar .bar {
     height: 100%;
     width: 0; 
+    /* Purple to Blue Gradient in progress bars */
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
     transition: width 1.5s ease-out; 
 }
 
----
 
 /* --- 6. Education, Projects (List), Certifications --- */
 
@@ -217,8 +209,6 @@ li {
     margin-top: 3px;
 }
 
----
-
 /* --- 7. Links and General Text Styling --- */
 
 a {
@@ -228,14 +218,13 @@ a {
 
 a:hover {
     text-decoration: underline;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Blue on hover */
 }
 
 p a {
-    color: var(--accent-color) !important;
+    color: var(--accent-color) !important; /* Blue for inline links */
 }
 
----
 
 /* --- 8. Responsive Adjustments --- */
 
