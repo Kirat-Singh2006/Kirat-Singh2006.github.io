@@ -5,10 +5,14 @@
 
 /* --- 1. Global Reset & Typography --- */
 :root {
-    /* Define the colors for each theme */
+    /* Theme Colors */
     --color-home-blue: #4a90e2;
     --color-blog-orange: #e67e22;
     --color-skills-green: #00e676;
+    
+    /* NEW: Colors for external links */
+    --color-github-red: #e74c3c; 
+    --color-linkedin-yellow: #f1c40f; 
     
     --accent-color: #ffffff;          /* Pure White (Text/Highlight) */
     --background-dark: #222222;       /* Deep Dark Gray (Base background) */
@@ -38,22 +42,22 @@ img {
     height: auto;
 }
 
-/* --- 2. Header & Navigation (FIXED FOR HALF-SCREEN EFFECT) --- */
+/* --- 2. Header & Navigation (Half-Screen Effect) --- */
 
 header {
     background: var(--background-dark);
-    /* KEY FIX: Set header height to cover about the top half of the screen */
+    /* Set header height to cover about the top half of the screen */
     min-height: 55vh; 
     
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically within the 55vh space */
+    justify-content: center; /* Center content vertically */
     align-items: center;     /* Center content horizontally */
     
     padding: 40px 0 10px 0;
     text-align: center;
     margin: 0; /* Ensures edge-to-edge width */
-    max-width: none; /* Ensures edge-to-edge width */
+    max-width: none;
 }
 
 .profile-container {
@@ -65,7 +69,6 @@ header {
     margin-bottom: 20px; 
     width: 100%; 
     max-width: 600px; 
-    /* NEW: Add a little extra margin to push content up if needed */
     margin-top: 20px; 
 }
 
@@ -96,12 +99,12 @@ header h1 {
 }
 
 .tab-navigation {
-    /* Keep navigation flowing normally after the profile info */
+    /* Navigation is now centered in the header, flowing normally */
     position: relative; 
     bottom: auto;
     left: auto;
     right: auto;
-    background: transparent; /* Navigation background is now transparent, using header's background */
+    background: transparent; 
     
     border-top: 1px solid var(--border-subtle);
     padding-top: 15px;
@@ -109,7 +112,7 @@ header h1 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding-bottom: 0; /* Removed absolute positioning padding */
+    padding-bottom: 0; 
 }
 
 .tab-link {
@@ -122,18 +125,12 @@ header h1 {
     border-bottom: 2px solid transparent;
 }
 
-.tab-link:hover {
-    color: var(--text-light);
-    border-bottom-color: var(--border-subtle);
-    text-decoration: none;
-}
 
 /* --- 3. Main Content Layout --- */
 
 main {
     max-width: 800px; 
     margin: 0 auto; 
-    /* Reduced top padding since the header no longer covers the whole screen */
     padding: 25px 25px 0; 
     background-color: #000000;
 }
@@ -157,4 +154,158 @@ section.active {
     display: block;
 }
 
-/* ... (Rest of the CSS remains unchanged) ... */
+main p {
+    text-align: left !important;
+    max-width: 650px; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+ul, ol {
+    padding-left: 0; 
+    list-style-type: none; 
+    max-width: 650px; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left !important;
+}
+
+li {
+    margin-bottom: 15px;
+    text-align: left !important;
+}
+
+h2 {
+    font-size: 2em;
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-bottom: 10px; 
+    margin-bottom: 25px;
+    font-weight: 600;
+    width: fit-content; 
+    margin-left: auto;   
+    margin-right: auto;  
+}
+
+/* --- 4. Project & Blog Grids --- */
+
+.project-grid, .blog-grid {
+    text-align: left; 
+    display: block;
+    gap: 30px; 
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center; 
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.project-card,
+.blog-post-card {
+    background-color: #000000; 
+    padding: 20px 0; 
+    border-radius: 0; 
+    box-shadow: none; 
+    border: none; 
+    border-bottom: 1px solid var(--border-subtle); 
+    margin-bottom: 20px;
+    transition: opacity 0.3s;
+    text-align: left; 
+}
+
+.project-card:hover,
+.blog-post-card:hover {
+    transform: none; 
+    box-shadow: none; 
+    opacity: 0.8; 
+}
+
+.project-card h3,
+.blog-post-card h3 {
+    color: var(--text-light); 
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.project-card p,
+.blog-post-card p {
+    color: var(--text-subtle); 
+}
+
+.project-card a,
+.read-more-link {
+    display: block;
+    text-decoration: underline;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.blog-date {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-subtle); 
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+/* --- 5. Skills Section (FIXED PROGRESS BAR) --- */
+
+.skills li {
+    list-style: none;
+    margin-bottom: 20px; 
+    text-align: left; 
+}
+
+.skills-other {
+    margin-top: 25px;
+    padding-left: 0;
+}
+
+.progress-bar {
+    background-color: var(--border-subtle); 
+    border-radius: 6px; 
+    height: 10px; 
+    margin-top: 8px; 
+    overflow: hidden;
+    width: 100%; /* Ensure bar takes full width before animation */
+}
+
+.progress-bar .bar {
+    height: 100%;
+    width: 0; 
+    transition: width 1.5s ease-out; 
+}
+
+/* --- 6. Education, Projects (List), Certifications --- */
+
+#projects-list ul li, #certifications ul li {
+    border-left: none; 
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.edu > div {
+    margin-bottom: 20px;
+    border-left: 4px solid var(--border-subtle); 
+    padding-left: 20px;
+}
+
+.date {
+    display: block;
+    font-style: italic;
+    color: var(--text-subtle); 
+    font-size: 0.9em;
+    margin-top: 3px;
+}
+
+/* --- 7. DYNAMIC THEME STYLES (Color Application) --- */
+
+/* Home Theme (Blue) */
+html.theme-about h2,
+html.theme-about a,
+html.theme-about .project-card a,
+html.theme-about .read-more-link {
+    color: var(--
