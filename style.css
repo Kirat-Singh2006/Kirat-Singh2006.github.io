@@ -1,49 +1,291 @@
-/**
- * Kirat Singh Portfolio Script (script.js)
- * Includes skill bar animation only. Section highlighting and scroll effects removed.
+/*
+ * style.css
+ * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Matching Image Aesthetic)
  */
 
-// --- 1. Utility Function for Throttling ---
-const throttle = (func, limit) => {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
+/* --- 1. Global Reset & Typography --- */
+
+:root {
+    /* New Dark Mode Palette: White text on dark gray, single bold accent */
+    --primary-color: #00e676;         /* Neo-Mint/Green (Single Bold Accent) */
+    --accent-color: #ffffff;          /* Pure White (Text/Highlight) */
+    --background-dark: #222222;       /* Deep Dark Gray (Base background) */
+    --border-subtle: #444444;         /* Dark border/separator */
+    --text-light: #ffffff;            /* Main text color */
+    --text-subtle: #aaaaaa;           /* Subdued text color */
+    --shadow-base: none;              /* Removed shadows */
+    --font-stack: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-stack);
+    /* Dark Mode Background */
+    background-color: #000000 !important; /* Pure black body */
+    color: var(--text-light);                 
+    line-height: 1.6;
+    padding-bottom: 50px;
+    position: relative; 
+}
+
+/* --- 2. Header & Navigation --- */
+
+header {
+    /* Header already centered */
+    background: var(--background-dark);
+    border-bottom: none;
+    padding: 40px 0;
+    text-align: center;
+    margin-bottom: 40px; 
+    box-shadow: none;
+}
+
+header h1 {
+    font-size: 2.8em;
+    color: var(--text-light); 
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--text-subtle); 
+    font-weight: 400;
+    font-style: normal; 
+    margin-bottom: 25px;
+}
+
+.contact a,
+.contact span {
+    color: var(--text-light); 
+    text-decoration: none;
+    font-size: 1em; 
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.contact a:hover {
+    color: var(--primary-color); 
+}
+
+
+/* --- 3. Main Content Layout (Centering Applied) --- */
+
+main {
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 0 25px; 
+    background-color: #000000;
+    /* FIX 1: Center all inline content (text, links) */
+    text-align: center;
+}
+
+section {
+    padding: 30px 0; 
+    margin-bottom: 40px; 
+    border-left: none; 
+    background-color: #000000;
+    transition: none; 
+    /* FIX 2: Center all inline content (text, links) */
+    text-align: center;
+}
+
+section.active {
+    background-color: #000000; 
+    border-left: none; 
+}
+
+h2 {
+    font-size: 2em;
+    color: var(--primary-color); 
+    /* H2 border width needs to be set to auto-center the line */
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-bottom: 10px; 
+    margin-bottom: 25px;
+    font-weight: 600;
+    width: fit-content; /* Make border only as wide as the text */
+    margin-left: auto;   /* Center the h2 block */
+    margin-right: auto;  /* Center the h2 block */
+}
+
+/* --- 4. Project & Blog Grids (Modified for Centered Layout) --- */
+
+.project-grid, .blog-grid {
+    /* FIX 3: Reset block alignment to left for contained elements (cards) */
+    text-align: left; 
+    display: block;
+    gap: 30px; 
+}
+
+.blog-grid {
+    /* FIX 4: Center the grid of blog posts */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center; 
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.project-card,
+.blog-post-card {
+    background-color: #000000; 
+    padding: 20px 0; 
+    border-radius: 0; 
+    box-shadow: none; 
+    border: none; 
+    border-bottom: 1px solid var(--border-subtle); 
+    margin-bottom: 20px;
+    transition: opacity 0.3s;
+    text-align: left; /* Keep card text left-aligned inside the card */
+}
+
+.project-card:hover,
+.blog-post-card:hover {
+    transform: none; 
+    box-shadow: none; 
+    opacity: 0.8; 
+}
+
+.project-card h3,
+.blog-post-card h3 {
+    color: var(--text-light); 
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.project-card p,
+.blog-post-card p {
+    color: var(--text-subtle); 
+}
+
+.project-card a,
+.read-more-link {
+    display: block;
+    color: var(--primary-color); 
+    text-decoration: underline;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.blog-date {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-subtle); 
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+/* --- 5. Skills Section --- (Centering Applied) */
+
+.skills li {
+    list-style: none;
+    margin-bottom: 20px; 
+    text-align: left; /* Keep list item text left-aligned inside the centered list */
+}
+
+.skills-other {
+    margin-top: 25px;
+    padding-left: 0;
+}
+
+.progress-bar {
+    background-color: var(--border-subtle); 
+    border-radius: 6px; 
+    height: 10px; 
+    margin-top: 8px; 
+    overflow: hidden;
+}
+
+.progress-bar .bar {
+    height: 100%;
+    width: 0; 
+    background: var(--primary-color); 
+    transition: width 1.5s ease-out; 
+}
+
+
+/* --- 6. Education, Projects (List), Certifications --- (Centering Applied) */
+
+ul, ol {
+    padding-left: 0; 
+    list-style-type: none; 
+    /* FIX 5: Center the entire list block */
+    display: inline-block; 
+    text-align: left; /* Align list item text back to the left */
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+#projects ul li, #certifications ul li {
+    border-left: none; 
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.edu > div {
+    margin-bottom: 20px;
+    border-left: 4px solid var(--border-subtle); 
+    padding-left: 20px;
+}
+
+.date {
+    display: block;
+    font-style: italic;
+    color: var(--text-subtle); 
+    font-size: 0.9em;
+    margin-top: 3px;
+}
+
+/* --- 7. Links and General Text Styling --- */
+
+a {
+    color: var(--primary-color); 
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--primary-color); 
+}
+
+p a {
+    color: var(--primary-color) !important; 
+}
+
+
+/* --- 8. Responsive Adjustments --- */
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 15px;
+    }
+    
+    header h1 {
+        font-size: 2.2em;
+    }
+    
+    .contact {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact a,
+    .contact span {
+        margin: 5px 0;
+    }
+    
+    .project-grid,
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding-left: 10px;
+        margin-bottom: 30px;
     }
 }
-
-// 2. Animate skill progress bars
-function animateProgressBars() {
-    document.querySelectorAll('.progress-bar').forEach(bar => {
-        const rect = bar.getBoundingClientRect();
-        // Check if the element is in the viewport
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (inView && !bar.classList.contains('animated')) {
-            const percent = bar.getAttribute('data-percent');
-            bar.querySelector('.bar').style.width = percent + '%';
-            bar.classList.add('animated');
-        }
-    });
-}
-
-// 3. Highlight section in view (FUNCTION REMOVED - not needed for minimalist design)
-// The function highlightSection() is no longer called or defined.
-
-// 4. Run on scroll and load (using throttling for efficiency)
-const scrollHandler = throttle(() => {
-    animateProgressBars();
-    // Removed highlightSection() call
-}, 100);
-
-window.addEventListener('scroll', scrollHandler);
-
-window.addEventListener('load', () => { 
-    animateProgressBars();
-    // Removed highlightSection() call
-});
