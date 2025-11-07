@@ -14,9 +14,7 @@
     --card-bg: #2a2a2a; /* Slightly lighter dark for cards */
     --font-stack: 'Poppins', sans-serif;
     
-    /* 🌟 Variables for the optimized cursor glow (Restored) 🌟 */
-    --mouse-x: 50%;
-    --mouse-y: 50%;
+    /* Removed: --mouse-x, --mouse-y */
 }
 
 * {
@@ -27,39 +25,16 @@
 
 body {
     font-family: var(--font-stack);
-    background-color: var(--background-dark);
+    /* Set a default solid background color */
+    background-color: var(--background-dark); 
     color: var(--text-light);
     line-height: 1.6;
     padding-bottom: 50px;
-    position: relative; /* Essential for the ::before glow element */
+    position: relative;
+    /* Removed: body::before glow logic */
 }
 
-/* --- 2. Optimized Cursor Glow Effect (Restored) --- */
-
-body::before {
-  content: '';
-  position: fixed;
-  top: var(--mouse-y);
-  left: var(--mouse-x);
-  
-  transform: translate(-50%, -50%); 
-  
-  width: 500px;
-  height: 500px;
-  
-  /* Semi-transparent radial gradient using your colors */
-  background: radial-gradient(circle, #ff85b370, #6a1b9a00 80%); 
-  
-  border-radius: 50%;
-  opacity: 1; 
-  pointer-events: none; 
-  z-index: -1; 
-  
-  transition: opacity 0.5s ease;
-}
-
-
-/* --- 3. Header & Navigation --- */
+/* --- 2. Header & Navigation --- */
 
 header {
     background: #121212;
@@ -96,7 +71,7 @@ header h1 {
 }
 
 
-/* --- 4. Main Content Layout --- */
+/* --- 3. Main Content Layout --- */
 
 main {
     max-width: 1000px;
@@ -124,7 +99,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* --- 5. Project & Blog Grids --- */
+/* --- 4. Project & Blog Grids --- */
 
 .project-grid,
 .blog-grid {
@@ -172,7 +147,7 @@ h2 {
     margin-bottom: 5px;
 }
 
-/* --- 6. Skills Section --- */
+/* --- 5. Skills Section --- */
 
 .skills li {
     list-style: none;
@@ -200,7 +175,7 @@ h2 {
 }
 
 
-/* --- 7. Education, Projects (List), Certifications --- */
+/* --- 6. Education, Projects (List), Certifications --- */
 
 ul, ol {
     padding-left: 20px;
@@ -224,7 +199,7 @@ li {
     margin-top: 3px;
 }
 
-/* --- 8. Links and General Text Styling --- */
+/* --- 7. Links and General Text Styling --- */
 
 a {
     color: var(--primary-color);
@@ -241,7 +216,7 @@ p a {
 }
 
 
-/* --- 9. Responsive Adjustments (Mobile first) --- */
+/* --- 8. Responsive Adjustments (Mobile first) --- */
 
 @media (max-width: 600px) {
     header {
