@@ -1,6 +1,6 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - VIBRANT DARK THEME (Based on user request)
+ * Kirat Singh's Portfolio Styles - SOLID BLACK THEME
  */
 
 /* --- 1. Global Reset & Typography --- */
@@ -8,12 +8,13 @@
 :root {
     --primary-color: #8e24aa;         /* Deep Purple */
     --accent-color: #ff85b3;          /* Vibrant Pink */
-    --background-dark: #1c1c1c;       /* Deep Dark Gray Background */
-    --text-light: #ffffff;            /* Pure White Text (User Request) */
-    --card-bg: #2a2a2a;               /* Slightly lighter dark for cards */
+    --background-black: #000000;      /* Solid Black Background (User Request) */
+    --text-light: #ffffff;            /* Pure White Text */
+    --card-bg: #1a1a1a;               /* Dark Gray for cards (Slightly off-black) */
+    --header-bg: #121212;             /* Very Dark Gray for Header */
     --border-dark: #333333;           /* Dark border for separation */
-    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4); 
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.7);
+    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.6); 
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.9);
     --font-stack: 'Poppins', sans-serif;
 }
 
@@ -25,8 +26,10 @@
 
 body {
     font-family: var(--font-stack);
-    background-color: var(--background-dark); 
-    color: var(--text-light);                 /* White Text */
+    /* --- BODY BACKGROUND: Solid Black --- */
+    background-color: var(--background-black); 
+    /* ------------------------------------ */
+    color: var(--text-light);                 
     line-height: 1.6;
     padding-bottom: 50px;
     position: relative; 
@@ -35,24 +38,24 @@ body {
 /* --- 2. Header & Navigation --- */
 
 header {
-    /* --- USER REQUEST: Pink-Purple Gradient Background --- */
-    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    /* ---------------------------------------------------- */
+    /* --- HEADER BACKGROUND: Solid Dark Gray --- */
+    background: var(--header-bg); 
+    /* ------------------------------------------ */
     padding: 40px 0;
     text-align: center;
-    border-bottom: none; /* Gradient is bold enough, no border needed */
+    border-bottom: 2px solid var(--primary-color); /* Added a subtle purple bottom line */
     margin-bottom: 40px; 
     box-shadow: var(--shadow-base);
 }
 
 header h1 {
     font-size: 2.8em;
-    color: var(--text-light); /* White Text for high contrast */
+    color: var(--accent-color); /* Using pink for the main title */
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: var(--text-light); /* White Text */
+    color: var(--text-light); 
     font-weight: 400;
     font-style: italic;
     margin-bottom: 25px;
@@ -60,7 +63,7 @@ header h1 {
 
 .contact a,
 .contact span {
-    color: var(--text-light); /* White Text for all contact info */
+    color: var(--text-light); 
     text-decoration: none;
     font-size: 1em; 
     margin: 0 15px;
@@ -68,7 +71,7 @@ header h1 {
 }
 
 .contact a:hover {
-    color: var(--background-dark); /* Dark hover color for contrast on gradient */
+    color: var(--accent-color); 
 }
 
 
@@ -94,7 +97,7 @@ section.active {
 
 h2 {
     font-size: 2em;
-    color: var(--accent-color); /* Pink color for section titles */
+    color: var(--primary-color); /* Purple color for section titles */
     border-bottom: 1px solid var(--border-dark); 
     padding-bottom: 10px; 
     margin-bottom: 25px;
@@ -129,14 +132,14 @@ h2 {
 
 .project-card h3,
 .blog-post-card h3 {
-    color: var(--text-light); /* White text */
+    color: var(--text-light); 
     margin-bottom: 12px;
     font-size: 1.3em;
 }
 
 .project-card p,
 .blog-post-card p {
-    color: #b3b3b3; /* Light gray body text for contrast */
+    color: #b3b3b3; 
 }
 
 .project-card a,
@@ -151,12 +154,12 @@ h2 {
 .blog-date {
     display: block;
     font-size: 0.9em;
-    color: #7f8c8d; /* Muted date color */
+    color: #7f8c8d; 
     margin-bottom: 8px;
     font-weight: 500;
 }
 
-/* --- 5. Skills Section (Bar Colors remain the same) --- */
+/* --- 5. Skills Section --- */
 
 .skills li {
     list-style: none;
