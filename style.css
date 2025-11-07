@@ -5,7 +5,7 @@
 
 /* --- 1. Global Reset & Typography --- */
 :root {
-    /* NEW: Define the colors for each theme */
+    /* Define the colors for each theme */
     --color-home-blue: #4a90e2;
     --color-blog-orange: #e67e22;
     --color-skills-green: #00e676;
@@ -38,27 +38,24 @@ img {
     height: auto;
 }
 
-/* --- 2. Header & Navigation --- */
+/* --- 2. Header & Navigation (FIXED FOR HALF-SCREEN EFFECT) --- */
 
 header {
     background: var(--background-dark);
-    /* KEY CHANGE: Make the header fill the full height of the viewport */
-    min-height: 100vh; 
-    /* KEY CHANGE: Use flexbox to center content vertically */
+    /* KEY FIX: Set header height to cover about the top half of the screen */
+    min-height: 55vh; 
+    
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
+    justify-content: center; /* Center content vertically within the 55vh space */
     align-items: center;     /* Center content horizontally */
     
     padding: 40px 0 10px 0;
     text-align: center;
-    margin-bottom: 0; 
-    box-shadow: none;
-    max-width: none; /* Removed the max-width restriction */
-    margin: 0; /* Removed margin */
+    margin: 0; /* Ensures edge-to-edge width */
+    max-width: none; /* Ensures edge-to-edge width */
 }
 
-/* The profile container is now the only content that is horizontally centered */
 .profile-container {
     display: flex;
     justify-content: center;
@@ -66,9 +63,10 @@ header {
     gap: 20px; 
     flex-wrap: wrap; 
     margin-bottom: 20px; 
-    /* Ensures the container respects flex centering */
     width: 100%; 
-    max-width: 600px; /* Optional: keep the container content constrained */
+    max-width: 600px; 
+    /* NEW: Add a little extra margin to push content up if needed */
+    margin-top: 20px; 
 }
 
 .profile-pic {
@@ -98,26 +96,27 @@ header h1 {
 }
 
 .tab-navigation {
+    /* Keep navigation flowing normally after the profile info */
+    position: relative; 
+    bottom: auto;
+    left: auto;
+    right: auto;
+    background: transparent; /* Navigation background is now transparent, using header's background */
+    
     border-top: 1px solid var(--border-subtle);
     padding-top: 15px;
     margin-top: 20px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* FIX: This makes sure the navigation stays at the bottom of the screen (or close to it) */
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    background: var(--background-dark); /* Ensure the nav background is correct */
-    padding-bottom: 15px;
+    padding-bottom: 0; /* Removed absolute positioning padding */
 }
 
 .tab-link {
     color: var(--text-subtle);
     text-decoration: none;
     font-weight: 600;
-    margin: 0 15px 0; /* Adjusted vertical margin */
+    margin: 0 15px 15px; 
     padding: 5px 0;
     transition: color 0.3s, border-bottom 0.3s;
     border-bottom: 2px solid transparent;
@@ -131,11 +130,11 @@ header h1 {
 
 /* --- 3. Main Content Layout --- */
 
-/* KEY CHANGE: The main content must start BELOW the full-screen header */
 main {
     max-width: 800px; 
     margin: 0 auto; 
-    padding: 50px 25px 0; /* Increased top padding to ensure content starts low enough */
+    /* Reduced top padding since the header no longer covers the whole screen */
+    padding: 25px 25px 0; 
     background-color: #000000;
 }
 
@@ -158,20 +157,4 @@ section.active {
     display: block;
 }
 
-/* ... (rest of CSS remains the same) ... */
-
-/* --- 8. Responsive Adjustments --- */
-@media (max-width: 768px) {
-    main {
-        padding: 0 15px;
-    }
-    header h1 {
-        font-size: 2.2em;
-    }
-    .profile-container {
-        flex-direction: column;
-    }
-    .profile-info {
-        text-align: center;
-    }
-}
+/* ... (Rest of the CSS remains unchanged) ... */
