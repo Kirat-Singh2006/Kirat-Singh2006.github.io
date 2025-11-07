@@ -1,20 +1,20 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles
+ * Kirat Singh's Portfolio Styles - LIGHT THEME
  */
 
 /* --- 1. Global Reset & Typography --- */
 
 /* Define root variables for easy color and font management */
 :root {
-    --primary-color: #8e24aa; /* Purple */
-    --accent-color: #ff85b3; /* Pink */
-    --background-dark: #1c1c1c; /* Deep Dark Gray */
-    --text-light: #e0e0e0; /* Light Gray Text */
-    --card-bg: #2a2a2a; /* Slightly lighter dark for cards */
+    --primary-color: #8e24aa;     /* Purple (Remains) */
+    --accent-color: #e91e63;      /* Vibrant Pink (Adjusted for light bg) */
+    --background-light: #ffffff;  /* White background */
+    --text-dark: #333333;         /* Dark gray text for readability */
+    --card-bg: #f5f5f5;           /* Slightly off-white for cards */
+    --header-bg: #e0e0e0;         /* Light gray for header */
+    --border-light: #cccccc;      /* Light border for accents */
     --font-stack: 'Poppins', sans-serif;
-    
-    /* Removed: --mouse-x, --mouse-y */
 }
 
 * {
@@ -25,33 +25,31 @@
 
 body {
     font-family: var(--font-stack);
-    /* Set a default solid background color */
-    background-color: var(--background-dark); 
-    color: var(--text-light);
+    background-color: var(--background-light); /* White background */
+    color: var(--text-dark);                 /* Dark text */
     line-height: 1.6;
     padding-bottom: 50px;
     position: relative;
-    /* Removed: body::before glow logic */
 }
 
 /* --- 2. Header & Navigation --- */
 
 header {
-    background: #121212;
+    background: var(--header-bg); /* Light gray header */
     padding: 40px 0;
     text-align: center;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color); /* Pink border */
     margin-bottom: 30px;
 }
 
 header h1 {
     font-size: 2.5em;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Pink accent */
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: #b3b3b3;
+    color: #555555; /* Darker gray for subtitle */
     font-weight: 400;
     font-style: italic;
     margin-bottom: 20px;
@@ -59,7 +57,7 @@ header h1 {
 
 .contact a,
 .contact span {
-    color: var(--text-light);
+    color: var(--text-dark); /* Dark text */
     text-decoration: none;
     font-size: 0.9em;
     margin: 0 10px;
@@ -67,7 +65,7 @@ header h1 {
 }
 
 .contact a:hover {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Pink on hover */
 }
 
 
@@ -88,13 +86,13 @@ section {
 }
 
 section.active {
-    border-left: 3px solid var(--accent-color);
+    border-left: 3px solid var(--accent-color); /* Pink border when active */
 }
 
 h2 {
     font-size: 1.8em;
-    color: var(--primary-color);
-    border-bottom: 2px solid #333;
+    color: var(--primary-color); /* Purple */
+    border-bottom: 2px solid var(--border-light); /* Light border */
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
@@ -110,31 +108,31 @@ h2 {
 
 .project-card,
 .blog-post-card {
-    background-color: var(--card-bg);
+    background-color: var(--card-bg); /* Off-white card background */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    border-top: 3px solid var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow for light theme */
+    border-top: 3px solid var(--primary-color); /* Purple border */
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .project-card:hover,
 .blog-post-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-    border-top-color: var(--accent-color);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Slightly darker shadow on hover */
+    border-top-color: var(--accent-color); /* Pink on hover */
 }
 
 .project-card h3,
 .blog-post-card h3 {
-    color: var(--text-light);
+    color: var(--text-dark); /* Dark text */
     margin-bottom: 10px;
 }
 
 .project-card a,
 .read-more-link {
     display: inline-block;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Pink accent */
     text-decoration: none;
     margin-top: 10px;
     font-weight: 600;
@@ -143,7 +141,7 @@ h2 {
 .blog-date {
     display: block;
     font-size: 0.8em;
-    color: #aaa;
+    color: #777; /* Medium gray for dates */
     margin-bottom: 5px;
 }
 
@@ -160,7 +158,7 @@ h2 {
 }
 
 .progress-bar {
-    background-color: #333; /* Background track */
+    background-color: var(--border-light); /* Light background track */
     border-radius: 4px;
     height: 8px;
     margin-top: 5px;
@@ -170,6 +168,7 @@ h2 {
 .progress-bar .bar {
     height: 100%;
     width: 0; 
+    /* Gradient for the bar fill - Adjusted for light background */
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
     transition: width 1.5s ease-out; 
 }
@@ -187,14 +186,14 @@ li {
 
 .edu > div {
     margin-bottom: 15px;
-    border-left: 3px solid var(--primary-color);
+    border-left: 3px solid var(--primary-color); /* Purple border */
     padding-left: 15px;
 }
 
 .date {
     display: block;
     font-style: italic;
-    color: #aaa;
+    color: #777; /* Medium gray for dates */
     font-size: 0.9em;
     margin-top: 3px;
 }
@@ -202,17 +201,17 @@ li {
 /* --- 7. Links and General Text Styling --- */
 
 a {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Purple */
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Pink on hover */
 }
 
 p a {
-    color: var(--accent-color) !important;
+    color: var(--accent-color) !important; /* Pink for inline links in paragraphs */
 }
 
 
