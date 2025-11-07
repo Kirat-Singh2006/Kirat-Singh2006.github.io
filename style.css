@@ -1,17 +1,17 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - PURPLE TO BLUE THEME
+ * Kirat Singh's Portfolio Styles - PURPLE TO BLUE THEME (Harmonized)
  */
 
 /* --- 1. Global Reset & Typography --- */
 
 :root {
     --primary-color: #8e24aa;         /* Deep Purple */
-    --accent-color: #4a90e2;          /* Vibrant Blue (Replaced Pink) */
-    --background-dark: #1c1c1c;       /* Deep Dark Gray Background */
+    --accent-color: #4a90e2;          /* Vibrant Blue */
+    --background-dark: #121212;       /* Very Deep Dark Gray Background (Darker Body) */
     --text-light: #ffffff;            /* Pure White Text */
-    --card-bg: #2a2a2a;               /* Slightly lighter dark for cards */
-    --border-dark: #333333;           /* Dark border for separation */
+    --card-bg: #1e1e1e;               /* Darker card background for better distinction */
+    --border-dark: #333333;           
     --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4); 
     --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.7);
     --font-stack: 'Poppins', sans-serif;
@@ -25,8 +25,8 @@
 
 body {
     font-family: var(--font-stack);
-    background-color: var(--background-dark); 
-    color: var(--text-light);                 /* White Text */
+    background-color: var(--background-dark); /* Very Deep Dark Gray Body */
+    color: var(--text-light);                 
     line-height: 1.6;
     padding-bottom: 50px;
     position: relative; 
@@ -35,9 +35,8 @@ body {
 /* --- 2. Header & Navigation --- */
 
 header {
-    /* --- Purple to Blue Gradient Background --- */
+    /* Purple to Blue Gradient Background */
     background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    /* ----------------------------------------- */
     padding: 40px 0;
     text-align: center;
     border-bottom: none; 
@@ -112,7 +111,7 @@ h2 {
 
 .project-card,
 .blog-post-card {
-    background-color: var(--card-bg); 
+    background-color: var(--card-bg); /* Darkened card background */
     padding: 30px; 
     border-radius: 10px; 
     box-shadow: var(--shadow-base); 
