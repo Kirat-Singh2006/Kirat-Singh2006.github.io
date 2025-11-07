@@ -1,19 +1,19 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - FINALIZED NEO-MINT & ELECTRIC TEAL THEME (List View)
+ * Kirat Singh's Portfolio Styles - CLEAN MINIMALIST LIGHT MODE
  */
 
 /* --- 1. Global Reset & Typography --- */
 
 :root {
-    --primary-color: #00e676;         /* Neo-Mint / Emerald Green (Primary accent) */
-    --accent-color: #18ffff;          /* Electric Cyan / Teal (Highlight/Hover) */
-    --background-dark: #0d0d0d;       /* Ultra Deep Black */
-    --text-light: #ffffff;            /* Pure White White Text */
-    --card-bg: #1a1a1a;               /* Dark Gray for card contrast */
-    --border-dark: #333333;           
-    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4); 
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.7);
+    /* New Light Mode Palette: Bold Primary, Subtle Accent, White Base */
+    --primary-color: #0077b6;         /* Strong Blue/Cyan (Accent for links/titles) */
+    --accent-color: #333333;          /* Dark Gray/Black (Text color) */
+    --background-light: #ffffff;      /* Pure White */
+    --border-subtle: #cccccc;         /* Light gray border/separator */
+    --text-dark: #333333;             /* Main text color */
+    --shadow-base: none;              /* Removed shadows */
+    --shadow-hover: none;
     --font-stack: 'Poppins', sans-serif;
 }
 
@@ -25,9 +25,9 @@
 
 body {
     font-family: var(--font-stack);
-    /* Solid Black Background, Overriding All */
-    background-color: #000000 !important; 
-    color: var(--text-light);                 
+    /* Light Mode Background */
+    background-color: var(--background-light) !important; 
+    color: var(--text-dark);                 
     line-height: 1.6;
     padding-bottom: 50px;
     position: relative; 
@@ -36,25 +36,23 @@ body {
 /* --- 2. Header & Navigation --- */
 
 header {
-    /* HEADER BACKGROUND: Solid Black */
-    background: #000000;
-    /* Uses the Primary Green color for the defining bottom border */
-    border-bottom: 3px solid var(--primary-color);
+    /* Minimalist header: White background, subtle bottom border */
+    background: var(--background-light);
+    border-bottom: 1px solid var(--border-subtle);
     padding: 40px 0;
     text-align: center;
     margin-bottom: 40px; 
-    box-shadow: var(--shadow-base);
+    box-shadow: none; /* No shadow */
 }
 
 header h1 {
     font-size: 2.8em;
-    /* Use Teal/Cyan for H1 on the black background */
-    color: var(--accent-color); 
+    color: var(--text-dark); /* Black title */
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: var(--text-light); 
+    color: var(--text-dark); 
     font-weight: 400;
     font-style: italic;
     margin-bottom: 25px;
@@ -62,7 +60,7 @@ header h1 {
 
 .contact a,
 .contact span {
-    color: var(--text-light); 
+    color: var(--text-dark); 
     text-decoration: none;
     font-size: 1em; 
     margin: 0 15px;
@@ -70,40 +68,38 @@ header h1 {
 }
 
 .contact a:hover {
-    color: var(--primary-color); /* Green hover color for header links */
+    color: var(--primary-color); /* Blue hover color */
 }
 
 
-/* --- 3. Main Content Layout (SCROLL REVEAL EFFECT) --- */
+/* --- 3. Main Content Layout (SCROLL REVEAL REMOVED) --- */
 
 main {
-    max-width: 1100px; 
-    margin: 0 auto; /* Ensures content is centered */
+    max-width: 800px; /* Narrower width for a cleaner look */
+    margin: 0 auto; 
     padding: 0 25px; 
-    background-color: var(--background-dark);
+    background-color: var(--background-light);
 }
 
 section {
-    padding: 30px 20px; 
+    padding: 30px 0; /* Removed side padding, restored general padding */
     margin-bottom: 40px; 
-    /* Base style: subtle dark border on a dark background */
-    border-left: 5px solid var(--border-dark); 
-    background-color: var(--background-dark);
-    /* CRITICAL for smooth transition */
-    transition: all 0.5s ease-in-out; 
+    border-left: none; /* Removed the animated border */
+    background-color: var(--background-light);
+    transition: none; /* Removed transitions */
 }
 
+/* Scroll reveal effect REMOVED */
 section.active {
-    /* Dramatic scroll animation: Background change and border highlight (THE REVEAL) */
-    background-color: var(--card-bg); 
-    border-left: 5px solid var(--accent-color); /* Bright border highlight */
-    box-shadow: var(--shadow-hover); /* Shadow pop */
+    background-color: var(--background-light); 
+    border-left: none; 
+    box-shadow: none; 
 }
 
 h2 {
     font-size: 2em;
-    color: var(--primary-color); /* Green color for section titles */
-    border-bottom: 1px solid var(--border-dark); 
+    color: var(--primary-color); /* Blue for section titles */
+    border-bottom: 1px solid var(--border-subtle); 
     padding-bottom: 10px; 
     margin-bottom: 25px;
     font-weight: 600;
@@ -111,63 +107,64 @@ h2 {
 
 /* --- 4. Project & Blog Grids --- */
 
-.project-grid {
-    /* FIX: Changed back to a block layout (no grid) */
+.project-grid, .blog-grid {
+    /* Projects now just a stacked list, Blog remains flexible grid */
     display: block;
-}
-.blog-grid {
-    /* Blog still uses a grid layout */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
     gap: 30px; 
 }
 
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
 
 .project-card,
 .blog-post-card {
-    background-color: var(--card-bg); 
-    padding: 30px; 
-    border-radius: 10px; 
-    box-shadow: var(--shadow-base); 
-    border-left: 5px solid var(--primary-color); /* Green left border */
-    transition: all 0.3s ease-in-out;
-    margin-bottom: 25px; /* Added spacing between list items */
+    /* Minimalist card style */
+    background-color: var(--background-light); 
+    padding: 20px 0; 
+    border-radius: 0; 
+    box-shadow: none; 
+    border-left: none; 
+    border-bottom: 1px dotted var(--border-subtle); /* Dotted separator */
+    margin-bottom: 20px;
+    transition: opacity 0.3s;
 }
 
 .project-card:hover,
 .blog-post-card:hover {
-    transform: translateY(-5px); /* Reduced lift on hover for list items */
-    box-shadow: var(--shadow-hover); 
-    border-left-color: var(--accent-color); /* Teal/Cyan on hover */
+    transform: none; 
+    box-shadow: none; 
+    opacity: 0.8; /* Subtle hover effect */
 }
 
 .project-card h3,
 .blog-post-card h3 {
-    color: var(--text-light); 
-    margin-bottom: 12px;
-    font-size: 1.3em;
+    color: var(--primary-color); 
+    margin-bottom: 5px;
+    font-size: 1.2em;
 }
 
 .project-card p,
 .blog-post-card p {
-    color: #b3b3b3; 
+    color: var(--text-dark); 
 }
 
 .project-card a,
 .read-more-link {
-    display: inline-block;
-    color: var(--accent-color); /* Teal/Cyan link color */
-    text-decoration: none;
-    margin-top: 15px;
+    display: block;
+    color: var(--primary-color); 
+    text-decoration: underline;
+    margin-top: 10px;
     font-weight: 600;
 }
 
 .blog-date {
     display: block;
     font-size: 0.9em;
-    color: #7f8c8d; 
+    color: #666666; 
     margin-bottom: 8px;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 /* --- 5. Skills Section --- */
@@ -179,101 +176,4 @@ h2 {
 
 .skills-other {
     margin-top: 25px;
-    padding-left: 0;
-}
-
-.progress-bar {
-    background-color: var(--border-dark); 
-    border-radius: 6px; 
-    height: 10px; 
-    margin-top: 8px; 
-    overflow: hidden;
-}
-
-.progress-bar .bar {
-    height: 100%;
-    width: 0; 
-    /* Green to Cyan Gradient for progress bars */
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
-    transition: width 1.5s ease-out; 
-}
-
-
-/* --- 6. Education, Projects (List), Certifications --- */
-
-ul, ol {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 12px;
-}
-/* Style the listed projects differently than list items in other sections */
-#projects ul li {
-    margin-bottom: 20px;
-    padding-left: 5px;
-    border-left: 3px solid var(--accent-color); 
-}
-
-.edu > div {
-    margin-bottom: 20px;
-    border-left: 4px solid var(--primary-color); /* Green marker */
-    padding-left: 20px;
-}
-
-.date {
-    display: block;
-    font-style: italic;
-    color: #7f8c8d; 
-    font-size: 0.9em;
-    margin-top: 3px;
-}
-
-/* --- 7. Links and General Text Styling --- */
-
-a {
-    color: var(--primary-color); /* Green link color */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-    color: var(--accent-color); /* Teal/Cyan on hover */
-}
-
-p a {
-    color: var(--accent-color) !important; /* Teal/Cyan for inline links */
-}
-
-
-/* --- 8. Responsive Adjustments --- */
-
-@media (max-width: 768px) {
-    main {
-        padding: 0 15px;
-    }
-    
-    header h1 {
-        font-size: 2.2em;
-    }
-    
-    .contact {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .contact a,
-    .contact span {
-        margin: 5px 0;
-    }
-    
-    .project-grid,
-    .blog-grid {
-        grid-template-columns: 1fr;
-    }
-
-    section {
-        padding-left: 10px;
-        margin-bottom: 30px;
-    }
-}
+    padding-left
