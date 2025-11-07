@@ -1,7 +1,21 @@
 /**
  * Kirat Singh Portfolio Script (script.js)
- * FINAL FIX: Includes robust tab navigation logic and skill bar animation.
+ * FINAL FIX: Includes multi-color tab navigation logic and skill bar animation.
  */
+
+// --- 1. Utility Function for Throttling ---
+const throttle = (func, limit) => {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
 
 // 2. Animate skill progress bars
 function animateProgressBars() {
@@ -11,10 +25,9 @@ function animateProgressBars() {
         bar.classList.remove('animated');
     });
 
-    // Animate only the visible bars (which should be all of them when the skills tab is active)
+    // Animate only the visible bars
     document.querySelectorAll('#skills .progress-bar').forEach(bar => {
         const percent = bar.getAttribute('data-percent');
-        // A short delay ensures the CSS reset above is processed before starting the transition
         setTimeout(() => {
             bar.querySelector('.bar').style.width = percent + '%';
             bar.classList.add('animated');
@@ -22,20 +35,23 @@ function animateProgressBars() {
     });
 }
 
-// 🌟 3. Tab Navigation Logic - FIXED 🌟
+// 🌟 3. Tab Navigation Logic - FIXED with THEME SWITCHING 🌟
 function setupTabNavigation() {
     const tabLinks = document.querySelectorAll('.tab-navigation .tab-link');
     const sections = document.querySelectorAll('main section');
     const mainContent = document.querySelector('main');
+    const htmlEl = document.documentElement; // Get the <html> element
 
     tabLinks.forEach(link => {
-        // Only attach event listeners to internal navigation links
         if (!link.classList.contains('external-link')) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                // 1. Get the target section ID (e.g., #about)
-                const targetId = this.getAttribute('href');
+                const targetId = this.getAttribute('href'); // e.g., "#about"
+                const themeName = 'theme-' + targetId.replace('#', ''); // e.g., "theme-about"
+                
+                // 1. SET THE THEME
+                htmlEl.className = themeName;
                 
                 // 2. Hide all sections and remove 'active' from all links
                 sections.forEach(s => s.classList.remove('active'));
@@ -50,22 +66,22 @@ function setupTabNavigation() {
                 
                 // 4. Special handling for the Skills tab
                 if (targetId === '#skills') {
-                    // Animate bars only when the skills tab is clicked
                     animateProgressBars();
                 }
 
-                // 5. Scroll to the top of the main content area for a clean view
-                if (mainContent) {
-                    mainContent.scrollIntoView({ behavior: 'smooth' });
-                }
+                // 5. Scroll to the top of the main content area
+                mainContent.scrollIntoView({ behavior: 'smooth' });
             });
         }
     });
 
-    // Initial load: Determine which section should be visible
+    // Initial load: Determine which section and theme should be visible
     const initialHash = window.location.hash || '#about';
     const initialLink = document.querySelector(`.tab-link[href="${initialHash}"]`);
     const initialSection = document.querySelector(initialHash);
+
+    // Set initial theme
+    htmlEl.className = 'theme-' + initialHash.replace('#', '');
 
     if (initialSection) {
         initialSection.classList.add('active');
