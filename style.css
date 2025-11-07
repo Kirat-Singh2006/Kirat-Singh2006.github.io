@@ -61,12 +61,12 @@ header {
 }
 
 .profile-container {
-    /* Set image and text side-by-side and vertically center them */
+    /* KEY FIX: Ensure proper horizontal alignment and vertical centering */
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center; /* Ensures text is centered vertically with the image */
     gap: 20px; 
-    flex-wrap: wrap; 
+    flex-wrap: nowrap; /* Prevent wrapping unless necessary */
     margin-bottom: 20px; 
     width: 100%; 
     max-width: 600px; 
@@ -80,18 +80,21 @@ header {
     border: 3px solid var(--color-home-blue); 
     object-fit: cover; 
     display: block; 
-    /* Ensures image is not shrunk on mobile */
     flex-shrink: 0; 
 }
 
 .profile-info {
     text-align: left; 
+    /* NEW: Ensures .profile-info takes up minimal space, keeping content tight */
+    flex-shrink: 1;
 }
 
 header h1 {
     font-size: 2.8em;
     color: var(--text-light); 
     margin-bottom: 5px;
+    /* KEY FIX: Set display to inline-block to prevent the <h1> from dominating the space */
+    display: inline-block; 
 }
 
 .subtitle {
@@ -402,11 +405,11 @@ html.theme-skills .profile-pic {
     header h1 {
         font-size: 2.2em;
     }
-    /* Allow the image and text to wrap/stack if screen is too narrow */
+    /* On small screens, stack the image and text vertically for readability */
     .profile-container {
         flex-direction: column; 
     }
     .profile-info {
-        text-align: center; /* Center the name/subtitle if they stack */
+        text-align: center; 
     }
 }
