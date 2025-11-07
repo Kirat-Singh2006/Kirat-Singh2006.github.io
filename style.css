@@ -61,12 +61,14 @@ header {
 }
 
 .profile-container {
-    /* Set image and text side-by-side and vertically center them */
+    /* KEY FIX: Reverse the order so the image (.profile-pic) goes to the right */
     display: flex;
+    flex-direction: row-reverse; 
+    
     justify-content: center;
-    align-items: center; /* Ensures text is centered vertically with the image */
+    align-items: center; 
     gap: 20px; 
-    flex-wrap: nowrap; /* Prevent wrapping unless necessary */
+    flex-wrap: nowrap; 
     margin-bottom: 20px; 
     width: 100%; 
     max-width: 600px; 
@@ -84,14 +86,15 @@ header {
 }
 
 .profile-info {
-    text-align: left; 
+    /* Text on the left */
+    text-align: right; 
     flex-shrink: 1;
 }
 
 header h1 {
     font-size: 2.8em;
     color: var(--text-light); 
-    /* KEY FIX: Removing the default bottom margin from h1 */
+    /* Ensures alignment doesn't break due to default margins */
     margin-top: 0; 
     margin-bottom: 5px; 
     display: inline-block; 
