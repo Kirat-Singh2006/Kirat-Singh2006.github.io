@@ -1,6 +1,6 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - PURPLE TO BLUE THEME (Harmonized)
+ * Kirat Singh's Portfolio Styles - SOLID BLACK BODY THEME
  */
 
 /* --- 1. Global Reset & Typography --- */
@@ -8,9 +8,9 @@
 :root {
     --primary-color: #8e24aa;         /* Deep Purple */
     --accent-color: #4a90e2;          /* Vibrant Blue */
-    --background-dark: #121212;       /* Very Deep Dark Gray Background (Darker Body) */
+    --background-dark: #121212;       /* (Not used for body, but kept for card/dark elements) */
     --text-light: #ffffff;            /* Pure White Text */
-    --card-bg: #1e1e1e;               /* Darker card background for better distinction */
+    --card-bg: #1e1e1e;               
     --border-dark: #333333;           
     --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.4); 
     --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.7);
@@ -25,9 +25,9 @@
 
 body {
     font-family: var(--font-stack);
-    /* --- FIX: Using !important to override any rogue inline JS styles --- */
-    background-color: var(--background-dark) !important; 
-    /* -------------------------------------------------------------------- */
+    /* --- FIX: Solid Black Background, Overriding All --- */
+    background-color: #000000 !important; 
+    /* -------------------------------------------------- */
     color: var(--text-light);                 
     line-height: 1.6;
     padding-bottom: 50px;
