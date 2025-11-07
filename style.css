@@ -6,9 +6,9 @@
 /* --- 1. Global Reset & Typography --- */
 
 :root {
-    --primary-color: #8e24aa;         /* Deep Purple */
-    --accent-color: #4a90e2;          /* Vibrant Blue */
-    --background-dark: #121212;       /* (Not used for body, but kept for card/dark elements) */
+    --primary-color: #8e24aa;         /* Deep Purple (Used for accents/borders) */
+    --accent-color: #4a90e2;          /* Vibrant Blue (Used for highlights) */
+    --background-dark: #121212;       /* Very Deep Dark Gray (Used for card/dark elements) */
     --text-light: #ffffff;            /* Pure White Text */
     --card-bg: #1e1e1e;               
     --border-dark: #333333;           
@@ -25,9 +25,8 @@
 
 body {
     font-family: var(--font-stack);
-    /* --- FIX: Solid Black Background, Overriding All --- */
+    /* Solid Black Background, Overriding All */
     background-color: #000000 !important; 
-    /* -------------------------------------------------- */
     color: var(--text-light);                 
     line-height: 1.6;
     padding-bottom: 50px;
@@ -37,22 +36,25 @@ body {
 /* --- 2. Header & Navigation --- */
 
 header {
-    /* Purple to Blue Gradient Background */
-    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    /* --- HEADER BACKGROUND: Solid Black --- */
+    background: #000000;
+    /* --- Added a strong bottom border using the primary color for definition --- */
+    border-bottom: 3px solid var(--primary-color);
     padding: 40px 0;
     text-align: center;
-    border-bottom: none; 
     margin-bottom: 40px; 
     box-shadow: var(--shadow-base);
 }
 
 header h1 {
     font-size: 2.8em;
-    color: var(--text-light); 
+    /* Use Blue or Purple for H1 on the black background */
+    color: var(--accent-color); 
     margin-bottom: 5px;
 }
 
 .subtitle {
+    /* Use White text for the subtitle */
     color: var(--text-light); 
     font-weight: 400;
     font-style: italic;
@@ -69,7 +71,7 @@ header h1 {
 }
 
 .contact a:hover {
-    color: var(--background-dark); 
+    color: var(--primary-color); /* Hover color for header links */
 }
 
 
@@ -180,6 +182,7 @@ h2 {
 .progress-bar .bar {
     height: 100%;
     width: 0; 
+    /* Gradient still used for flair on progress bars */
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
     transition: width 1.5s ease-out; 
 }
