@@ -8,7 +8,7 @@
 /* Define root variables for easy color and font management */
 :root {
     --primary-color: #8e24aa;     /* Purple (Remains) */
-    --accent-color: #e91e63;      /* Vibrant Pink (Adjusted for light bg) */
+    --accent-color: #e91e63;      /* Vibrant Pink */
     --background-light: #ffffff;  /* White background */
     --text-dark: #333333;         /* Dark gray text for readability */
     --card-bg: #f5f5f5;           /* Slightly off-white for cards */
@@ -25,31 +25,31 @@
 
 body {
     font-family: var(--font-stack);
-    background-color: var(--background-light); /* White background */
-    color: var(--text-dark);                 /* Dark text */
+    background-color: var(--background-light); 
+    color: var(--text-dark);                 
     line-height: 1.6;
     padding-bottom: 50px;
-    position: relative;
+    position: relative; 
 }
 
 /* --- 2. Header & Navigation --- */
 
 header {
-    background: var(--header-bg); /* Light gray header */
+    background: var(--header-bg); 
     padding: 40px 0;
     text-align: center;
-    border-bottom: 2px solid var(--accent-color); /* Pink border */
+    border-bottom: 2px solid var(--accent-color); 
     margin-bottom: 30px;
 }
 
 header h1 {
     font-size: 2.5em;
-    color: var(--accent-color); /* Pink accent */
+    color: var(--accent-color); 
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: #555555; /* Darker gray for subtitle */
+    color: #555555; 
     font-weight: 400;
     font-style: italic;
     margin-bottom: 20px;
@@ -57,7 +57,9 @@ header h1 {
 
 .contact a,
 .contact span {
-    color: var(--text-dark); /* Dark text */
+    /* --- FIX: Using dark text color for contrast on light background --- */
+    color: var(--text-dark); 
+    /* ------------------------------------------------------------------ */
     text-decoration: none;
     font-size: 0.9em;
     margin: 0 10px;
@@ -65,7 +67,7 @@ header h1 {
 }
 
 .contact a:hover {
-    color: var(--accent-color); /* Pink on hover */
+    color: var(--accent-color); 
 }
 
 
@@ -86,13 +88,13 @@ section {
 }
 
 section.active {
-    border-left: 3px solid var(--accent-color); /* Pink border when active */
+    border-left: 3px solid var(--accent-color); 
 }
 
 h2 {
     font-size: 1.8em;
-    color: var(--primary-color); /* Purple */
-    border-bottom: 2px solid var(--border-light); /* Light border */
+    color: var(--primary-color); 
+    border-bottom: 2px solid var(--border-light); 
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
@@ -108,31 +110,31 @@ h2 {
 
 .project-card,
 .blog-post-card {
-    background-color: var(--card-bg); /* Off-white card background */
+    background-color: var(--card-bg); 
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow for light theme */
-    border-top: 3px solid var(--primary-color); /* Purple border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    border-top: 3px solid var(--primary-color); 
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .project-card:hover,
 .blog-post-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Slightly darker shadow on hover */
-    border-top-color: var(--accent-color); /* Pink on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+    border-top-color: var(--accent-color); 
 }
 
 .project-card h3,
 .blog-post-card h3 {
-    color: var(--text-dark); /* Dark text */
+    color: var(--text-dark); 
     margin-bottom: 10px;
 }
 
 .project-card a,
 .read-more-link {
     display: inline-block;
-    color: var(--accent-color); /* Pink accent */
+    color: var(--accent-color); 
     text-decoration: none;
     margin-top: 10px;
     font-weight: 600;
@@ -141,7 +143,7 @@ h2 {
 .blog-date {
     display: block;
     font-size: 0.8em;
-    color: #777; /* Medium gray for dates */
+    color: #777; 
     margin-bottom: 5px;
 }
 
@@ -158,7 +160,7 @@ h2 {
 }
 
 .progress-bar {
-    background-color: var(--border-light); /* Light background track */
+    background-color: var(--border-light); 
     border-radius: 4px;
     height: 8px;
     margin-top: 5px;
@@ -168,7 +170,6 @@ h2 {
 .progress-bar .bar {
     height: 100%;
     width: 0; 
-    /* Gradient for the bar fill - Adjusted for light background */
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); 
     transition: width 1.5s ease-out; 
 }
@@ -186,14 +187,14 @@ li {
 
 .edu > div {
     margin-bottom: 15px;
-    border-left: 3px solid var(--primary-color); /* Purple border */
+    border-left: 3px solid var(--primary-color); 
     padding-left: 15px;
 }
 
 .date {
     display: block;
     font-style: italic;
-    color: #777; /* Medium gray for dates */
+    color: #777; 
     font-size: 0.9em;
     margin-top: 3px;
 }
@@ -201,17 +202,17 @@ li {
 /* --- 7. Links and General Text Styling --- */
 
 a {
-    color: var(--primary-color); /* Purple */
+    color: var(--primary-color); 
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-    color: var(--accent-color); /* Pink on hover */
+    color: var(--accent-color); 
 }
 
 p a {
-    color: var(--accent-color) !important; /* Pink for inline links in paragraphs */
+    color: var(--accent-color) !important; 
 }
 
 
