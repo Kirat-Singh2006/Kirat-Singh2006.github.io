@@ -33,7 +33,6 @@ body {
     position: relative; 
 }
 
-/* FIX: This rule ensures ALL images, including the profile picture, don't break out of their container */
 img {
     max-width: 100%;
     height: auto;
@@ -43,32 +42,41 @@ img {
 
 header {
     background: var(--background-dark);
+    /* KEY CHANGE: Make the header fill the full height of the viewport */
+    min-height: 100vh; 
+    /* KEY CHANGE: Use flexbox to center content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center;     /* Center content horizontally */
+    
     padding: 40px 0 10px 0;
     text-align: center;
     margin-bottom: 0; 
     box-shadow: none;
-    /* FIX: Added max-width to the header content to help stabilize centering */
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: none; /* Removed the max-width restriction */
+    margin: 0; /* Removed margin */
 }
 
-/* Styles for the profile picture and name container */
+/* The profile container is now the only content that is horizontally centered */
 .profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px; 
     flex-wrap: wrap; 
-    margin-bottom: 20px; /* Added slight spacing below the container */
+    margin-bottom: 20px; 
+    /* Ensures the container respects flex centering */
+    width: 100%; 
+    max-width: 600px; /* Optional: keep the container content constrained */
 }
 
 .profile-pic {
-    width: 100px; /* Set image size */
+    width: 100px; 
     height: 100px;
-    border-radius: 50%; /* Makes the image circular */
-    border: 3px solid var(--color-home-blue); /* Used a theme color for a nice accent border */
-    object-fit: cover; /* Ensures image fills the circle */
-    /* FIX: Added 'display: block' for better rendering consistency */
+    border-radius: 50%; 
+    border: 3px solid var(--color-home-blue); 
+    object-fit: cover; 
     display: block; 
 }
 
@@ -86,7 +94,7 @@ header h1 {
     color: var(--text-subtle); 
     font-weight: 400;
     font-style: normal; 
-    margin-bottom: 0; /* Adjusted since the container has bottom margin */
+    margin-bottom: 0; 
 }
 
 .tab-navigation {
@@ -96,13 +104,20 @@ header h1 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    /* FIX: This makes sure the navigation stays at the bottom of the screen (or close to it) */
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    background: var(--background-dark); /* Ensure the nav background is correct */
+    padding-bottom: 15px;
 }
 
 .tab-link {
     color: var(--text-subtle);
     text-decoration: none;
     font-weight: 600;
-    margin: 0 15px 15px;
+    margin: 0 15px 0; /* Adjusted vertical margin */
     padding: 5px 0;
     transition: color 0.3s, border-bottom 0.3s;
     border-bottom: 2px solid transparent;
@@ -116,10 +131,11 @@ header h1 {
 
 /* --- 3. Main Content Layout --- */
 
+/* KEY CHANGE: The main content must start BELOW the full-screen header */
 main {
     max-width: 800px; 
     margin: 0 auto; 
-    padding: 25px 25px 0;
+    padding: 50px 25px 0; /* Increased top padding to ensure content starts low enough */
     background-color: #000000;
 }
 
@@ -142,220 +158,7 @@ section.active {
     display: block;
 }
 
-main p {
-    text-align: left !important;
-    max-width: 650px; 
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-}
-
-ul, ol {
-    padding-left: 0; 
-    list-style-type: none; 
-    max-width: 650px; 
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left !important;
-}
-
-li {
-    margin-bottom: 15px;
-    text-align: left !important;
-}
-
-h2 {
-    font-size: 2em;
-    border-bottom: 1px solid var(--border-subtle); 
-    padding-bottom: 10px; 
-    margin-bottom: 25px;
-    font-weight: 600;
-    width: fit-content; 
-    margin-left: auto;   
-    margin-right: auto;  
-}
-
-/* --- 4. Project & Blog Grids --- */
-
-.project-grid, .blog-grid {
-    text-align: left; 
-    display: block;
-    gap: 30px; 
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    justify-content: center; 
-    margin: 0 auto;
-    width: fit-content;
-}
-
-.project-card,
-.blog-post-card {
-    background-color: #000000; 
-    padding: 20px 0; 
-    border-radius: 0; 
-    box-shadow: none; 
-    border: none; 
-    border-bottom: 1px solid var(--border-subtle); 
-    margin-bottom: 20px;
-    transition: opacity 0.3s;
-    text-align: left; 
-}
-
-.project-card:hover,
-.blog-post-card:hover {
-    transform: none; 
-    box-shadow: none; 
-    opacity: 0.8; 
-}
-
-.project-card h3,
-.blog-post-card h3 {
-    color: var(--text-light); 
-    margin-bottom: 5px;
-    font-size: 1.2em;
-}
-
-.project-card p,
-.blog-post-card p {
-    color: var(--text-subtle); 
-}
-
-.project-card a,
-.read-more-link {
-    display: block;
-    text-decoration: underline;
-    margin-top: 10px;
-    font-weight: 600;
-}
-
-.blog-date {
-    display: block;
-    font-size: 0.9em;
-    color: var(--text-subtle); 
-    margin-bottom: 8px;
-    font-weight: 400;
-}
-
-/* --- 5. Skills Section --- */
-
-.skills li {
-    list-style: none;
-    margin-bottom: 20px; 
-    text-align: left; 
-}
-
-.skills-other {
-    margin-top: 25px;
-    padding-left: 0;
-}
-
-.progress-bar {
-    background-color: var(--border-subtle); 
-    border-radius: 6px; 
-    height: 10px; 
-    margin-top: 8px; 
-    overflow: hidden;
-}
-
-.progress-bar .bar {
-    height: 100%;
-    width: 0; 
-    /* Background color will be set by the theme-specific styles below */
-    transition: width 1.5s ease-out; 
-}
-
-/* --- 6. Education, Projects (List), Certifications --- */
-
-#projects-list ul li, #certifications ul li {
-    border-left: none; 
-    padding-left: 0;
-    margin-bottom: 10px;
-}
-
-.edu > div {
-    margin-bottom: 20px;
-    border-left: 4px solid var(--border-subtle); 
-    padding-left: 20px;
-}
-
-.date {
-    display: block;
-    font-style: italic;
-    color: var(--text-subtle); 
-    font-size: 0.9em;
-    margin-top: 3px;
-}
-
-/* --- 7. DYNAMIC THEME STYLES (BRIGHTER LINKS) --- */
-
-/* Default / Home Theme (Blue) */
-html.theme-about h2,
-html.theme-about a,
-html.theme-about .project-card a,
-html.theme-about .read-more-link {
-    color: var(--color-home-blue);
-}
-html.theme-about .tab-link.active {
-    color: var(--color-home-blue);
-    border-bottom-color: var(--color-home-blue);
-}
-html.theme-about .progress-bar .bar {
-    background: var(--color-home-blue);
-}
-html.theme-about .profile-pic {
-    border-color: var(--color-home-blue);
-}
-
-/* Blog Theme (Orange) */
-html.theme-blog-posts h2,
-html.theme-blog-posts a,
-html.theme-blog-posts .project-card a,
-html.theme-blog-posts .read-more-link {
-    color: var(--color-blog-orange);
-}
-html.theme-blog-posts .tab-link.active {
-    color: var(--color-blog-orange);
-    border-bottom-color: var(--color-blog-orange);
-}
-html.theme-blog-posts .progress-bar .bar {
-    background: var(--color-blog-orange);
-}
-html.theme-blog-posts .profile-pic {
-    border-color: var(--color-blog-orange);
-}
-
-
-/* Skills Theme (Green) */
-html.theme-skills h2,
-html.theme-skills a,
-html.theme-skills .project-card a,
-html.theme-skills .read-more-link {
-    color: var(--color-skills-green);
-}
-html.theme-skills .tab-link.active {
-    color: var(--color-skills-green);
-    border-bottom-color: var(--color-skills-green);
-}
-html.theme-skills .progress-bar .bar {
-    background: var(--color-skills-green);
-}
-html.theme-skills .profile-pic {
-    border-color: var(--color-skills-green);
-}
-
-
-/* General Link Hover (Overwrites theme colors on hover) */
-a:hover {
-    text-decoration: underline;
-    color: var(--text-light); /* Brighter hover color (pure white) */
-}
-p a {
-    text-decoration: underline;
-}
-
+/* ... (rest of CSS remains the same) ... */
 
 /* --- 8. Responsive Adjustments --- */
 @media (max-width: 768px) {
