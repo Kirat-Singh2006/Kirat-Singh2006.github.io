@@ -1,19 +1,20 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - LIGHT THEME
+ * Kirat Singh's Portfolio Styles - MODERN LIGHT THEME (Enhanced)
  */
 
 /* --- 1. Global Reset & Typography --- */
 
-/* Define root variables for easy color and font management */
 :root {
-    --primary-color: #8e24aa;     /* Purple (Remains) */
-    --accent-color: #e91e63;      /* Vibrant Pink */
-    --background-light: #ffffff;  /* White background */
-    --text-dark: #333333;         /* Dark gray text for readability */
-    --card-bg: #f5f5f5;           /* Slightly off-white for cards */
-    --header-bg: #e0e0e0;         /* Light gray for header */
-    --border-light: #cccccc;      /* Light border for accents */
+    --primary-color: #8e24aa;         /* Deep Purple */
+    --accent-color: #e91e63;          /* Vibrant Pink */
+    --background-light: #fafafa;      /* Soft Off-White Background */
+    --text-dark: #2c3e50;             /* Dark Navy/Slate Text (Excellent readability) */
+    --card-bg: #ffffff;               /* Pure White for Card Elevation */
+    --header-bg: #f5f5f5;             /* Light Gray Header */
+    --border-light: #e0e0e0;          /* Very light gray border */
+    --shadow-base: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft Shadow */
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15); /* Elevated Shadow on Hover */
     --font-stack: 'Poppins', sans-serif;
 }
 
@@ -38,31 +39,30 @@ header {
     background: var(--header-bg); 
     padding: 40px 0;
     text-align: center;
-    border-bottom: 2px solid var(--accent-color); 
-    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-light); /* Softer header border */
+    margin-bottom: 40px; /* Increased margin for breathing room */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow beneath header */
 }
 
 header h1 {
-    font-size: 2.5em;
-    color: var(--accent-color); 
+    font-size: 2.8em; /* Slightly larger title */
+    color: var(--primary-color); 
     margin-bottom: 5px;
 }
 
 .subtitle {
-    color: #555555; 
+    color: #7f8c8d; /* Muted gray for subtitle */
     font-weight: 400;
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .contact a,
 .contact span {
-    /* --- FIX: Using dark text color for contrast on light background --- */
-    color: var(--text-dark); 
-    /* ------------------------------------------------------------------ */
+    color: var(--text-dark); /* Dark text for contrast */
     text-decoration: none;
-    font-size: 0.9em;
-    margin: 0 10px;
+    font-size: 1em; /* Slightly larger contact text */
+    margin: 0 15px;
     transition: color 0.3s;
 }
 
@@ -74,14 +74,14 @@ header h1 {
 /* --- 3. Main Content Layout --- */
 
 main {
-    max-width: 1000px;
+    max-width: 1100px; /* Wider content area */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 25px; /* Increased side padding */
 }
 
 section {
-    padding: 25px 0;
-    margin-bottom: 30px;
+    padding: 30px 0; /* More vertical padding */
+    margin-bottom: 40px; /* More space between sections */
     border-left: 3px solid transparent; 
     padding-left: 20px;
     transition: border-left 0.3s;
@@ -92,11 +92,12 @@ section.active {
 }
 
 h2 {
-    font-size: 1.8em;
+    font-size: 2em;
     color: var(--primary-color); 
-    border-bottom: 2px solid var(--border-light); 
-    padding-bottom: 5px;
-    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-light); /* Thinner, lighter border */
+    padding-bottom: 10px; /* More space below header */
+    margin-bottom: 25px;
+    font-weight: 600;
 }
 
 /* --- 4. Project & Blog Grids --- */
@@ -104,31 +105,37 @@ h2 {
 .project-grid,
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly wider min column */
+    gap: 30px; /* More space between cards */
 }
 
 .project-card,
 .blog-post-card {
-    background-color: var(--card-bg); 
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    border-top: 3px solid var(--primary-color); 
-    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--card-bg); /* Pure white background */
+    padding: 30px; /* Increased internal padding */
+    border-radius: 10px; /* Softer rounded corners */
+    box-shadow: var(--shadow-base); /* Soft shadow for elevation */
+    border-left: 5px solid var(--primary-color); /* Thicker accent border on the left */
+    transition: all 0.3s ease-in-out;
 }
 
 .project-card:hover,
 .blog-post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
-    border-top-color: var(--accent-color); 
+    transform: translateY(-8px); /* More noticeable lift */
+    box-shadow: var(--shadow-hover); /* Deeper shadow on hover */
+    border-left-color: var(--accent-color); /* Pink accent on hover */
 }
 
 .project-card h3,
 .blog-post-card h3 {
     color: var(--text-dark); 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 1.3em;
+}
+
+.project-card p,
+.blog-post-card p {
+    color: #555555; /* Slightly lighter body text for contrast */
 }
 
 .project-card a,
@@ -136,34 +143,35 @@ h2 {
     display: inline-block;
     color: var(--accent-color); 
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 15px;
     font-weight: 600;
 }
 
 .blog-date {
     display: block;
-    font-size: 0.8em;
-    color: #777; 
-    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #95a5a6; /* Muted date color */
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 /* --- 5. Skills Section --- */
 
 .skills li {
     list-style: none;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* More vertical space */
 }
 
 .skills-other {
-    margin-top: 20px;
-    padding-left: 20px;
+    margin-top: 25px;
+    padding-left: 0;
 }
 
 .progress-bar {
     background-color: var(--border-light); 
-    border-radius: 4px;
-    height: 8px;
-    margin-top: 5px;
+    border-radius: 6px; /* Softer corners */
+    height: 10px; /* Taller bar */
+    margin-top: 8px; 
     overflow: hidden;
 }
 
@@ -182,19 +190,19 @@ ul, ol {
 }
 
 li {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .edu > div {
-    margin-bottom: 15px;
-    border-left: 3px solid var(--primary-color); 
-    padding-left: 15px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary-color); /* Thicker timeline bar */
+    padding-left: 20px;
 }
 
 .date {
     display: block;
     font-style: italic;
-    color: #777; 
+    color: #95a5a6; 
     font-size: 0.9em;
     margin-top: 3px;
 }
@@ -202,33 +210,32 @@ li {
 /* --- 7. Links and General Text Styling --- */
 
 a {
-    color: var(--primary-color); 
+    color: var(--primary-color);
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
-    color: var(--accent-color); 
+    color: var(--accent-color);
 }
 
 p a {
-    color: var(--accent-color) !important; 
+    color: var(--accent-color) !important;
 }
 
 
-/* --- 8. Responsive Adjustments (Mobile first) --- */
+/* --- 8. Responsive Adjustments --- */
 
-@media (max-width: 600px) {
-    header {
-        padding: 30px 0;
+@media (max-width: 768px) {
+    main {
+        padding: 0 15px;
     }
     
     header h1 {
-        font-size: 2em;
+        font-size: 2.2em;
     }
     
     .contact {
-        display: flex;
         flex-direction: column;
         align-items: center;
     }
@@ -236,7 +243,6 @@ p a {
     .contact a,
     .contact span {
         margin: 5px 0;
-        text-align: center;
     }
     
     .project-grid,
@@ -246,5 +252,6 @@ p a {
 
     section {
         padding-left: 10px;
+        margin-bottom: 30px;
     }
 }
