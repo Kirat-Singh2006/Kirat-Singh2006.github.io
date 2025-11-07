@@ -98,5 +98,3 @@ function setupTabNavigation() {
 window.addEventListener('DOMContentLoaded', () => { 
     setupTabNavigation();
 });
-
-// REMOVED: All previous scroll handlers and event listeners are removed.
