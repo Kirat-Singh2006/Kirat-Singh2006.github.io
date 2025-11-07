@@ -1,6 +1,6 @@
 /**
  * Kirat Singh Portfolio Script (script.js)
- * Includes performance optimizations (throttling) and the cursor glow logic.
+ * Restored to original mouse detection framework.
  */
 
 // --- 1. Utility Function for Throttling ---
@@ -49,11 +49,11 @@ function highlightSection() {
     });
 }
 
-// 🌟 4. Cursor Glow Effect (Restored) 🌟
-// Uses CSS variables for high performance
+// 🌟 4. Cursor Glow Effect (Original Simple Framework Restored) 🌟
+// WARNING: This is resource-intensive but simpler to implement.
 document.body.addEventListener('mousemove', (e) => {
-    document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-    document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    // Uses a fixed radial gradient tied directly to the mouse coordinates
+    document.body.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, #ff85b3, #6a1b9a 80%)`;
 });
 
 // 5. Run on scroll and load (using throttling for efficiency)
