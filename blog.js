@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Logic for displaying a SINGLE POST (on blog.html with hash) ---
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
-        fetch(`_blog/posts.json`)
+        fetch(`blog-data/posts.json`)
             .then(response => {
                 if (!response.ok) throw new Error(`Post not found at /_blog/${slug}.md`);
                 return response.text();
