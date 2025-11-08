@@ -1,254 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kirat Singh - Developer & Student</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Kirat Singh | Aspiring Computer Science Student</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <h1>Kirat Singh</h1>
-                <p class="tagline">I build things that shouldn't work… but do.</p>
-                <p class="intro-text">
-                    I'm a second-year BCA student who codes 3D ASCII donuts, builds SIEM solutions, and breaks stuff until it works. 
-                    Welcome to my corner of the web where I document experiments, projects, and the occasional "why did I even try this?" moment.
-                </p>
-            </div>
-            
-            <nav>
-                <a href="#" data-section="about" class="nav-link">About</a>
-                <a href="#" data-section="blog" class="nav-link active">Blog</a>
-                <a href="#" data-section="projects" class="nav-link">Projects</a>
-                <a href="#" data-section="skills" class="nav-link">Skills</a>
-            </nav>
-        </header>
-
-        <main>
-            <!-- Blog Section (Default) -->
-            <section id="blog" class="section active">
-                <div id="blog-list-view">
-                    <div class="section-header">
-                        <h2>Recent Posts</h2>
-                    </div>
-                    <div class="blog-list" id="blog-posts-container">
-                        <!-- Blog posts will be dynamically loaded here -->
-                    </div>
-                </div>
-
-                <div id="blog-content-view" class="blog-content">
-                    <!-- Individual blog posts will be dynamically loaded here -->
-                </div>
-            </section>
-
-            <!-- About Section -->
-            <section id="about" class="section">
-                <div class="section-header">
-                    <h2>About Me</h2>
-                </div>
-                
-                <div class="about-content">
-                    <p class="large-text">
-                        I'm Kirat Singh (also known as Wrench) — a BCA student who can't sit still when it comes to building things.
-                    </p>
-                    
-                    <p>
-                        Whether it's a 3D ASCII donut spinning in a terminal, a Java MP3 player that vibes with the playlist in my head, 
-                        or a Python script quietly monitoring logs like a detective, I'm always chasing that sweet spot between 
-                        "how does this even work?" and "this is actually useful."
-                    </p>
-                    
-                    <p>
-                        I like my code like I like my music — layered, unexpected, and a little bit psychedelic. My projects mix 
-                        the retro and the modern: old-school C console games, AI object detection, and interfaces that feel like 
-                        they were designed on a rainy afternoon with too much coffee.
-                    </p>
-                    
-                    <p>
-                        Right now, I'm sharpening my skills in <strong>Python</strong>, <strong>C</strong>, <strong>Java</strong>, 
-                        and <strong>JavaScript</strong>, while exploring cybersecurity (specifically GRC), computer vision, and 
-                        anything else that feels like uncharted territory.
-                    </p>
-                    
-                    <div class="quick-facts">
-                        <h3>Quick Facts</h3>
-                        <ul>
-                            <li>📍 Location: Currently studying BCA</li>
-                            <li>💼 Focus: Cybersecurity GRC, Python Development, Computer Vision</li>
-                            <li>🎯 Current Project: ReconX - reconnaissance tool</li>
-                            <li>🎮 Fun Fact: Built a SIEM just to see how far I could push it</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects" class="section">
-                <div class="section-header">
-                    <h2>Featured Projects</h2>
-                    <p class="section-subtitle">A collection of things I've built, broken, and fixed</p>
-                </div>
-                
-                <div class="projects-grid">
-                    <article class="project-card featured">
-                        <div class="project-icon">🎯</div>
-                        <h3>YOLOv8 Object Detection</h3>
-                        <p>Real-time object detection system with OpenCV achieving 90%+ accuracy at 20 FPS. Computer vision meets practical application.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">OpenCV</span>
-                            <span class="tag">YOLOv8</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-icon">🔒</div>
-                        <h3>Lightweight SIEM Solution</h3>
-                        <p>Event monitoring and alerting system for small-scale networks. Built to understand security monitoring from the ground up.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Security</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-icon">🔍</div>
-                        <h3>ReconX</h3>
-                        <p>Reconnaissance tool built post-exams. Taught me tons about networking, packet analysis, and information gathering.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Networking</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-icon">🌐</div>
-                        <h3>Port Scanner with Banner Grabbing</h3>
-                        <p>Multi-threaded port scanner that scans 500+ hosts in under 10 seconds. Because speed matters in reconnaissance.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Sockets</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-icon">🍩</div>
-                        <h3>Donut Renderer</h3>
-                        <p>Terminal-based 3D ASCII donut in C. Just because donuts are cool and trigonometry is surprisingly fun.</p>
-                        <div class="project-tags">
-                            <span class="tag">C</span>
-                            <span class="tag">Graphics</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-icon">🎵</div>
-                        <h3>Java MP3 Player</h3>
-                        <p>Custom MP3 player GUI for personal playlists. Built to understand audio processing and Java threading.</p>
-                        <div class="project-tags">
-                            <span class="tag">Java</span>
-                            <span class="tag">JavaFX</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </article>
-                </div>
-            </section>
-
-            <!-- Skills Section -->
-            <section id="skills" class="section">
-                <div class="section-header">
-                    <h2>Skills & Technologies</h2>
-                    <p class="section-subtitle">What I work with and what I'm learning</p>
-                </div>
-
-                <div class="skills-content">
-                    <div class="skill-category">
-                        <h3>Languages</h3>
-                        <div class="skill-items">
-                            <div class="skill-badge">
-                                <span class="skill-name">Python</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-badge">
-                                <span class="skill-name">C</span>
-                                <span class="skill-level">Intermediate</span>
-                            </div>
-                            <div class="skill-badge">
-                                <span class="skill-name">Java</span>
-                                <span class="skill-level">Intermediate</span>
-                            </div>
-                            <div class="skill-badge">
-                                <span class="skill-name">JavaScript</span>
-                                <span class="skill-level">Intermediate</span>
-                            </div>
-                            <div class="skill-badge">
-                                <span class="skill-name">HTML/CSS</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-badge">
-                                <span class="skill-name">SQL</span>
-                                <span class="skill-level">Beginner</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Technologies & Tools</h3>
-                        <div class="skill-items">
-                            <span class="tech-tag">Git</span>
-                            <span class="tech-tag">Linux</span>
-                            <span class="tech-tag">OpenCV</span>
-                            <span class="tech-tag">YOLOv8</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">VS Code</span>
-                            <span class="tech-tag">JavaFX</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Focus Areas</h3>
-                        <div class="focus-areas">
-                            <div class="focus-item">
-                                <h4>🔐 Cybersecurity</h4>
-                                <p>Exploring GRC (Governance, Risk, and Compliance), network security, and ethical hacking fundamentals.</p>
-                            </div>
-                            <div class="focus-item">
-                                <h4>👁️ Computer Vision</h4>
-                                <p>Real-time object detection, image processing, and practical applications of AI vision systems.</p>
-                            </div>
-                            <div class="focus-item">
-                                <h4>🐍 Python Development</h4>
-                                <p>Building tools, automation scripts, and security-focused applications with Python.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Certifications & Achievements</h3>
-                        <ul class="achievements-list">
-                            <li><strong>Generative AI Training (2025)</strong> - Prompt engineering and LLM fundamentals</li>
-                            <li><strong>Brainiacs Competition (2025)</strong> - Tech quiz, top 10% performer</li>
-                            <li><strong>Commonwealth Bank of Australia Job Simulation</strong> - Forage certification</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>Built with HTML, CSS, and vanilla JavaScript. No frameworks, just code.</p>
-            <p>© 2025 Kirat Singh</p>
-        </footer>
+  
+<header>
+    <div class="profile-container">
+      <img src="me.jpg" alt="A photo of Kirat Singh" class="profile-pic" />
+      <div class="profile-info">
+        <h1>Kirat Singh</h1>
+        <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
+      </div>
     </div>
+    
+    <nav class="tab-navigation">
+      <a href="#about" class="tab-link active">Home</a>
+      <a href="#blog-posts" class="tab-link">Blog</a>
+      <a href="#skills" class="tab-link">Skills</a>
+      <a href="https://github.com/kirat-singh2006" target="_blank" class="tab-link external-link">GitHub</a>
+      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank" class="tab-link external-link">LinkedIn</a>
+    </nav>
+  </header>
 
-    <script src="blogs/blog-data.js"></script>
-    <script src="script.js"></script>
+  <main>
+    <section id="about" class="active">       <h2>About Me</h2>
+      <div class="content-wrapper">
+        <p>
+          I’m Kirat Singh — a second-year BCA student who builds things that shouldn’t work… but do. Whether it’s a 3D ASCII donut spinning in a terminal, a Java MP3 player that vibes with the playlist in my head, or a Python script quietly monitoring logs like a detective, I’m always chasing that sweet spot between “how does this even work?” and “this is actually useful.” I like my code like I like my music — layered, unexpected, and a little bit psychedelic. My projects mix the retro and the modern: old-school C console games, AI object detection, and interfaces that feel like they were designed on a rainy afternoon with too much coffee. Right now, I’m sharpening my skills in Python, C, Java, and JavaScript, while exploring cybersecurity, computer vision, and anything else that feels like uncharted territory. I’m here to learn, break, fix, and build — sometimes in that order
+        </p>
+        <p>
+          <a href="https://github.com/kirat-singh2006" target="_blank" style="font-weight:bold;">
+            👉 View All Projects on GitHub
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section id="blog-posts">
+      <h2>Recent Blog Posts</h2>
+      <div class="content-wrapper">
+        <div id="blog-list" class="blog-grid">
+                </div>
+        <p style="text-align: center; margin-top: 20px;">
+          <a href="blog.html" style="font-weight:bold;">
+            👉 View All Blog Posts
+          </a>
+        </p>
+      </div>
+    </section>
+    
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="content-wrapper">
+        <div class="project-grid">
+          <div class="project-card">
+            <h3>YOLOv8 Object Detection</h3>
+            <p>Real-time object detection system with OpenCV (90%+ accuracy, 20 FPS).</p>
+            <a href="https://github.com/..." target="_blank">View Code</a>
+          </div>
+          <div class="project-card">
+            <h3>Lightweight SIEM Solution</h3>
+            <p>Event monitoring and alerting system for small-scale networks.</p>
+            <a href="https://github.com/..." target="_blank">View Code</a>
+          </div>
+          <div class="project-card">
+            <h3>Port Scanner with Banner Grabbing</h3>
+            <p>Scans 500+ hosts in under 10 seconds using multi-threaded sockets.</p>
+            <a href="https://github.com/..." target="_blank">View Code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="content-wrapper">
+        <div class="edu">
+          <div>
+            <strong>Bachelor of Computer Applications</strong>, Don Bosco Institute of Technology, New Delhi
+            <span class="date">Expected Jun 2027</span><br>
+            <em>Relevant coursework:</em> Programming Fundamentals, Data Structures, Computer Networks
+          </div>
+          <div>
+            <strong>High School Diploma (CBSE)</strong>, K R Mangalam World School, New Delhi
+            <span class="date">Apr 2024</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="content-wrapper">
+        <ul class="skills">
+          <li><strong>Python:</strong><div class="progress-bar" data-percent="70"><div class="bar"></div></div></li>
+          <li><strong>C:</strong><div class="progress-bar" data-percent="60"><div class="bar"></div></div></li>
+          <li><strong>Java:</strong><div class="progress-bar" data-percent="50"><div class="bar"></div></div></li>
+          <li><strong>JavaScript:</strong><div class="progress-bar" data-percent="40"><div class="bar"></div></div></li>
+          <li><strong>HTML/CSS:</strong><div class="progress-bar" data-percent="70"><div class="bar"></div></div></li>
+          <li><strong>MySQL:</strong><div class="progress-bar" data-percent="50"><div class="bar"></div></div></li>
+        </ul>
+        <ul class="skills-other">
+          <li><strong>Tools:</strong> MS Office, Canva, Google Workspace</li>
+          <li><strong>Soft Skills:</strong> Problem-solving, Critical thinking, Teamwork, Adaptability</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects-list">       <h2>Projects</h2>
+      <div class="content-wrapper">
+        <ul>
+          <li><strong>Personal Website (2025):</strong> Built a responsive portfolio to showcase my skills and projects.</li>
+          <li><strong>Donut Renderer (2025):</strong> Terminal-based 3D donut in C — just because donuts are cool.</li>
+          <li><strong>Cybersecurity Scripts (2025):</strong> Password tester & port scanner in Python for learning security basics.</li>
+          <li><strong>Classic Games (2025):</strong> 2048 and RPS in C/Python — nostalgia meets code.</li>
+          <li><strong>Java MP3 Player (2025):</strong> A custom MP3 player GUI for my personal playlists.</li>
+          <li><strong>Computer Vision (2025):</strong> YOLOv8 object detection using OpenCV and webcam integration.</li>
+          <li><strong>Log Monitor & IP Blocker (2025):</strong> Python script for real-time log monitoring and security automation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <div class="content-wrapper">
+        <ul>
+          <li><strong>Generative AI Training (2025):</strong> Prompt engineering and LLM fundamentals.</li>
+          <li><strong>Brainiacs Competition (2025):</strong> Tech quiz — top 10% performer.</li>
+          <li><strong>Commonwealth Bank of Australia Job Simulation (Forage)</strong></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="blog.js"></script>
 </body>
 </html>
