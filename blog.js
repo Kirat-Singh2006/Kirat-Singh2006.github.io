@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (blogListContainer) {
         
         // FINAL FIX: Target the Jekyll-generated JSON index file and bust the cache.
-        const url = `/blog/blog.json?v=${new Date().getTime()}`;
+       const url = `/blog/blog.json?v=${new Date().getTime()}`;
         fetch(url)
             .then(response => {
                 // Error message now reflects the final expected file
