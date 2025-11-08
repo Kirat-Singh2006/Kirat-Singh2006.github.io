@@ -1,6 +1,6 @@
 /**
  * Kirat Singh Blog Data and Renderer (blog.js)
- * Fetches post metadata from /blog/blog.json (Jekyll-generated index) and post content from /_blog/[slug].md
+ * Fetches post metadata from /posts.json (Jekyll-generated index) and post content from /_blog/[slug].md
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
         
-        // Path adjusted for Jekyll's default file location for collections
+        // Path adjusted for Netlify CMS/Jekyll's default file location
         fetch(`/_blog/${slug}.md`) 
             .then(response => {
                 if (!response.ok) throw new Error(`Post not found at /_blog/${slug}.md`); 
@@ -105,12 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Logic for INDEX/HOMEPAGE LISTING (on index.html or blog.html without hash) ---
     else if (blogListContainer) {
         
-        // FINAL FIX: Target the Jekyll-generated JSON index file and bust the cache.
-       const url = `/blog/blog.json?v=${new Date().getTime()}`;
+        // FINAL FIX: Target the root-level generated posts.json and bust the cache.
+        const url = `/posts.json?v=${new Date().getTime()}`;
         fetch(url)
             .then(response => {
                 // Error message now reflects the final expected file
-                if (!response.ok) throw new Error('blog.json not found. Check the /_blog/ directory and _config.yml.'); 
+                if (!response.ok) throw new Error('posts.json not found. Check the /_blog/ directory and _layouts/blog_index.json.'); 
                 return response.json();
             })
             .then(posts => {
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             })
             .catch(error => {
-                blogListContainer.innerHTML = `<p>Error loading blog posts index. Please check the console and ensure **blog/blog.json** is correctly generated.</p>`;
+                blogListContainer.innerHTML = `<p>Error loading blog posts index. Please check the console and ensure **posts.json** is correctly generated.</p>`;
                 console.error('Error fetching blog posts index:', error);
             });
     }
