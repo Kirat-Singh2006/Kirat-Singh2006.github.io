@@ -1,6 +1,6 @@
 /**
  * Kirat Singh Blog Data and Renderer (blog.js)
- * Fetches post metadata from /_blog/posts.json and post content from /_blog/[slug].md
+ * Fetches post metadata from /blog-data/posts.json and post content from /blog-data/[slug].md
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -73,9 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Logic for displaying a SINGLE POST (on blog.html with hash) ---
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
-        fetch(`blog-data/posts.json`)
+        
+        // FIX 1: Fetch the actual Markdown file using the slug and the new folder path
+        fetch(`/blog-data/${slug}.md`) 
             .then(response => {
-                if (!response.ok) throw new Error(`Post not found at /_blog/${slug}.md`);
+                // Updated error message to reflect the correct path/slug
+                if (!response.ok) throw new Error(`Post not found at /blog-data/${slug}.md`); 
                 return response.text();
             })
             .then(markdown => {
@@ -102,9 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. Logic for INDEX/HOMEPAGE LISTING (on index.html or blog.html without hash) ---
     else if (blogListContainer) {
-        fetch('blog-data/posts.json')
+        
+        // FIX 2: Use the absolute path (leading slash) for reliable loading of posts.json
+        fetch('/blog-data/posts.json')
             .then(response => {
-                if (!response.ok) throw new Error('posts.json not found. Check the /_blog/ directory.');
+                // Updated error message to reflect the correct path
+                if (!response.ok) throw new Error('posts.json not found. Check the /blog-data/ directory.'); 
                 return response.json();
             })
             .then(posts => {
@@ -134,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             })
             .catch(error => {
-                blogListContainer.innerHTML = `<p>Error loading blog posts index. Please check the console and ensure **/_blog/posts.json** is correctly formatted.</p>`;
+                blogListContainer.innerHTML = `<p>Error loading blog posts index. Please check the console and ensure **blog-data/posts.json** is correctly formatted.</p>`;
                 console.error('Error fetching blog posts index:', error);
             });
     }
