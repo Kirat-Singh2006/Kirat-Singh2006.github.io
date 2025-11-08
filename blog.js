@@ -1,6 +1,6 @@
 /**
  * Kirat Singh Portfolio Script (script.js)
- * FINAL FIX: Includes multi-color tab navigation logic and skill bar animation.
+ * FINAL FIX: Includes multi-color tab navigation logic, skill bar animation, and BLOG scroll/animation logic.
  */
 
 // --- 1. Utility Function for Throttling ---
@@ -31,7 +31,7 @@ function animateProgressBars() {
         setTimeout(() => {
             bar.querySelector('.bar').style.width = percent + '%';
             bar.classList.add('animated');
-        }, 50); 
+        }, 50);
     });
 }
 
@@ -96,7 +96,24 @@ function setupTabNavigation() {
     }
 }
 
-// 4. Run on load
-window.addEventListener('DOMContentLoaded', () => { 
+// 🌟 4. Blog-Specific Utilities 🌟
+function setupBlogUtilities() {
+    // --- 4a. Smooth Scroll for Blog Page Hash Links ---
+    // If we're on blog.html and the hash changes (meaning a user clicked a post link),
+    // ensure a smooth scroll to the post content area.
+    window.addEventListener('hashchange', () => {
+        if (window.location.pathname.endsWith('blog.html')) {
+            const blogContent = document.getElementById('blog-post-content');
+            if (blogContent) {
+                blogContent.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+}
+
+
+// 5. Run on load
+window.addEventListener('DOMContentLoaded', () => {
     setupTabNavigation();
+    setupBlogUtilities(); // Initialize blog utilities
 });
