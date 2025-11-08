@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. Logic for INDEX/HOMEPAGE LISTING (on index.html or blog.html without hash) ---
     else if (blogListContainer) {
-        fetch('/_blog/posts.json')
+        fetch('blog-data/posts.json')
             .then(response => {
                 if (!response.ok) throw new Error('posts.json not found. Check the /_blog/ directory.');
                 return response.json();
