@@ -5,10 +5,10 @@ permalink: /blog/blog.json
 [
   {% for post in site.blog %}
     {
-      "slug": "{{ post.slug | strip_newlines }}",
+      "slug": "{{ post.slug }}",
       "title": "{{ post.title | escape }}",
       "date": "{{ post.date | date_to_xmlschema }}",
-      "snippet": "{{ post.content | strip_html | strip_newlines | truncate: 150 }}"
+      "snippet": "{{ post.content | strip_html | strip_newlines | truncate: 200 }}"
     }{{ "" if forloop.last }}{{ "," unless forloop.last }}
   {% endfor %}
 ]
