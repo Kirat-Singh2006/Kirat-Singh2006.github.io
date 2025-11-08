@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
         
-        // FIX 1: Fetch the actual Markdown file using the slug and the new folder path
-        fetch(`/blog-data/${slug}.md`) 
+        // FIX 1: Using the most reliable path: relative from root (./) for the Markdown file
+        fetch(`./blog-data/${slug}.md`) 
             .then(response => {
-                // Updated error message to reflect the correct path/slug
+                // Updated error message
                 if (!response.ok) throw new Error(`Post not found at /blog-data/${slug}.md`); 
                 return response.text();
             })
@@ -106,10 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Logic for INDEX/HOMEPAGE LISTING (on index.html or blog.html without hash) ---
     else if (blogListContainer) {
         
-        // FIX 2: Use the absolute path (leading slash) for reliable loading of posts.json
-        fetch('/blog-data/posts.json')
+        // FIX 2: Using the most reliable path: relative from root (./) for the JSON index file
+        fetch('./blog-data/posts.json')
             .then(response => {
-                // Updated error message to reflect the correct path
+                // Updated error message
                 if (!response.ok) throw new Error('posts.json not found. Check the /blog-data/ directory.'); 
                 return response.json();
             })
