@@ -1,119 +1,102 @@
-// Navigation functionality
-const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('.section');
+/**
+ * Kirat Singh Portfolio Script (script.js)
+ * RESTORED: Handles tab navigation, color theme switching, and skill bar animation.
+ */
 
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetSection = link.dataset.section;
-        
-        // Update active nav link
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        
-        // Show target section
-        sections.forEach(s => s.classList.remove('active'));
-        document.getElementById(targetSection).classList.add('active');
-
-        // If blog section, show list view
-        if (targetSection === 'blog') {
-            showBlogList();
+// --- 1. Utility Function for Throttling ---
+const throttle = (func, limit) => {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
-        
-        // Animate skill bars when skills section is shown
-        if (targetSection === 'skills') {
-            animateSkills();
-        }
-    });
-});
-
-// Blog functionality
-const blogListView = document.getElementById('blog-list-view');
-const blogContentView = document.getElementById('blog-content-view');
-const blogPostsContainer = document.getElementById('blog-posts-container');
-
-// Load blog posts dynamically
-function loadBlogPosts() {
-    if (typeof blogPosts === 'undefined') {
-        console.error('Blog posts data not loaded');
-        return;
     }
+}
 
-    // Clear existing content
-    blogPostsContainer.innerHTML = '';
-    blogContentView.innerHTML = '';
-
-    // Create blog post cards
-    blogPosts.forEach(post => {
-        // Create card for blog list
-        const card = document.createElement('article');
-        card.className = 'blog-post';
-        card.dataset.post = post.id;
-        card.innerHTML = `
-            <h3 class="blog-post-title">${post.title}</h3>
-            <div class="blog-post-meta">${post.date} • ${post.readTime}</div>
-            <p class="blog-post-excerpt">${post.excerpt}</p>
-        `;
-        card.addEventListener('click', () => showBlogPost(post.id));
-        blogPostsContainer.appendChild(card);
-
-        // Create full blog post content
-        const fullPost = document.createElement('article');
-        fullPost.id = post.id;
-        fullPost.className = 'blog-content';
-        fullPost.innerHTML = `
-            <a href="#" class="back-btn" onclick="showBlogList(); return false;">← Back to all posts</a>
-            <h2>${post.title}</h2>
-            <div class="blog-post-meta">${post.date} • ${post.readTime}</div>
-            ${post.content}
-        `;
-        blogContentView.appendChild(fullPost);
+// 2. Animate skill progress bars
+function animateProgressBars() {
+    // Reset the animation state before re-animating
+    document.querySelectorAll('.progress-bar.animated').forEach(bar => {
+        bar.querySelector('.bar').style.width = '0%';
+        bar.classList.remove('animated');
     });
-}
 
-function showBlogPost(postId) {
-    blogListView.style.display = 'none';
-    blogContentView.classList.add('active');
-    
-    const allPosts = blogContentView.querySelectorAll('article');
-    allPosts.forEach(post => {
-        if (post.id === postId) {
-            post.style.display = 'block';
-        } else {
-            post.style.display = 'none';
-        }
-    });
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showBlogList() {
-    blogListView.style.display = 'block';
-    blogContentView.classList.remove('active');
-    const allPosts = blogContentView.querySelectorAll('article');
-    allPosts.forEach(post => post.style.display = 'none');
-}
-
-// Skill bar animation
-function animateSkills() {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    skillBars.forEach(bar => {
-        const width = bar.dataset.width;
+    // Animate only the visible bars
+    document.querySelectorAll('#skills .progress-bar').forEach(bar => {
+        const percent = bar.getAttribute('data-percent');
         setTimeout(() => {
-            bar.style.width = width + '%';
-        }, 100);
+            bar.querySelector('.bar').style.width = percent + '%';
+            bar.classList.add('animated');
+        }, 50);
     });
 }
 
-// Initialize on page load
-window.addEventListener('load', () => {
-    // Load blog posts
-    loadBlogPosts();
-    
-    // Animate skills if skills section is visible
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection && skillsSection.classList.contains('active')) {
-        animateSkills();
+// 🌟 3. Tab Navigation Logic - RESTORED 🌟
+function setupTabNavigation() {
+    const tabLinks = document.querySelectorAll('.tab-navigation .tab-link');
+    const sections = document.querySelectorAll('main section');
+    const mainContent = document.querySelector('main');
+    const htmlEl = document.documentElement; // Get the <html> element
+
+    tabLinks.forEach(link => {
+        if (!link.classList.contains('external-link')) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href'); // e.g., "#about"
+                const themeName = 'theme-' + targetId.replace('#', ''); // e.g., "theme-about"
+                
+                // 1. SET THE THEME
+                htmlEl.className = themeName;
+                
+                // 2. Hide all sections and remove 'active' from all links
+                sections.forEach(s => s.classList.remove('active'));
+                tabLinks.forEach(l => l.classList.remove('active'));
+
+                // 3. Show the target section and set link as 'active'
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                this.classList.add('active');
+                
+                // 4. Special handling for the Skills tab
+                if (targetId === '#skills') {
+                    animateProgressBars();
+                }
+
+                // 5. Scroll to the top of the main content area
+                mainContent.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    });
+
+    // Initial load: Determine which section and theme should be visible
+    const initialHash = window.location.hash || '#about';
+    const initialLink = document.querySelector(`.tab-link[href="${initialHash}"]`);
+    const initialSection = document.querySelector(initialHash);
+
+    // Set initial theme
+    htmlEl.className = 'theme-' + initialHash.replace('#', '');
+
+    if (initialSection) {
+        initialSection.classList.add('active');
     }
+    if (initialLink) {
+        initialLink.classList.add('active');
+    }
+    
+    // Initial skill animation if the page loads directly on the Skills tab
+    if (initialHash === '#skills') {
+        animateProgressBars();
+    }
+}
+
+// 4. Run on load
+window.addEventListener('DOMContentLoaded', () => {
+    setupTabNavigation();
 });
