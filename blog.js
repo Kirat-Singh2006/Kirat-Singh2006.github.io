@@ -1,6 +1,6 @@
 /**
  * Kirat Singh Blog Data and Renderer (blog.js)
- * Fetches post metadata from /blog-data/posts.json and post content from /blog-data/[slug].md
+ * Fetches post metadata from /blog/blog.json (Jekyll-generated index) and post content from /_blog/[slug].md
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -74,11 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
         
-        // Using the most reliable path: relative from root (./) for the Markdown file
-        fetch(`./blog-data/${slug}.md`) 
+        // Path adjusted for Jekyll's default file location for collections
+        fetch(`/_blog/${slug}.md`) 
             .then(response => {
-                // Updated error message
-                if (!response.ok) throw new Error(`Post not found at /blog-data/${slug}.md`); 
+                if (!response.ok) throw new Error(`Post not found at /_blog/${slug}.md`); 
                 return response.text();
             })
             .then(markdown => {
@@ -106,12 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Logic for INDEX/HOMEPAGE LISTING (on index.html or blog.html without hash) ---
     else if (blogListContainer) {
         
-        // FIX: Add a unique timestamp parameter to the URL to bust the cache (CRUCIAL FIX)
-        const url = `./blog-data/posts.json?v=${new Date().getTime()}`;
+        // FINAL FIX: Target the Jekyll-generated JSON index file and bust the cache.
+        const url = `/blog/blog.json?v=${new Date().getTime()}`;
         fetch(url)
             .then(response => {
-                // Updated error message
-                if (!response.ok) throw new Error('posts.json not found. Check the /blog-data/ directory.'); 
+                // Error message now reflects the final expected file
+                if (!response.ok) throw new Error('blog.json not found. Check the /_blog/ directory and _config.yml.'); 
                 return response.json();
             })
             .then(posts => {
@@ -141,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             })
             .catch(error => {
-                blogListContainer.innerHTML = `<p>Error loading blog posts index. Please check the console and ensure **blog-data/posts.json** is correctly formatted.</p>`;
+                blogListContainer.innerHTML = `<p>Error loading blog posts index. Please check the console and ensure **blog/blog.json** is correctly generated.</p>`;
                 console.error('Error fetching blog posts index:', error);
             });
     }
