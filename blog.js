@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isBlogPage && window.location.hash) {
         const slug = window.location.hash.substring(1);
         
-        // FIX 1: Using the most reliable path: relative from root (./) for the Markdown file
+        // Using the most reliable path: relative from root (./) for the Markdown file
         fetch(`./blog-data/${slug}.md`) 
             .then(response => {
                 // Updated error message
@@ -106,8 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Logic for INDEX/HOMEPAGE LISTING (on index.html or blog.html without hash) ---
     else if (blogListContainer) {
         
-        // FIX 2: Using the most reliable path: relative from root (./) for the JSON index file
-        fetch('./blog-data/posts.json')
+        // FIX: Add a unique timestamp parameter to the URL to bust the cache (CRUCIAL FIX)
+        const url = `./blog-data/posts.json?v=${new Date().getTime()}`;
+        fetch(url)
             .then(response => {
                 // Updated error message
                 if (!response.ok) throw new Error('posts.json not found. Check the /blog-data/ directory.'); 
