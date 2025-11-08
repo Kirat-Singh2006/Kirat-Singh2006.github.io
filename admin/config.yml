@@ -1,34 +1,32 @@
-backend:
-  name: git-gateway
-  branch: main
-publish_mode: editorial_workflow
-media_folder: "assets/images"
-public_folder: "/assets/images"
-collections:
-  - name: "projects"
-    label: "Projects"
-    folder: "_projects"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Link", name: "link", widget: "string"}
-  - name: "certifications"
-    label: "Certifications"
-    folder: "_certifications"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "text"}
-      - {label: "Link", name: "link", widget: "string", required: false}
-  - name: "blog"
-    label: "Blog"
-    folder: "_blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
+# Netlify configuration file
+# This tells Netlify how to deploy your site
+
+[build]
+  # No build command needed for static HTML sites
+  publish = "."
+  
+# Redirect rules (if you want pretty URLs later)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+# Headers for better security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+# Cache static assets
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
