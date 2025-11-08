@@ -1,0 +1,7 @@
+# ROOT _config.yml
+
+# --- Define the blog collection for Jekyll ---
+collections:
+  blog:
+    output: true
+    permalink: /blog/:name/
