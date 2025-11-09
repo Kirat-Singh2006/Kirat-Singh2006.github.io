@@ -1,0 +1,6 @@
+---
+title: Doubts(a.k.a trying to figure out what the hell I’m doing)
+date: 2025-11-09T16:59:00.000+05:30
+---
+so, I've been going through something 1855 days I've been going through something(lmao not that long, but if you get that reference you and I got the same humor). but yeah I've been thinking a lot lately maybe more than I should? but yeah it's about where I fit in this whole tech universe am I a developer? am I security analyst? or am I the guy that focuses on the policies, standards, and procedures? do I work for the expectations others have for me or do I do what I wanna do? take that leap of faith or do something safe?. I would say I have three mindsets the developer that says "make something no matter if its bad or weird or just unnecessary" the security analyst says "let's break something and see what happens" and the GRC analyst part says "okay let's document and fix this before someone loses their job because I didn't check" Right now, I’m somewhere in between learning how to build, how to break, and maybe someday how to guide both sides. Maybe I don’t need to pick a lane yet. \
+anyways that's all for now I'll see when I post another blog again cause finals are coming or should I say *Winter is coming* lol anyways happy coding people :>
