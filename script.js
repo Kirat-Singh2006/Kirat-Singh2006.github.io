@@ -68,6 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show the target section
         const targetSection = document.querySelector(sectionId);
         if (targetSection) {
+            // Debugging line to confirm section activation
+            console.log(`Activating section: ${sectionId}`); 
+            
             targetSection.classList.add('active');
             window.scrollTo(0, 0); // Scroll to top of the content
 
