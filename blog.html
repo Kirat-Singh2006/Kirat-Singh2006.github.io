@@ -8,21 +8,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  
   <header>
-    <h1>Kirat Singh</h1>
-    <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
-    <div class="contact">
-      <a href="mailto:kirat152006@gmail.com">📧 kirat152006@gmail.com</a> |
-      <a href="tel:+919560106353">📞 +91 9560106353</a> |
-      <span>📍 Faridabad, IN</span> |
-      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank">LinkedIn</a> |
-      <a href="Kirat_Singh_Resume.pdf" download>Resume (PDF)</a> |
-      <a href="index.html">Home</a>
+    <!-- New Header Structure matching index.html with Profile Pic -->
+    <div class="profile-container">
+      <!-- Using the uploaded image file (image_bb5fe6.jpg) -->
+      <img src="image_bb5fe6.jpg" alt="A photo of Kirat Singh" class="profile-pic" />
+      <div class="profile-info">
+        <h1>Kirat Singh</h1>
+        <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
+      </div>
     </div>
+    
+    <!-- Navigation Tabs matching index.html's tab-navigation -->
+    <nav class="tab-navigation">
+      <!-- Note: We link 'Home' to the main anchor in index.html -->
+      <a href="index.html#about" class="tab-link">Home</a>
+      <a href="blog.html" class="tab-link active">Blog</a>
+      <a href="index.html#skills" class="tab-link">Skills</a>
+      <a href="https://github.com/kirat-singh2006" target="_blank" class="tab-link external-link">GitHub</a>
+      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank" class="tab-link external-link">LinkedIn</a>
+    </nav>
   </header>
 
-  <main id="blog-post-content">
-    </main>
+  <main>
+    <!-- Main content is wrapped in a section, consistent with index.html sections -->
+    <section id="full-blog-page" class="active">
+      <h2>All Blog Posts</h2>
+      
+      <div class="content-wrapper">
+        <!-- 
+          blog.js logic:
+          If window.location.hash exists (viewing single post), content goes here.
+          Otherwise (viewing all posts), content goes into #blog-list.
+        -->
+        <div id="blog-post-content">
+          <div id="blog-list" class="blog-grid">
+            <!-- Loading message shown until posts are fetched by blog.js -->
+            <p style="text-align: center;">Loading posts...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
   <script src="blog.js"></script>
