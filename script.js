@@ -1,6 +1,6 @@
 /**
  * script.js
- * Kirat Singh's Portfolio Interaction Logic (Tabs, Themes, Progress Bars)
+ * Kirat Singh's Portfolio Interaction Logic (Tabs, Themes, Progress Bars, Random Hover)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,14 +8,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('main section');
     const htmlElement = document.documentElement;
 
-    // --- 1. Utility Functions ---
+    // --- Utility Functions ---
 
     /**
-     * Extracts the section ID from the hash or returns the default ('#about').
-     * @returns {string} The active section ID (e.g., '#about', '#skills').
+     * Generates a visually distinct random hex color code.
      */
-    const getActiveSectionId = () => {
-        return window.location.hash || '#about';
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        // Generate a slightly darker/more saturated color to look good on the dark background
+        for (let i = 0; i < 6; i++) {
+            // Ensure first two digits are high for a bright color
+            if (i < 2) {
+                color += letters[Math.floor(Math.random() * 6) + 10]; // 10-15 (A-F)
+            } else {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+        }
+        return color;
+    }
+
+    /**
+     * Animates the progress bars by setting their width based on data-percent.
+     */
+    const animateProgressBars = () => {
+        document.querySelectorAll('.progress-bar').forEach(barContainer => {
+            // The HTML should use data-percent, not data-level (checking your HTML)
+            const percent = barContainer.getAttribute('data-percent'); 
+            const bar = barContainer.querySelector('.bar');
+            
+            // Reset and force reflow to ensure animation runs every time
+            bar.style.width = '0%';
+            void bar.offsetWidth; 
+            
+            // Set the final width to trigger CSS transition
+            bar.style.width = `${percent}%`;
+        });
     };
 
     /**
@@ -23,35 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {string} sectionId - The ID of the active section (e.g., '#about').
      */
     const updateTheme = (sectionId) => {
-        // Remove existing theme classes
-        const themeClasses = ['theme-about', 'theme-blog-posts', 'theme-skills'];
-        htmlElement.classList.remove(...themeClasses);
+        // Map section ID to theme class name (e.g., #about -> theme-about)
+        const themeClass = `theme-${sectionId.substring(1)}`;
+        
+        // Clear all previous theme classes
+        htmlElement.classList.forEach(cls => {
+            if (cls.startsWith('theme-')) {
+                htmlElement.classList.remove(cls);
+            }
+        });
 
-        // Map section ID to theme class
-        let themeClass;
-        if (sectionId === '#about') {
-            themeClass = 'theme-about';
-        } else if (sectionId === '#blog-posts') {
-            themeClass = 'theme-blog-posts';
-        } else if (sectionId === '#skills') {
-            themeClass = 'theme-skills';
-        }
-
-        if (themeClass) {
+        if (sectionId === '#about' || sectionId === '#blog-posts' || sectionId === '#skills') {
             htmlElement.classList.add(themeClass);
-        }
-    };
-
-    /**
-     * Animates the progress bars when the skills section is active.
-     */
-    const animateProgressBars = () => {
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection && skillsSection.classList.contains('active')) {
-            document.querySelectorAll('.progress-bar .bar').forEach(bar => {
-                const level = bar.getAttribute('data-level'); // e.g., "90%"
-                bar.style.width = level;
-            });
         }
     };
 
@@ -60,58 +71,71 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {string} sectionId - The ID of the section to show.
      */
     const showSection = (sectionId) => {
-        // Hide all sections
-        sections.forEach(section => {
-            section.classList.remove('active');
-        });
+        // 1. Hide all sections and remove active link class
+        sections.forEach(section => section.classList.remove('active'));
+        mainNavLinks.forEach(link => link.classList.remove('active'));
 
-        // Show the target section
+        // 2. Show the target section
         const targetSection = document.querySelector(sectionId);
         if (targetSection) {
             targetSection.classList.add('active');
-            window.scrollTo(0, 0); // Scroll to top of the content
+            window.scrollTo(0, 0); 
 
-            // Update navigation links
-            mainNavLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === sectionId) {
-                    link.classList.add('active');
-                }
-            });
+            // 3. Update active navigation link
+            const activeLink = document.querySelector(`.tab-link[href="${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
 
-            // Update theme (Re-enabled for color switching)
+            // 4. Update theme
             updateTheme(sectionId);
 
-            // Animate progress bars if the skills section is shown
+            // 5. Animate progress bars if the skills section is shown
             if (sectionId === '#skills') {
                 animateProgressBars();
             }
         }
     };
 
-    // --- 2. Event Listeners & Initialization ---
+    // --- Event Listeners & Initialization ---
 
-    // Handle navigation click (prevent default and manually show section)
+    // Tab Click Handler (Only for internal links)
     mainNavLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             
-            // Check if it's an internal hash link
             if (href && href.startsWith('#')) {
                 e.preventDefault();
                 // Update URL hash without navigating away
                 history.pushState(null, '', href);
                 showSection(href);
             }
-            // For external links (GitHub/LinkedIn), let the default action proceed
         });
+        
+        // Random Color on Hover Logic (Integrated from your old blog.js)
+        // Ensure this only applies to the internal tab links for visual consistency
+        if (link.getAttribute('href').startsWith('#')) {
+             link.addEventListener('mouseenter', () => {
+                const randomColor = getRandomColor();
+                link.style.setProperty('color', randomColor, 'important'); 
+                link.style.setProperty('border-bottom-color', randomColor, 'important');
+            });
+
+            link.addEventListener('mouseleave', () => {
+                // Clear the inline styles, letting the CSS rules (theme-specific) take over
+                link.style.removeProperty('color');
+                link.style.removeProperty('border-bottom-color');
+            });
+        }
     });
 
     // Handle browser back/forward buttons
     window.addEventListener('popstate', () => {
-        showSection(getActiveSectionId());
+        const hash = window.location.hash || '#about';
+        showSection(hash);
     });
 
-    // Initialize the page view based on the current URL hash
-    showSection(getActiveSectionId());
+    // Initialize the page view based on the current URL hash or default to #about
+    const initialHash = window.location.hash || '#about';
+    showSection(initialHash);
 });
