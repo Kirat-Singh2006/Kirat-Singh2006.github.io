@@ -140,9 +140,9 @@ header {
 
 .profile-pic { 
 
-     width: 100px;  
+     width: 100px !important;  /* Added !important */
 
-     height: 100px; 
+     height: 100px !important; /* Added !important */
 
      border-radius: 50%;  
 
