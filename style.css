@@ -1,13 +1,16 @@
-/* * style.css 
 
- * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Multi-Color Tabbed Layout) 
+/* 
 
- */ 
+  * style.css 
+
+  * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Multi-Color Tabbed Layout) 
+
+  */ 
 
 
-/* --- 1. Global Reset & Typography --- */ 
+ /* --- 1. Global Reset & Typography --- */ 
 
-:root { 
+ :root { 
 
      /* Theme Colors */ 
 
@@ -39,10 +42,10 @@
 
      --font-stack: 'Poppins', sans-serif; 
 
-} 
+ } 
 
 
-* { 
+ * { 
 
      margin: 0; 
 
@@ -50,10 +53,10 @@
 
      box-sizing: border-box; 
 
-} 
+ } 
 
 
-body { 
+ body { 
 
      font-family: var(--font-stack); 
 
@@ -67,22 +70,22 @@ body {
 
      position: relative;  
 
-} 
+ } 
 
 
-img { 
+ img { 
 
      max-width: 100%; 
 
      height: auto; 
 
-} 
+ } 
 
 
-/* --- 2. Header & Navigation (Half-Screen Effect & Image-Next-to-Name) --- */ 
+ /* --- 2. Header & Navigation (Half-Screen Effect & Image-Next-to-Name) --- */ 
 
 
-header { 
+ header { 
 
      background: var(--background-dark); 
 
@@ -110,10 +113,10 @@ header {
 
      max-width: none; 
 
-} 
+ } 
 
 
-.profile-container { 
+ .profile-container { 
 
      /* Set image and text side-by-side and vertically center them */ 
 
@@ -135,14 +138,14 @@ header {
 
      margin-top: 20px;  
 
-} 
+ } 
 
 
-.profile-pic { 
+ .profile-pic { 
 
-     width: 100px !important;  /* Added !important */
+     width: 100px;  
 
-     height: 100px !important; /* Added !important */
+     height: 100px; 
 
      border-radius: 50%;  
 
@@ -154,19 +157,19 @@ header {
 
      flex-shrink: 0;  
 
-} 
+ } 
 
 
-.profile-info { 
+ .profile-info { 
 
      text-align: left;  
 
      flex-shrink: 1; 
 
-} 
+ } 
 
 
-header h1 { 
+ header h1 { 
 
      font-size: 2.8em; 
 
@@ -180,10 +183,10 @@ header h1 {
 
      display: inline-block;  
 
-} 
+ } 
 
 
-.subtitle { 
+ .subtitle { 
 
      color: var(--text-subtle);  
 
@@ -193,10 +196,10 @@ header h1 {
 
      margin-bottom: 0;  
 
-} 
+ } 
 
 
-.tab-navigation { 
+ .tab-navigation { 
 
      position: relative;  
 
@@ -224,10 +227,10 @@ header h1 {
 
      padding-bottom: 0;  
 
-} 
+ } 
 
 
-.tab-link { 
+ .tab-link { 
 
      color: var(--text-subtle); 
 
@@ -243,14 +246,14 @@ header h1 {
 
      border-bottom: 2px solid transparent; 
 
-} 
+ } 
 
 
 
-/* --- 3. Main Content Layout --- */ 
+ /* --- 3. Main Content Layout --- */ 
 
 
-main { 
+ main { 
 
      max-width: 800px;  
 
@@ -260,10 +263,10 @@ main {
 
      background-color: #000000; 
 
-} 
+ } 
 
 
-section { 
+ section { 
 
      padding: 30px 0;  
 
@@ -277,10 +280,10 @@ section {
 
      display: none;  
 
-} 
+ } 
 
 
-.content-wrapper { 
+ .content-wrapper { 
 
      max-width: 650px;  
 
@@ -288,17 +291,17 @@ section {
 
      text-align: left !important; 
 
-} 
+ } 
 
 
-section.active { 
+ section.active { 
 
      display: block; 
 
-} 
+ } 
 
 
-main p { 
+ main p { 
 
      text-align: left !important; 
 
@@ -310,10 +313,10 @@ main p {
 
      margin-bottom: 20px; 
 
-} 
+ } 
 
 
-ul, ol { 
+ ul, ol { 
 
      padding-left: 0;  
 
@@ -327,19 +330,19 @@ ul, ol {
 
      text-align: left !important; 
 
-} 
+ } 
 
 
-li { 
+ li { 
 
      margin-bottom: 15px; 
 
      text-align: left !important; 
 
-} 
+ } 
 
 
-h2 { 
+ h2 { 
 
      font-size: 2em; 
 
@@ -357,13 +360,13 @@ h2 {
 
      margin-right: auto;   
 
-} 
+ } 
 
 
-/* --- 4. Project & Blog Grids --- */ 
+ /* --- 4. Project & Blog Grids --- */ 
 
 
-.project-grid, .blog-grid { 
+ .project-grid, .blog-grid { 
 
      text-align: left;  
 
@@ -371,10 +374,10 @@ h2 {
 
      gap: 30px;  
 
-} 
+ } 
 
 
-.blog-grid { 
+ .blog-grid { 
 
      display: grid; 
 
@@ -386,12 +389,12 @@ h2 {
 
      width: fit-content; 
 
-} 
+ } 
 
 
-.project-card, 
+ .project-card, 
 
-.blog-post-card { 
+ .blog-post-card { 
 
      background-color: #000000;  
 
@@ -411,12 +414,12 @@ h2 {
 
      text-align: left;  
 
-} 
+ } 
 
 
-.project-card:hover, 
+ .project-card:hover, 
 
-.blog-post-card:hover { 
+ .blog-post-card:hover { 
 
      transform: none;  
 
@@ -424,12 +427,12 @@ h2 {
 
      opacity: 0.8;  
 
-} 
+ } 
 
 
-.project-card h3, 
+ .project-card h3, 
 
-.blog-post-card h3 { 
+ .blog-post-card h3 { 
 
      color: var(--text-light);  
 
@@ -437,21 +440,21 @@ h2 {
 
      font-size: 1.2em; 
 
-} 
+ } 
 
 
-.project-card p, 
+ .project-card p, 
 
-.blog-post-card p { 
+ .blog-post-card p { 
 
      color: var(--text-subtle);  
 
-} 
+ } 
 
 
-.project-card a, 
+ .project-card a, 
 
-.read-more-link { 
+ .read-more-link { 
 
      display: block; 
 
@@ -461,10 +464,10 @@ h2 {
 
      font-weight: 600; 
 
-} 
+ } 
 
 
-.blog-date { 
+ .blog-date { 
 
      display: block; 
 
@@ -476,13 +479,13 @@ h2 {
 
      font-weight: 400; 
 
-} 
+ } 
 
 
-/* --- 5. Skills Section (PROGRESS BAR) --- */ 
+ /* --- 5. Skills Section (PROGRESS BAR) --- */ 
 
 
-.skills li { 
+ .skills li { 
 
      list-style: none; 
 
@@ -490,19 +493,19 @@ h2 {
 
      text-align: left;  
 
-} 
+ } 
 
 
-.skills-other { 
+ .skills-other { 
 
      margin-top: 25px; 
 
      padding-left: 0; 
 
-} 
+ } 
 
 
-.progress-bar { 
+ .progress-bar { 
 
      background-color: var(--border-subtle);  
 
@@ -516,10 +519,10 @@ h2 {
 
      width: 100%;  
 
-} 
+ } 
 
 
-.progress-bar .bar { 
+ .progress-bar .bar { 
 
      height: 100%; 
 
@@ -527,13 +530,13 @@ h2 {
 
      transition: width 1.5s ease-out;  
 
-} 
+ } 
 
 
-/* --- 6. Education, Projects (List), Certifications --- */ 
+ /* --- 6. Education, Projects (List), Certifications --- */ 
 
 
-#projects-list ul li, #certifications ul li { 
+ #projects-list ul li, #certifications ul li { 
 
      border-left: none;  
 
@@ -541,10 +544,10 @@ h2 {
 
      margin-bottom: 10px; 
 
-} 
+ } 
 
 
-.edu > div { 
+ .edu > div { 
 
      margin-bottom: 20px; 
 
@@ -552,10 +555,10 @@ h2 {
 
      padding-left: 20px; 
 
-} 
+ } 
 
 
-.date { 
+ .date { 
 
      display: block; 
 
@@ -567,188 +570,181 @@ h2 {
 
      margin-top: 3px; 
 
-} 
+ } 
 
 
-/* --- 7. DYNAMIC THEME STYLES (Color Application) --- */ 
+ /* --- 7. DYNAMIC THEME STYLES (Color Application) --- */ 
 
 
-/* Home Theme (Blue) - Target: #about */ 
+ /* Home Theme (Blue) - Target: #about */ 
 
-html.theme-about h2, 
-html.theme-about a, 
-html.theme-about .project-card a, 
-html.theme-about .read-more-link { 
-     color: var(--color-home-blue); 
-     /* Explicitly force underline for all dynamic links */
-     text-decoration: underline; 
-} 
+ html.theme-about h2, 
 
-html.theme-about .tab-link.active { 
+ html.theme-about a, 
+
+ html.theme-about .project-card a, 
+
+ html.theme-about .read-more-link { 
 
      color: var(--color-home-blue); 
 
-     background-color: transparent !important; /* FIX: Prevents block highlight */
+ } 
+
+ html.theme-about .tab-link.active { 
+
+     color: var(--color-home-blue); 
 
      border-bottom-color: var(--color-home-blue); 
 
-} 
+ } 
 
-html.theme-about .progress-bar .bar { 
+ html.theme-about .progress-bar .bar { 
 
      background: var(--color-home-blue); 
 
-} 
+ } 
 
-html.theme-about .profile-pic { 
+ html.theme-about .profile-pic { 
 
      border-color: var(--color-home-blue); 
 
-} 
+ } 
 
 
 
-/* Blog Theme (Orange) - Target: #blog-posts */ 
+ /* Blog Theme (Orange) - Target: #blog-posts */ 
 
-html.theme-blog-posts h2, 
+ html.theme-blog-posts h2, 
 
-html.theme-blog-posts a, 
+ html.theme-blog-posts a, 
 
-html.theme-blog-posts .project-card a, 
+ html.theme-blog-posts .project-card a, 
 
-html.theme-blog-posts .read-more-link { 
-
-     color: var(--color-blog-orange); 
-
-     /* Explicitly force underline for all dynamic links */
-     text-decoration: underline; 
-} 
-
-html.theme-blog-posts .tab-link.active { 
+ html.theme-blog-posts .read-more-link { 
 
      color: var(--color-blog-orange); 
 
-     background-color: transparent !important; /* FIX: Prevents block highlight */
+ } 
+
+ html.theme-blog-posts .tab-link.active { 
+
+     color: var(--color-blog-orange); 
 
      border-bottom-color: var(--color-blog-orange); 
 
-} 
+ } 
 
-html.theme-blog-posts .progress-bar .bar { 
+ html.theme-blog-posts .progress-bar .bar { 
 
      background: var(--color-blog-orange); 
 
-} 
+ } 
 
-html.theme-blog-posts .profile-pic { 
+ html.theme-blog-posts .profile-pic { 
 
      border-color: var(--color-blog-orange); 
 
-} 
+ } 
 
 
 
-/* Skills Theme (Green) - Target: #skills */ 
+ /* Skills Theme (Green) - Target: #skills */ 
 
-html.theme-skills h2, 
+ html.theme-skills h2, 
 
-html.theme-skills a, 
+ html.theme-skills a, 
 
-html.theme-skills .project-card a, 
+ html.theme-skills .project-card a, 
 
-html.theme-skills .read-more-link { 
-
-     color: var(--color-skills-green); 
- 
-     /* Explicitly force underline for all dynamic links */
-     text-decoration: underline; 
-} 
-
-html.theme-skills .tab-link.active { 
+ html.theme-skills .read-more-link { 
 
      color: var(--color-skills-green); 
 
-     background-color: transparent !important; /* FIX: Prevents block highlight */
+ } 
+
+ html.theme-skills .tab-link.active { 
+
+     color: var(--color-skills-green); 
 
      border-bottom-color: var(--color-skills-green); 
 
-} 
+ } 
 
-html.theme-skills .progress-bar .bar { 
+ html.theme-skills .progress-bar .bar { 
 
      background: var(--color-skills-green); 
 
-} 
+ } 
 
-html.theme-skills .profile-pic { 
+ html.theme-skills .profile-pic { 
 
      border-color: var(--color-skills-green); 
 
-} 
+ } 
 
 
-/* --- 8. COLORED TAB HOVER LOGIC --- */ 
+ /* --- 8. COLORED TAB HOVER LOGIC --- */ 
 
 
-/* Hover for Home (Blue) */ 
+ /* Hover for Home (Blue) */ 
 
-.tab-navigation a[href="#about"]:hover { 
+ .tab-navigation a[href="#about"]:hover { 
 
      color: var(--color-home-blue); 
 
      border-bottom-color: var(--color-home-blue) !important; 
 
-} 
+ } 
 
 
-/* Hover for Blog (Orange) */ 
+ /* Hover for Blog (Orange) */ 
 
-.tab-navigation a[href="#blog-posts"]:hover { 
+ .tab-navigation a[href="#blog-posts"]:hover { 
 
      color: var(--color-blog-orange); 
 
      border-bottom-color: var(--color-blog-orange) !important; 
 
-} 
+ } 
 
 
-/* Hover for Skills (Green) */ 
+ /* Hover for Skills (Green) */ 
 
-.tab-navigation a[href="#skills"]:hover { 
+ .tab-navigation a[href="#skills"]:hover { 
 
      color: var(--color-skills-green); 
 
      border-bottom-color: var(--color-skills-green) !important; 
 
-} 
+ } 
 
 
-/* Hover for GitHub (Red) */ 
+ /* Hover for GitHub (Red) */ 
 
-.tab-navigation a[href*="github"]:hover { 
+ .tab-navigation a[href*="github"]:hover { 
 
      color: var(--color-github-red); 
 
      border-bottom-color: var(--color-github-red) !important; 
 
-} 
+ } 
 
 
-/* Hover for LinkedIn (Yellow) */ 
+ /* Hover for LinkedIn (Yellow) */ 
 
-.tab-navigation a[href*="linkedin"]:hover { 
+ .tab-navigation a[href*="linkedin"]:hover { 
 
      color: var(--color-linkedin-yellow); 
 
      border-bottom-color: var(--color-linkedin-yellow) !important; 
 
-} 
+ } 
 
 
 
-/* --- 9. Responsive Adjustments --- */ 
+ /* --- 9. Responsive Adjustments --- */ 
 
-@media (max-width: 768px) { 
+ @media (max-width: 768px) { 
 
      main { 
 
@@ -776,4 +772,4 @@ html.theme-skills .profile-pic {
 
      } 
 
-}
+ }  
