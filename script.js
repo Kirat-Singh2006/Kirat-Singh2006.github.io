@@ -1,141 +1,102 @@
 /**
- * script.js
- * Kirat Singh's Portfolio Interaction Logic (Tabs, Themes, Progress Bars, Random Hover)
+ * Kirat Singh Portfolio Script (script.js)
+ * RESTORED: Handles tab navigation, color theme switching, and skill bar animation.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const mainNavLinks = document.querySelectorAll('.tab-navigation .tab-link');
-    const sections = document.querySelectorAll('main section');
-    const htmlElement = document.documentElement;
-
-    // --- Utility Functions ---
-
-    /**
-     * Generates a visually distinct random hex color code.
-     */
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        // Generate a slightly darker/more saturated color to look good on the dark background
-        for (let i = 0; i < 6; i++) {
-            // Ensure first two digits are high for a bright color
-            if (i < 2) {
-                color += letters[Math.floor(Math.random() * 6) + 10]; // 10-15 (A-F)
-            } else {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
+// --- 1. Utility Function for Throttling ---
+const throttle = (func, limit) => {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
-        return color;
     }
+}
 
-    /**
-     * Animates the progress bars by setting their width based on data-percent.
-     */
-    const animateProgressBars = () => {
-        document.querySelectorAll('.progress-bar').forEach(barContainer => {
-            // The HTML should use data-percent, not data-level (checking your HTML)
-            const percent = barContainer.getAttribute('data-percent'); 
-            const bar = barContainer.querySelector('.bar');
-            
-            // Reset and force reflow to ensure animation runs every time
-            bar.style.width = '0%';
-            void bar.offsetWidth; 
-            
-            // Set the final width to trigger CSS transition
-            bar.style.width = `${percent}%`;
-        });
-    };
+// 2. Animate skill progress bars
+function animateProgressBars() {
+    // Reset the animation state before re-animating
+    document.querySelectorAll('.progress-bar.animated').forEach(bar => {
+        bar.querySelector('.bar').style.width = '0%';
+        bar.classList.remove('animated');
+    });
 
-    /**
-     * Updates the theme class on the HTML element based on the section ID.
-     * @param {string} sectionId - The ID of the active section (e.g., '#about').
-     */
-    const updateTheme = (sectionId) => {
-        // Map section ID to theme class name (e.g., #about -> theme-about)
-        const themeClass = `theme-${sectionId.substring(1)}`;
-        
-        // Clear all previous theme classes
-        htmlElement.classList.forEach(cls => {
-            if (cls.startsWith('theme-')) {
-                htmlElement.classList.remove(cls);
-            }
-        });
+    // Animate only the visible bars
+    document.querySelectorAll('#skills .progress-bar').forEach(bar => {
+        const percent = bar.getAttribute('data-percent');
+        setTimeout(() => {
+            bar.querySelector('.bar').style.width = percent + '%';
+            bar.classList.add('animated');
+        }, 50);
+    });
+}
 
-        if (sectionId === '#about' || sectionId === '#blog-posts' || sectionId === '#skills') {
-            htmlElement.classList.add(themeClass);
-        }
-    };
+// 🌟 3. Tab Navigation Logic - RESTORED 🌟
+function setupTabNavigation() {
+    const tabLinks = document.querySelectorAll('.tab-navigation .tab-link');
+    const sections = document.querySelectorAll('main section');
+    const mainContent = document.querySelector('main');
+    const htmlEl = document.documentElement; // Get the <html> element
 
-    /**
-     * Handles the display of the correct section and updates navigation state.
-     * @param {string} sectionId - The ID of the section to show.
-     */
-    const showSection = (sectionId) => {
-        // 1. Hide all sections and remove active link class
-        sections.forEach(section => section.classList.remove('active'));
-        mainNavLinks.forEach(link => link.classList.remove('active'));
-
-        // 2. Show the target section
-        const targetSection = document.querySelector(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
-            window.scrollTo(0, 0); 
-
-            // 3. Update active navigation link
-            const activeLink = document.querySelector(`.tab-link[href="${sectionId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
-            }
-
-            // 4. Update theme
-            updateTheme(sectionId);
-
-            // 5. Animate progress bars if the skills section is shown
-            if (sectionId === '#skills') {
-                animateProgressBars();
-            }
-        }
-    };
-
-    // --- Event Listeners & Initialization ---
-
-    // Tab Click Handler (Only for internal links)
-    mainNavLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            
-            if (href && href.startsWith('#')) {
+    tabLinks.forEach(link => {
+        if (!link.classList.contains('external-link')) {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                // Update URL hash without navigating away
-                history.pushState(null, '', href);
-                showSection(href);
-            }
-        });
-        
-        // Random Color on Hover Logic (Integrated from your old blog.js)
-        // Ensure this only applies to the internal tab links for visual consistency
-        if (link.getAttribute('href').startsWith('#')) {
-             link.addEventListener('mouseenter', () => {
-                const randomColor = getRandomColor();
-                link.style.setProperty('color', randomColor, 'important'); 
-                link.style.setProperty('border-bottom-color', randomColor, 'important');
-            });
 
-            link.addEventListener('mouseleave', () => {
-                // Clear the inline styles, letting the CSS rules (theme-specific) take over
-                link.style.removeProperty('color');
-                link.style.removeProperty('border-bottom-color');
+                const targetId = this.getAttribute('href'); // e.g., "#about"
+                const themeName = 'theme-' + targetId.replace('#', ''); // e.g., "theme-about"
+                
+                // 1. SET THE THEME
+                htmlEl.className = themeName;
+                
+                // 2. Hide all sections and remove 'active' from all links
+                sections.forEach(s => s.classList.remove('active'));
+                tabLinks.forEach(l => l.classList.remove('active'));
+
+                // 3. Show the target section and set link as 'active'
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                this.classList.add('active');
+                
+                // 4. Special handling for the Skills tab
+                if (targetId === '#skills') {
+                    animateProgressBars();
+                }
+
+                // 5. Scroll to the top of the main content area
+                mainContent.scrollIntoView({ behavior: 'smooth' });
             });
         }
     });
 
-    // Handle browser back/forward buttons
-    window.addEventListener('popstate', () => {
-        const hash = window.location.hash || '#about';
-        showSection(hash);
-    });
-
-    // Initialize the page view based on the current URL hash or default to #about
+    // Initial load: Determine which section and theme should be visible
     const initialHash = window.location.hash || '#about';
-    showSection(initialHash);
+    const initialLink = document.querySelector(`.tab-link[href="${initialHash}"]`);
+    const initialSection = document.querySelector(initialHash);
+
+    // Set initial theme
+    htmlEl.className = 'theme-' + initialHash.replace('#', '');
+
+    if (initialSection) {
+        initialSection.classList.add('active');
+    }
+    if (initialLink) {
+        initialLink.classList.add('active');
+    }
+    
+    // Initial skill animation if the page loads directly on the Skills tab
+    if (initialHash === '#skills') {
+        animateProgressBars();
+    }
+}
+
+// 4. Run on load
+window.addEventListener('DOMContentLoaded', () => {
+    setupTabNavigation();
 });
