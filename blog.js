@@ -1,74 +1,48 @@
-// Function to generate a random hex color code
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+// blog.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const tabLinks = document.querySelectorAll('.tab-navigation .tab-link');
-    const sections = document.querySelectorAll('main section');
+    const blogListContainer = document.getElementById('blog-list');
 
-    // --- Tab Switching Logic (Ensures Sections Display Correctly) ---
-    tabLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetHref = e.currentTarget.getAttribute('href');
+    // Mock blog post data (This will now populate your blog section!)
+    const mockBlogPosts = [
+        {
+            title: "Exploring C's Dark Side: Writing a Custom Memory Allocator",
+            date: "November 20, 2025",
+            summary: "A deep dive into how I built a simplified `malloc` and `free` to truly understand pointer arithmetic and heap management.",
+            link: "https://github.com/kirat-singh2006/c-memory-allocator"
+        },
+        {
+            title: "From Zero to Hero: Setting Up a Secure Python Environment",
+            date: "October 15, 2025",
+            summary: "Tips and tricks for managing virtual environments, dependencies, and keeping your Python projects isolated and secure.",
+            link: "#"
+        },
+        {
+            title: "The Subtle Art of Debugging CSS: Why My Div Wouldn't Center",
+            date: "September 5, 2025",
+            summary: "A confession and tutorial on mastering Flexbox and Grid to solve the universal problem of layout alignment.",
+            link: "#"
+        }
+    ];
 
-            // --- DEBUGGING LOGS ADDED HERE ---
-            console.log("Link Clicked:", e.currentTarget.textContent.trim());
-            console.log("Target Href:", targetHref);
-            // ---------------------------------
+    function renderBlogPosts() {
+        if (!blogListContainer) return;
 
-            // Only process internal links that start with '#'
-            if (targetHref && targetHref.startsWith('#')) {
-                e.preventDefault();
-                const targetId = targetHref.substring(1);
-                const targetSection = document.getElementById(targetId);
+        blogListContainer.innerHTML = ''; 
 
-                // --- DEBUGGING LOGS ADDED HERE ---
-                if (!targetSection) {
-                    console.error(`Section with ID '${targetId}' not found. Please check your HTML section IDs.`);
-                }
-                // ---------------------------------
-
-                // 1. Remove active class from all links and sections
-                tabLinks.forEach(l => l.classList.remove('active'));
-                sections.forEach(s => s.classList.remove('active'));
-
-                // 2. Add active class to the clicked link
-                e.currentTarget.classList.add('active');
-
-                // 3. Show the corresponding section
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                }
-            }
-            // External links (GitHub, LinkedIn, Resume) are handled by default browser behavior
-        });
-    });
-
-    // --- Random Color on Hover Logic ---
-    tabLinks.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            const randomColor = getRandomColor();
+        mockBlogPosts.forEach(post => {
+            const card = document.createElement('div');
+            card.classList.add('blog-post-card');
             
-            // Apply the random color using style properties.
-            // Using setProperty with 'important' ensures it overrides the CSS defaults/active state
-            // during the exact moment of hover.
-            link.style.setProperty('background-color', randomColor, 'important');
-            link.style.setProperty('border-color', randomColor, 'important');
-            link.style.setProperty('color', '#ffffff', 'important'); // Ensure white text for visibility
+            card.innerHTML = `
+                <span class="blog-date">${post.date}</span>
+                <h3>${post.title}</h3>
+                <p>${post.summary}</p>
+                <a href="${post.link}" class="read-more-link" target="_blank">Read More &raquo;</a>
+            `;
+            blogListContainer.appendChild(card);
         });
+    }
 
-        link.addEventListener('mouseleave', () => {
-            // Clear the inline styles when the mouse leaves.
-            // This allows the element to snap back to its CSS-defined state (e.g., active, resume-link, or default).
-            link.style.removeProperty('background-color');
-            link.style.removeProperty('border-color');
-            link.style.removeProperty('color');
-        });
-    });
+    renderBlogPosts();
 });
