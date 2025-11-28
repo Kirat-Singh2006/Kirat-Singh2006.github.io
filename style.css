@@ -4,6 +4,7 @@
  */
 
 /* --- 1. Global Reset & Typography --- */
+
 :root {
     /* Theme Colors */
     --color-home-blue: #4a90e2;
@@ -317,8 +318,8 @@ html.theme-about .read-more-link {
 }
 html.theme-about .tab-link.active {
     color: var(--color-home-blue);
-    /* FIX: Explicitly set background to transparent to remove the 'block' of color */
-    background-color: transparent !important; 
+    /* FIX: Remove block background as requested */
+    background-color: transparent !important;
     border-bottom-color: var(--color-home-blue);
 }
 html.theme-about .progress-bar .bar {
@@ -328,26 +329,27 @@ html.theme-about .profile-pic {
     border-color: var(--color-home-blue);
 }
 
+
 /* Blog Theme (Orange) - Target: #blog-posts */
-/* FIX: Changing all selectors from theme-blog-posts to theme-blog to match JS changes */
-html.theme-blog h2,
-html.theme-blog a,
-html.theme-blog .project-card a,
-html.theme-blog .read-more-link {
+html.theme-blog-posts h2,
+html.theme-blog-posts a,
+html.theme-blog-posts .project-card a,
+html.theme-blog-posts .read-more-link {
     color: var(--color-blog-orange);
 }
-html.theme-blog .tab-link.active {
+html.theme-blog-posts .tab-link.active {
     color: var(--color-blog-orange);
-    /* FIX: Explicitly set background to transparent to remove the 'block' of color */
-    background-color: transparent !important; 
+    /* FIX: Remove block background as requested */
+    background-color: transparent !important;
     border-bottom-color: var(--color-blog-orange);
 }
-html.theme-blog .progress-bar .bar {
+html.theme-blog-posts .progress-bar .bar {
     background: var(--color-blog-orange);
 }
-html.theme-blog .profile-pic {
+html.theme-blog-posts .profile-pic {
     border-color: var(--color-blog-orange);
 }
+
 
 /* Skills Theme (Green) - Target: #skills */
 html.theme-skills h2,
@@ -358,8 +360,8 @@ html.theme-skills .read-more-link {
 }
 html.theme-skills .tab-link.active {
     color: var(--color-skills-green);
-    /* FIX: Explicitly set background to transparent to remove the 'block' of color */
-    background-color: transparent !important; 
+    /* FIX: Remove block background as requested */
+    background-color: transparent !important;
     border-bottom-color: var(--color-skills-green);
 }
 html.theme-skills .progress-bar .bar {
@@ -369,7 +371,9 @@ html.theme-skills .profile-pic {
     border-color: var(--color-skills-green);
 }
 
+
 /* --- 8. COLORED TAB HOVER LOGIC --- */
+
 
 /* Hover for Home (Blue) */
 .tab-navigation a[href="#about"]:hover {
@@ -377,11 +381,13 @@ html.theme-skills .profile-pic {
     border-bottom-color: var(--color-home-blue) !important;
 }
 
+
 /* Hover for Blog (Orange) */
 .tab-navigation a[href="#blog-posts"]:hover {
     color: var(--color-blog-orange);
     border-bottom-color: var(--color-blog-orange) !important;
 }
+
 
 /* Hover for Skills (Green) */
 .tab-navigation a[href="#skills"]:hover {
@@ -389,11 +395,13 @@ html.theme-skills .profile-pic {
     border-bottom-color: var(--color-skills-green) !important;
 }
 
+
 /* Hover for GitHub (Red) */
 .tab-navigation a[href*="github"]:hover {
     color: var(--color-github-red);
     border-bottom-color: var(--color-github-red) !important;
 }
+
 
 /* Hover for LinkedIn (Yellow) */
 .tab-navigation a[href*="linkedin"]:hover {
@@ -401,7 +409,10 @@ html.theme-skills .profile-pic {
     border-bottom-color: var(--color-linkedin-yellow) !important;
 }
 
+
 /* --- 9. Responsive Adjustments --- */
+
+
 @media (max-width: 768px) {
     main {
         padding: 0 15px;
