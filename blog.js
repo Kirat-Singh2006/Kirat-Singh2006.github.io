@@ -112,15 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(posts => {
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                // FIX APPLIED HERE:
-                // We use a simple ternary operator to set the limit:
-                // If it's the blog page, use the entire length (all posts).
-                // If it's NOT the blog page (i.e., the main index), use 3 (or whatever limit you want for the homepage snippet).
-                const HOME_PAGE_LIMIT = 3;
-                const limit = isBlogPage ? posts.length : HOME_PAGE_LIMIT;
+                // FIX APPLIED: Set the limit to the total length of the array (all posts)
+                const limit = posts.length; 
 
-                // If the user's path is 'blog.html', 'limit' will be posts.length.
-                // If the user's path is 'index.html', 'limit' will be 3.
+                // All posts will now be included
                 const postsToDisplay = posts.slice(0, limit);
 
                 blogListContainer.innerHTML = ''; 
