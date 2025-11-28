@@ -1,309 +1,321 @@
 /*
- * style.css
- * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Multi-Color Tabbed Layout)
- */
+ * style.css
+ * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Multi-Color Tabbed Layout)
+ */
 
 /* --- 1. Global Reset & Typography --- */
 :root {
-    /* Theme Colors */
-    --color-home-blue: #4a90e2;
-    --color-blog-orange: #e67e22;
-    --color-skills-green: #00e676;
-    
-    /* Colors for external links */
-    --color-github-red: #e74c3c; 
-    --color-linkedin-yellow: #f1c40f; 
-    
-    --accent-color: #ffffff;          /* Pure White (Text/Highlight) */
-    --background-dark: #222222;       /* Deep Dark Gray (Base background) */
-    --border-subtle: #444444;         /* Dark border/separator */
-    --text-light: #ffffff;            /* Main text color */
-    --text-subtle: #cccccc;           /* Slightly brighter subdued text color for better readability */
-    --font-stack: 'Poppins', sans-serif;
+    /* Theme Colors */
+    --color-home-blue: #4a90e2;
+    --color-blog-orange: #e67e22;
+    --color-skills-green: #00e676;
+    
+    /* Colors for external links */
+    --color-github-red: #e74c3c; 
+    --color-linkedin-yellow: #f1c40f; 
+    
+    --accent-color: #ffffff;          /* Pure White (Text/Highlight) */
+    --background-dark: #222222;       /* Deep Dark Gray (Base background) */
+    --border-subtle: #444444;         /* Dark border/separator */
+    --text-light: #ffffff;            /* Main text color */
+    --text-subtle: #cccccc;           /* Slightly brighter subdued text color for better readability */
+    --font-stack: 'Poppins', sans-serif;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-stack);
-    background-color: #000000 !important;
-    color: var(--text-light);                 
-    line-height: 1.6;
-    padding-bottom: 50px;
-    position: relative; 
+    font-family: var(--font-stack);
+    background-color: #000000 !important;
+    color: var(--text-light);                 
+    line-height: 1.6;
+    padding-bottom: 50px;
+    position: relative; 
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /* --- 2. Header & Navigation (Half-Screen Effect & Image-Next-to-Name) --- */
 
 header {
-    background: var(--background-dark);
-    /* Half-screen height */
-    min-height: 55vh; 
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;     
-    
-    padding: 40px 0 10px 0;
-    text-align: center;
-    margin: 0; 
-    max-width: none;
+    background: var(--background-dark);
+    /* Half-screen height */
+    min-height: 55vh; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    
+    padding: 40px 0 10px 0;
+    text-align: center;
+    margin: 0; 
+    max-width: none;
 }
 
 .profile-container {
-    /* Set image and text side-by-side and vertically center them */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Ensures text is centered vertically with the image */
-    gap: 20px; 
-    flex-wrap: nowrap; /* Prevent wrapping unless necessary */
-    margin-bottom: 20px; 
-    width: 100%; 
-    max-width: 600px; 
-    margin-top: 20px; 
+    /* Set image and text side-by-side and vertically center them */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Ensures text is centered vertically with the image */
+    gap: 20px; 
+    flex-wrap: nowrap; /* Prevent wrapping unless necessary */
+    margin-bottom: 20px; 
+    width: 100%; 
+    max-width: 600px; 
+    margin-top: 20px; 
 }
 
 .profile-pic {
-    width: 100px; 
-    height: 100px;
-    border-radius: 50%; 
-    border: 3px solid var(--color-home-blue); 
-    object-fit: cover; 
-    display: block; 
-    flex-shrink: 0; 
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%; 
+    border: 3px solid var(--color-home-blue); 
+    object-fit: cover; 
+    display: block; 
+    flex-shrink: 0; 
 }
 
 .profile-info {
-    text-align: left; 
-    flex-shrink: 1;
+    text-align: left; 
+    flex-shrink: 1;
 }
 
 header h1 {
-    font-size: 2.8em;
-    color: var(--text-light); 
-    /* KEY FIX: Removing the default bottom margin from h1 */
-    margin-top: 0; 
-    margin-bottom: 5px; 
-    display: inline-block; 
+    font-size: 2.8em;
+    color: var(--text-light); 
+    /* KEY FIX: Removing the default bottom margin from h1 */
+    margin-top: 0; 
+    margin-bottom: 5px; 
+    display: inline-block; 
 }
 
 .subtitle {
-    color: var(--text-subtle); 
-    font-weight: 400;
-    font-style: normal; 
-    margin-bottom: 0; 
+    color: var(--text-subtle); 
+    font-weight: 400;
+    font-style: normal; 
+    margin-bottom: 0; 
 }
 
 .tab-navigation {
-    position: relative; 
-    bottom: auto;
-    left: auto;
-    right: auto;
-    background: transparent; 
-    
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 15px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-bottom: 0; 
+    position: relative; 
+    bottom: auto;
+    left: auto;
+    right: auto;
+    background: transparent; 
+    
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 0; 
 }
 
 .tab-link {
-    color: var(--text-subtle);
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 15px 15px; 
-    padding: 5px 0;
-    transition: color 0.3s, border-bottom 0.3s;
-    border-bottom: 2px solid transparent;
+    color: var(--text-subtle);
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 15px 15px; 
+    padding: 5px 0;
+    
+    /* ADDED: Border for hover effect, and 'all' transition for smooth dynamic colors */
+    transition: all 0.4s ease-in-out; 
+    border: 2px solid transparent; 
+    border-bottom: 2px solid transparent;
 }
 
+/* --- Resume Link Styling (New Addition) --- */
+.resume-link {
+    background-color: #ff9900; /* Bright Orange/Amber */
+    color: #ffffff !important; 
+    font-weight: 600; 
+    border: 2px solid #ff9900 !important;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
 
 /* --- 3. Main Content Layout --- */
 
 main {
-    max-width: 800px; 
-    margin: 0 auto; 
-    padding: 25px 25px 0; 
-    background-color: #000000;
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 25px 25px 0; 
+    background-color: #000000;
 }
 
 section {
-    padding: 30px 0; 
-    margin-bottom: 40px; 
-    border-left: none; 
-    background-color: #000000;
-    transition: none; 
-    display: none; 
+    padding: 30px 0; 
+    margin-bottom: 40px; 
+    border-left: none; 
+    background-color: #000000;
+    transition: none; 
+    display: none; 
 }
 
 .content-wrapper {
-    max-width: 650px; 
-    margin: 0 auto;
-    text-align: left !important;
+    max-width: 650px; 
+    margin: 0 auto;
+    text-align: left !important;
 }
 
 section.active {
-    display: block;
+    display: block;
 }
 
 main p {
-    text-align: left !important;
-    max-width: 650px; 
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+    text-align: left !important;
+    max-width: 650px; 
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
 }
 
 ul, ol {
-    padding-left: 0; 
-    list-style-type: none; 
-    max-width: 650px; 
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left !important;
+    padding-left: 0; 
+    list-style-type: none; 
+    max-width: 650px; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left !important;
 }
 
 li {
-    margin-bottom: 15px;
-    text-align: left !important;
+    margin-bottom: 15px;
+    text-align: left !important;
 }
 
 h2 {
-    font-size: 2em;
-    border-bottom: 1px solid var(--border-subtle); 
-    padding-bottom: 10px; 
-    margin-bottom: 25px;
-    font-weight: 600;
-    width: fit-content; 
-    margin-left: auto;   
-    margin-right: auto;  
+    font-size: 2em;
+    border-bottom: 1px solid var(--border-subtle); 
+    padding-bottom: 10px; 
+    margin-bottom: 25px;
+    font-weight: 600;
+    width: fit-content; 
+    margin-left: auto;   
+    margin-right: auto;  
 }
 
 /* --- 4. Project & Blog Grids --- */
 
 .project-grid, .blog-grid {
-    text-align: left; 
-    display: block;
-    gap: 30px; 
+    text-align: left; 
+    display: block;
+    gap: 30px; 
 }
 
 .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    justify-content: center; 
-    margin: 0 auto;
-    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center; 
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .project-card,
 .blog-post-card {
-    background-color: #000000; 
-    padding: 20px 0; 
-    border-radius: 0; 
-    box-shadow: none; 
-    border: none; 
-    border-bottom: 1px solid var(--border-subtle); 
-    margin-bottom: 20px;
-    transition: opacity 0.3s;
-    text-align: left; 
+    background-color: #000000; 
+    padding: 20px 0; 
+    border-radius: 0; 
+    box-shadow: none; 
+    border: none; 
+    border-bottom: 1px solid var(--border-subtle); 
+    margin-bottom: 20px;
+    transition: opacity 0.3s;
+    text-align: left; 
 }
 
 .project-card:hover,
 .blog-post-card:hover {
-    transform: none; 
-    box-shadow: none; 
-    opacity: 0.8; 
+    transform: none; 
+    box-shadow: none; 
+    opacity: 0.8; 
 }
 
 .project-card h3,
 .blog-post-card h3 {
-    color: var(--text-light); 
-    margin-bottom: 5px;
-    font-size: 1.2em;
+    color: var(--text-light); 
+    margin-bottom: 5px;
+    font-size: 1.2em;
 }
 
 .project-card p,
 .blog-post-card p {
-    color: var(--text-subtle); 
+    color: var(--text-subtle); 
 }
 
 .project-card a,
 .read-more-link {
-    display: block;
-    text-decoration: underline;
-    margin-top: 10px;
-    font-weight: 600;
+    display: block;
+    text-decoration: underline;
+    margin-top: 10px;
+    font-weight: 600;
 }
 
 .blog-date {
-    display: block;
-    font-size: 0.9em;
-    color: var(--text-subtle); 
-    margin-bottom: 8px;
-    font-weight: 400;
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-subtle); 
+    margin-bottom: 8px;
+    font-weight: 400;
 }
 
 /* --- 5. Skills Section (PROGRESS BAR) --- */
 
 .skills li {
-    list-style: none;
-    margin-bottom: 20px; 
-    text-align: left; 
+    list-style: none;
+    margin-bottom: 20px; 
+    text-align: left; 
 }
 
 .skills-other {
-    margin-top: 25px;
-    padding-left: 0;
+    margin-top: 25px;
+    padding-left: 0;
 }
 
 .progress-bar {
-    background-color: var(--border-subtle); 
-    border-radius: 6px; 
-    height: 10px; 
-    margin-top: 8px; 
-    overflow: hidden;
-    width: 100%; 
+    background-color: var(--border-subtle); 
+    border-radius: 6px; 
+    height: 10px; 
+    margin-top: 8px; 
+    overflow: hidden;
+    width: 100%; 
 }
 
 .progress-bar .bar {
-    height: 100%;
-    width: 0; 
-    transition: width 1.5s ease-out; 
+    height: 100%;
+    width: 0; 
+    transition: width 1.5s ease-out; 
 }
 
 /* --- 6. Education, Projects (List), Certifications --- */
 
 #projects-list ul li, #certifications ul li {
-    border-left: none; 
-    padding-left: 0;
-    margin-bottom: 10px;
+    border-left: none; 
+    padding-left: 0;
+    margin-bottom: 10px;
 }
 
 .edu > div {
-    margin-bottom: 20px;
-    border-left: 4px solid var(--border-subtle); 
-    padding-left: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--border-subtle); 
+    padding-left: 20px;
 }
 
 .date {
-    display: block;
-    font-style: italic;
-    color: var(--text-subtle); 
-    font-size: 0.9em;
-    margin-top: 3px;
+    display: block;
+    font-style: italic;
+    color: var(--text-subtle); 
+    font-size: 0.9em;
+    margin-top: 3px;
 }
 
 /* --- 7. DYNAMIC THEME STYLES (Color Application) --- */
@@ -313,17 +325,17 @@ html.theme-about h2,
 html.theme-about a,
 html.theme-about .project-card a,
 html.theme-about .read-more-link {
-    color: var(--color-home-blue);
+    color: var(--color-home-blue);
 }
 html.theme-about .tab-link.active {
-    color: var(--color-home-blue);
-    border-bottom-color: var(--color-home-blue);
+    color: var(--color-home-blue);
+    border-bottom-color: var(--color-home-blue);
 }
 html.theme-about .progress-bar .bar {
-    background: var(--color-home-blue);
+    background: var(--color-home-blue);
 }
 html.theme-about .profile-pic {
-    border-color: var(--color-home-blue);
+    border-color: var(--color-home-blue);
 }
 
 
@@ -332,17 +344,17 @@ html.theme-blog-posts h2,
 html.theme-blog-posts a,
 html.theme-blog-posts .project-card a,
 html.theme-blog-posts .read-more-link {
-    color: var(--color-blog-orange);
+    color: var(--color-blog-orange);
 }
 html.theme-blog-posts .tab-link.active {
-    color: var(--color-blog-orange);
-    border-bottom-color: var(--color-blog-orange);
+    color: var(--color-blog-orange);
+    border-bottom-color: var(--color-blog-orange);
 }
 html.theme-blog-posts .progress-bar .bar {
-    background: var(--color-blog-orange);
+    background: var(--color-blog-orange);
 }
 html.theme-blog-posts .profile-pic {
-    border-color: var(--color-blog-orange);
+    border-color: var(--color-blog-orange);
 }
 
 
@@ -351,65 +363,35 @@ html.theme-skills h2,
 html.theme-skills a,
 html.theme-skills .project-card a,
 html.theme-skills .read-more-link {
-    color: var(--color-skills-green);
+    color: var(--color-skills-green);
 }
 html.theme-skills .tab-link.active {
-    color: var(--color-skills-green);
-    border-bottom-color: var(--color-skills-green);
+    color: var(--color-skills-green);
+    border-bottom-color: var(--color-skills-green);
 }
 html.theme-skills .progress-bar .bar {
-    background: var(--color-skills-green);
+    background: var(--color-skills-green);
 }
 html.theme-skills .profile-pic {
-    border-color: var(--color-skills-green);
+    border-color: var(--color-skills-green);
 }
 
-/* --- 8. COLORED TAB HOVER LOGIC --- */
-
-/* Hover for Home (Blue) */
-.tab-navigation a[href="#about"]:hover {
-    color: var(--color-home-blue);
-    border-bottom-color: var(--color-home-blue) !important;
-}
-
-/* Hover for Blog (Orange) */
-.tab-navigation a[href="#blog-posts"]:hover {
-    color: var(--color-blog-orange);
-    border-bottom-color: var(--color-blog-orange) !important;
-}
-
-/* Hover for Skills (Green) */
-.tab-navigation a[href="#skills"]:hover {
-    color: var(--color-skills-green);
-    border-bottom-color: var(--color-skills-green) !important;
-}
-
-/* Hover for GitHub (Red) */
-.tab-navigation a[href*="github"]:hover {
-    color: var(--color-github-red);
-    border-bottom-color: var(--color-github-red) !important;
-}
-
-/* Hover for LinkedIn (Yellow) */
-.tab-navigation a[href*="linkedin"]:hover {
-    color: var(--color-linkedin-yellow);
-    border-bottom-color: var(--color-linkedin-yellow) !important;
-}
+/* --- 8. COLORED TAB HOVER LOGIC (REMOVED: Now handled by random colors in script.js) --- */
 
 
 /* --- 9. Responsive Adjustments --- */
 @media (max-width: 768px) {
-    main {
-        padding: 0 15px;
-    }
-    header h1 {
-        font-size: 2.2em;
-    }
-    /* On small screens, stack the image and text vertically for readability */
-    .profile-container {
-        flex-direction: column; 
-    }
-    .profile-info {
-        text-align: center; 
-    }
+    main {
+        padding: 0 15px;
+    }
+    header h1 {
+        font-size: 2.2em;
+    }
+    /* On small screens, stack the image and text vertically for readability */
+    .profile-container {
+        flex-direction: column; 
+    }
+    .profile-info {
+        text-align: center; 
+    }
 }
