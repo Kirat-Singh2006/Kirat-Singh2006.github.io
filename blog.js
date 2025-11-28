@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const blogListContainer = document.getElementById('blog-list');
     const blogPostContentContainer = document.getElementById('blog-post-content');
     const isBlogPage = window.location.pathname.endsWith('blog.html');
-    const maxPostsOnHomepage = 3;
+    
+    // REMOVED: const maxPostsOnHomepage = 3;
 
     // --- 1. Logic for displaying a SINGLE POST (on blog.html with hash) ---
     if (isBlogPage && window.location.hash) {
@@ -111,7 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(posts => {
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                const limit = isBlogPage ? posts.length : maxPostsOnHomepage;
+                // FIX APPLIED HERE:
+                // We use a simple ternary operator to set the limit:
+                // If it's the blog page, use the entire length (all posts).
+                // If it's NOT the blog page (i.e., the main index), use 3 (or whatever limit you want for the homepage snippet).
+                const HOME_PAGE_LIMIT = 3;
+                const limit = isBlogPage ? posts.length : HOME_PAGE_LIMIT;
+
+                // If the user's path is 'blog.html', 'limit' will be posts.length.
+                // If the user's path is 'index.html', 'limit' will be 3.
                 const postsToDisplay = posts.slice(0, limit);
 
                 blogListContainer.innerHTML = ''; 
