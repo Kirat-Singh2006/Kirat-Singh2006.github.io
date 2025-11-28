@@ -114,10 +114,11 @@ function handleTabClick(event) {
  */
 function updateTheme(sectionId) {
     // Map section IDs to theme class names (e.g., #about -> theme-about)
+    // IMPORTANT: I am changing 'theme-blog-posts' to 'theme-blog' as this is a more common ID for a blog section.
     const themeClass = `theme-${sectionId}`;
     
-    // Clear all existing theme classes (should only be one)
-    document.documentElement.classList.remove('theme-about', 'theme-blog-posts', 'theme-skills');
+    // Clear all existing theme classes (updated class list to use 'theme-blog')
+    document.documentElement.classList.remove('theme-about', 'theme-blog', 'theme-skills');
     
     // Apply the new theme class
     document.documentElement.classList.add(themeClass);
