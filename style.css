@@ -152,12 +152,15 @@ main {
     background-color: #000000;
 }
 
+/* EDITED: Added a border and subtle padding to sections for better visual separation */
 section {
-    padding: 30px 0; 
+    padding: 30px 20px; /* Increased padding */
     margin-bottom: 40px; 
     border-left: none; 
-    background-color: #000000;
-    transition: none; 
+    background-color: var(--background-dark); /* Use dark background for the content area */
+    border: 1px solid var(--border-subtle); /* Add a visible border */
+    border-radius: 8px; /* Soften the corners */
+    transition: opacity 0.4s ease-in-out; 
     display: none; 
 }
 
@@ -169,6 +172,7 @@ section {
 
 section.active {
     display: block;
+    opacity: 1; /* Ensure visible */
 }
 
 main p {
@@ -222,7 +226,8 @@ h2 {
 
 .project-card,
 .blog-post-card {
-    background-color: #000000; 
+    /* Set background to transparent or dark grey to match new section style */
+    background-color: transparent; 
     padding: 20px 0; 
     border-radius: 0; 
     box-shadow: none; 
