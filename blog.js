@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // We use a simple ternary operator to set the limit:
                 // If it's the blog page, use the entire length (all posts).
                 // If it's NOT the blog page (i.e., the main index), use 3 (or whatever limit you want for the homepage snippet).
-                const HOME_PAGE_LIMIT = 3;
+                const HOME_PAGE_LIMIT = posts.length;
                 const limit = isBlogPage ? posts.length : HOME_PAGE_LIMIT;
 
                 // If the user's path is 'blog.html', 'limit' will be posts.length.
