@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Main Logic to Fetch and Display Posts ---
     const blogListContainer = document.getElementById('blog-list');
     const blogPostContentContainer = document.getElementById('blog-post-content');
-    const isBlogPage = window.location.pathname.endsWith('blog.html');
+    const isBlogPage = !!document.getElementById('blog-post-content') || window.location.pathname.includes('blog');
     const HOMEPAGE_LIMIT = 3;
 
     // --- 1. SINGLE POST (blog.html with hash) ---
