@@ -1,102 +1,76 @@
 /**
- * Kirat Singh Portfolio Script (script.js)
- * RESTORED: Handles tab navigation, color theme switching, and skill bar animation.
+ * Kirat Singh — script.js
+ * One deliberate interaction: click the terminal caption to step the ASCII
+ * donut through a few frames, a nod to the actual C donut project.
+ * No ambient/auto-playing animation.
  */
 
-// --- 1. Utility Function for Throttling ---
-const throttle = (func, limit) => {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
+const DONUT_FRAMES = [
+`     ,ad8888ba,
+    d8"'    \`"8b
+   d8'        \`8b
+   88          88
+   88          88
+   Y8,        ,8P
+    Y8a.    .a8P
+     \`"Y8888Y"'`,
+`      _.-""-._
+    .'        '.
+   /   .------.  \\
+  |   /        \\  |
+  |   \\        /  |
+   \\   '------'  /
+    '.        .'
+      '-.__.-'`,
+`   ▄▄▄▄▄▄▄▄▄▄
+  ██        ██
+ ██    ██    ██
+ ██   ████   ██
+ ██   ████   ██
+ ██    ██    ██
+  ██        ██
+   ▀▀▀▀▀▀▀▀▀▀`,
+`    .:oo88888oo:.
+  .8888888888888.
+ :8888888888888888:
+ 88888:      :88888
+ 88888:      :88888
+ :8888888888888888:
+  '8888888888888.
+    ':oo88888oo:'`
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const donutBtn = document.getElementById('donut-btn');
+    const donutFrame = document.getElementById('donut-frame');
+
+    if (donutBtn && donutFrame) {
+        let frameIndex = 0;
+        donutBtn.addEventListener('click', () => {
+            frameIndex = (frameIndex + 1) % DONUT_FRAMES.length;
+            donutFrame.textContent = DONUT_FRAMES[frameIndex];
+        });
     }
-}
 
-// 2. Animate skill progress bars
-function animateProgressBars() {
-    // Reset the animation state before re-animating
-    document.querySelectorAll('.progress-bar.animated').forEach(bar => {
-        bar.querySelector('.bar').style.width = '0%';
-        bar.classList.remove('animated');
-    });
+    // Gentle scroll-reveal for sections below the hero — a single quiet
+    // motion detail, not an effect. Pure progressive enhancement: the
+    // "reveal" class (and its starting opacity: 0) is only ever added by
+    // this script, so no-JS and reduced-motion visitors just see the page,
+    // fully visible, immediately.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !prefersReducedMotion) {
+        const revealTargets = document.querySelectorAll('main > section:not(.hero)');
+        revealTargets.forEach(el => el.classList.add('reveal'));
 
-    // Animate only the visible bars
-    document.querySelectorAll('#skills .progress-bar').forEach(bar => {
-        const percent = bar.getAttribute('data-percent');
-        setTimeout(() => {
-            bar.querySelector('.bar').style.width = percent + '%';
-            bar.classList.add('animated');
-        }, 50);
-    });
-}
-
-// 🌟 3. Tab Navigation Logic - RESTORED 🌟
-function setupTabNavigation() {
-    const tabLinks = document.querySelectorAll('.tab-navigation .tab-link');
-    const sections = document.querySelectorAll('main section');
-    const mainContent = document.querySelector('main');
-    const htmlEl = document.documentElement; // Get the <html> element
-
-    tabLinks.forEach(link => {
-        if (!link.classList.contains('external-link')) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href'); // e.g., "#about"
-                const themeName = 'theme-' + targetId.replace('#', ''); // e.g., "theme-about"
-                
-                // 1. SET THE THEME
-                htmlEl.className = themeName;
-                
-                // 2. Hide all sections and remove 'active' from all links
-                sections.forEach(s => s.classList.remove('active'));
-                tabLinks.forEach(l => l.classList.remove('active'));
-
-                // 3. Show the target section and set link as 'active'
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.classList.add('active');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
-                this.classList.add('active');
-                
-                // 4. Special handling for the Skills tab
-                if (targetId === '#skills') {
-                    animateProgressBars();
-                }
-
-                // 5. Scroll to the top of the main content area
-                mainContent.scrollIntoView({ behavior: 'smooth' });
             });
-        }
-    });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Initial load: Determine which section and theme should be visible
-    const initialHash = window.location.hash || '#about';
-    const initialLink = document.querySelector(`.tab-link[href="${initialHash}"]`);
-    const initialSection = document.querySelector(initialHash);
-
-    // Set initial theme
-    htmlEl.className = 'theme-' + initialHash.replace('#', '');
-
-    if (initialSection) {
-        initialSection.classList.add('active');
+        revealTargets.forEach(el => observer.observe(el));
     }
-    if (initialLink) {
-        initialLink.classList.add('active');
-    }
-    
-    // Initial skill animation if the page loads directly on the Skills tab
-    if (initialHash === '#skills') {
-        animateProgressBars();
-    }
-}
-
-// 4. Run on load
-window.addEventListener('DOMContentLoaded', () => {
-    setupTabNavigation();
 });

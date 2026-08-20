@@ -3,54 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Blog | Kirat Singh</title>
+  <title>Blog // Wrench</title>
+  <meta name="description" content="Kirat Singh's blog — builds, breaks, exam-season chaos, and the occasional life update." />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Literata:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 </head>
 <body>
-  
+
   <header>
-    <!-- New Header Structure matching index.html with Profile Pic -->
-    <div class="profile-container">
-      <!-- Using the uploaded image file (image_bb5fe6.jpg) -->
-      <img src="me.jpg" alt="A photo of Kirat Singh" class="profile-pic" />
-      <div class="profile-info">
-        <h1>Kirat Singh</h1>
-        <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
-      </div>
+    <div class="nav-row">
+      <a href="index.html" class="wordmark">kirat<span>.</span>singh <span>//</span> wrench</a>
+      <nav class="nav-links">
+        <a href="index.html#now">now</a>
+        <a href="blog.html">blog</a>
+        <a href="index.html#projects">projects</a>
+        <a href="index.html#off-topic">off-topic</a>
+        <a href="Kirat_Singh_Resume.pdf" target="_blank">resume</a>
+        <a href="https://github.com/kirat-singh2006" target="_blank" class="ext">github</a>
+      </nav>
     </div>
-    
-    <!-- Navigation Tabs matching index.html's tab-navigation -->
-    <nav class="tab-navigation">
-      <!-- Note: We link 'Home' to the main anchor in index.html -->
-      <a href="index.html#about" class="tab-link">Home</a>
-      <a href="blog.html" class="tab-link active">Blog</a>
-      <a href="index.html#skills" class="tab-link">Skills</a>
-      <a href="https://github.com/kirat-singh2006" target="_blank" class="tab-link external-link">GitHub</a>
-      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank" class="tab-link external-link">LinkedIn</a>
-    </nav>
   </header>
 
   <main>
-    <!-- Main content is wrapped in a section, consistent with index.html sections -->
-    <section id="full-blog-page" class="active">
-      <h2>All Blog Posts</h2>
-      
-      <div class="content-wrapper">
-        <!-- 
-          blog.js logic:
-          If window.location.hash exists (viewing single post), content goes here.
-          Otherwise (viewing all posts), content goes into #blog-list.
-        -->
-        <div id="blog-post-content">
-          <div id="blog-list" class="blog-grid">
-            <!-- Loading message shown until posts are fetched by blog.js -->
-            <p style="text-align: center;">Loading posts...</p>
-          </div>
-        </div>
+    <div class="blog-page-head">
+      <h1>the blog</h1>
+      <p>experiments, wins, and the occasional "why did i even try this"</p>
+    </div>
+
+    <div id="blog-post-content">
+      <div class="blog-list-full">
+        <div id="blog-list"></div>
       </div>
-    </section>
+    </div>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-links">
+        <a href="https://github.com/kirat-singh2006" target="_blank">github</a>
+        <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank">linkedin</a>
+        <a href="index.html">home</a>
+      </div>
+      <p class="footer-sign">wrench out (👉ﾟヮﾟ)👉</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
   <script src="blog.js"></script>

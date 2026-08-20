@@ -1,149 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Kirat Singh | Aspiring Computer Science Student</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Wrench // Kirat Singh</title>
+  <meta name="description" content="Kirat Singh — a.k.a. Wrench. Security engineering, computer vision, and things built mostly out of curiosity." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Literata:ital,wght@0,400;0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  
-<header>
-    <div class="profile-container">
-      <img src="me.jpg" alt="A photo of Kirat Singh" class="profile-pic" />
-      <div class="profile-info">
-        <h1>Kirat Singh</h1>
-        <p class="subtitle">BCA Student • Code Tinkerer • Professional Playlist Curator</p>
-      </div>
+
+  <header>
+    <div class="nav-row">
+      <a href="#top" class="wordmark">kirat<span>.</span>singh <span>//</span> wrench</a>
+      <nav class="nav-links">
+        <a href="#now">now</a>
+        <a href="#blog">blog</a>
+        <a href="#projects">projects</a>
+        <a href="#off-topic">off-topic</a>
+        <a href="Kirat_Singh_Resume.pdf" target="_blank">resume</a>
+        <a href="https://github.com/kirat-singh2006" target="_blank" class="ext">github</a>
+      </nav>
     </div>
-    
-    <nav class="tab-navigation">
-      <a href="#about" class="tab-link active">Home</a>
-      <a href="#blog-posts" class="tab-link">Blog</a>
-      <a href="#skills" class="tab-link">Skills</a>
-      <a href="https://github.com/kirat-singh2006" target="_blank" class="tab-link external-link">GitHub</a>
-      <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank" class="tab-link external-link">LinkedIn</a>
-    </nav>
-  </header>
+  </header>
 
-  <main>
-    <section id="about" class="active">       <h2>About Me</h2>
-      <div class="content-wrapper">
-        <p>
-          I build things that shouldn't work, but do. A 3D ASCII donut spinning in a terminal. A Java MP3 player that vibes with the playlist in my head. A Python script quietly watching logs like a detective. I like my code like I like my music layered, unexpected, a little psychedelic.
-I'm a computer science student focused on cybersecurity and computer vision. Currently deep in Python, C, Java, and JavaScript, chasing whatever feels like uncharted territory. I'm here to learn, break, fix, and build sometimes in that order.
-        </p>
-        <p>
-          <a href="https://github.com/kirat-singh2006" target="_blank" style="font-weight:bold;">
-            👉 View All Projects on GitHub
-          </a>
-        </p>
+  <main id="top">
+
+    <section class="hero" style="border-top:none;">
+      <p class="eyebrow">kirat singh — a.k.a. wrench</p>
+      <h1>I build things that shouldn't work, but do.</h1>
+      <p class="hero-sub">
+        A 3D ASCII donut spinning in a terminal. A gesture detector that plays a song when you make a heart at your webcam. A Python script watching logs like a detective who's had too much coffee. I like my code the way I like my music — layered, a little unexpected, occasionally psychedelic. Currently a computer science student leaning into <strong>security engineering</strong> and <strong>computer vision</strong>, mostly by breaking things until I understand them.
+      </p>
+      <div class="hero-meta">
+        <img src="me.jpg" alt="Photo of Kirat Singh" class="hero-pic" />
+        <p class="hero-meta-text"><strong>Kirat Singh</strong> · Faridabad, India · BCA student, expected 2028 · builds/breaks/documents, roughly in that order</p>
       </div>
-    </section>
 
-    <section id="blog-posts">
-      <h2>Recent Blog Posts</h2>
-      <div class="content-wrapper">
-        <div id="blog-list" class="blog-grid">
-                </div>
-        <p style="text-align: center; margin-top: 20px;">
-          <a href="blog.html" style="font-weight:bold;">
-            👉 View All Blog Posts
-          </a>
-        </p>
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <div class="terminal-body">
+          <pre id="donut-frame">     ,ad8888ba,
+    d8"'    `"8b
+   d8'        `8b
+   88          88
+   88          88
+   Y8,        ,8P
+    Y8a.    .a8P
+     `"Y8888Y"'</pre>
+          <button class="terminal-caption" id="donut-btn" type="button">$ ./donut — the project that started it all. click to change donut.</button>
+        </div>
       </div>
-    </section>
-    
-    <section id="projects">
-      <h2>Featured Projects</h2>
-      <div class="content-wrapper">
-        <div class="project-grid">
-          <div class="project-card">
-            <h3>YOLOv8 Object Detection</h3>
-            <p>Real-time object detection system with OpenCV (90%+ accuracy, 20 FPS).</p>
-            <a href="https://github.com/..." target="_blank">View Code</a>
-          </div>
-          <div class="project-card">
-            <h3>Lightweight SIEM Solution</h3>
-            <p>Event monitoring and alerting system for small-scale networks.</p>
-            <a href="https://github.com/..." target="_blank">View Code</a>
-          </div>
-          <div class="project-card">
-            <h3>Port Scanner with Banner Grabbing</h3>
-            <p>Scans 500+ hosts in under 10 seconds using multi-threaded sockets.</p>
-            <a href="https://github.com/..." target="_blank">View Code</a>
-          </div>
-        </div>
+    </section>
+
+    <section id="now">
+      <div class="section-head"><h2>currently</h2></div>
+      <div class="section-body">
+        <div class="now-line">
+          <span class="now-date">last touched this line: august 2026</span>
+          Building a skeuomorphic, Frutiger Aero–styled MP3 player for Android in Java as a college assignment — turns out mobile is a lot less forgiving than desktop. Also still poking at <a href="https://github.com/Kirat-Singh2006/Surveillance-Flaneur" target="_blank">Surveillance Flâneur</a>, a computer vision project that's the first thing I've built that genuinely feels like <em>me</em> rather than a portfolio piece.
+        </div>
       </div>
-    </section>
+    </section>
 
-
-    <section id="education">
-      <h2>Education</h2>
-      <div class="content-wrapper">
-        <div class="edu">
-          <div>
-            <strong>Bachelor of Computer Applications</strong>, Don Bosco Institute of Technology, New Delhi
-            <span class="date">Expected Jun 2027</span><br>
-            <em>Relevant coursework:</em> Programming Fundamentals, Data Structures, Computer Networks
-          </div>
-          <div>
-            <strong>High School Diploma (CBSE)</strong>, K R Mangalam World School, New Delhi
-            <span class="date">Apr 2024</span>
-          </div>
-        </div>
+    <section id="blog">
+      <div class="section-head"><h2>from the blog</h2></div>
+      <div class="section-body">
+        <div id="blog-list"></div>
+        <a href="blog.html" class="view-all">read all posts →</a>
       </div>
-    </section>
+    </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="content-wrapper">
-        <ul class="skills">
-          <li><strong>Python:</strong><div class="progress-bar" data-percent="70"><div class="bar"></div></div></li>
-          <li><strong>C:</strong><div class="progress-bar" data-percent="60"><div class="bar"></div></div></li>
-          <li><strong>Java:</strong><div class="progress-bar" data-percent="50"><div class="bar"></div></div></li>
-          <li><strong>JavaScript:</strong><div class="progress-bar" data-percent="40"><div class="bar"></div></div></li>
-          <li><strong>HTML/CSS:</strong><div class="progress-bar" data-percent="70"><div class="bar"></div></div></li>
-          <li><strong>MySQL:</strong><div class="progress-bar" data-percent="50"><div class="bar"></div></div></li>
-        </ul>
-        <ul class="skills-other">
-          <li><strong>Tools:</strong> MS Office, Canva, Google Workspace,Kali Linux,Burp Suite,Wireshark,Git,VS code,NMap</li>
-          <li><strong>Soft Skills:</strong> Problem-solving, Critical thinking, Teamwork, Adaptability</li>
-          <li><strong>Frameworks/Libraries:</strong> MediaPipe,OpenCV,YOLOv8,Flask</li>
-        </ul>
+    <section id="projects">
+      <div class="section-head"><h2>projects</h2></div>
+      <div class="section-body">
+
+        <div class="project-group">
+          <h3>security</h3>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>SIEM-SOL</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/Siems-sol" target="_blank">repo ↗</a>
+            </div>
+            <p>A lightweight SIEM for small networks, because apparently I wanted to know what my network was doing at 2am.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>ReconX</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/ReconX" target="_blank">repo ↗</a>
+            </div>
+            <p>A reconnaissance tool I built right after exams, mostly to see how deep the networking rabbit hole actually goes.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>Wrenchpot</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/wrenchpot" target="_blank">repo ↗</a>
+            </div>
+            <p>A honeypot. Named after myself, obviously — someone has to take responsibility for it.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>WAF</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/WAF" target="_blank">repo ↗</a>
+            </div>
+            <p>A web application firewall built in about 12 minutes, because why not.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>Port Scanner with Banner Grabbing</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/Python-Port-Scanner-with-Banner-Grabbing" target="_blank">repo ↗</a>
+            </div>
+            <p>Multi-threaded socket scanner — 500+ hosts in under 10 seconds. Overkill for a college assignment, exactly right for a Saturday.</p>
+          </div>
+        </div>
+
+        <div class="project-group">
+          <h3>computer vision</h3>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>Surveillance Flâneur</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/Surveillance-Flaneur" target="_blank">repo ↗</a>
+            </div>
+            <p>YOLOv8 for person detection, CLIP for zero-shot style classification, and a cyberpunk-noir "invisibility index" readout on top. My favorite thing I've built.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>Gesture-Based Mnemonic Authentication</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/Gesture-Based-Mnemonic-Authentication" target="_blank">repo ↗</a>
+            </div>
+            <p>YOLOv8 + MediaPipe checking that it's actually you and not just a photo of your face.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>Anti-Spoofing / Liveness Detection</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/Anti-Spoofing-Liveness-Detection" target="_blank">repo ↗</a>
+            </div>
+            <p>Teaching a webcam to tell a real face from a photo of one held up to the camera.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>Particle Mesh</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/Particle-Mesh" target="_blank">repo ↗</a>
+            </div>
+            <p>Pinch your fingers to attract, spread them to repel. Magneto cosplay, technically speaking.</p>
+          </div>
+        </div>
+
+        <div class="project-group">
+          <h3>just because</h3>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>C Donut with Funkytown</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/C-donut-with-funkytown" target="_blank">repo ↗</a>
+            </div>
+            <p>A spinning ASCII donut in C, synced to Funkytown. The bit at the top of this page. Where it all started.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>AI Hopeless Romantic</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/AI-hopless-romantic-" target="_blank">repo ↗</a>
+            </div>
+            <p>Make a two-handed heart at your webcam and it plays "So Easy (To Fall In Love)" by Olivia Dean. Built in February. No further comment.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>MP3 Player (Java)</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/mp3-player-using-java" target="_blank">repo ↗</a>
+            </div>
+            <p>A desktop MP3 player GUI that vibes with the playlist in my head, from back before I knew mobile would be so much worse.</p>
+          </div>
+
+          <div class="project-item">
+            <div class="project-item-top">
+              <h4>music-player-do-not-use-</h4>
+              <a class="repo-link" href="https://github.com/Kirat-Singh2006/music-player-do-not-use-" target="_blank">repo ↗</a>
+            </div>
+            <p>Current WIP: a Frutiger Aero–styled MP3 player for Android. Yes, the repo name is a warning label. Read it as intended.</p>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </section>
 
-    <section id="projects-list">       <h2>Projects</h2>
-      <div class="content-wrapper">
-        <ul>
-          <li><strong>Personal Website (2025):</strong> Built a responsive portfolio to showcase my skills and projects.</li>
-          <li><strong>Donut Renderer (2025):</strong> Terminal-based 3D donut in C — just because donuts are cool.</li>
-          <li><strong>Cybersecurity Scripts (2025):</strong> Password tester & port scanner in Python for learning security basics.</li>
-          <li><strong>Classic Games (2025):</strong> 2048 and RPS in C/Python — nostalgia meets code.</li>
-          <li><strong>Java MP3 Player (2025):</strong> A custom MP3 player GUI for my personal playlists.</li>
-          <li><strong>Computer Vision (2025):</strong> YOLOv8 object detection using OpenCV and webcam integration.</li>
-          <li><strong>Log Monitor & IP Blocker (2025):</strong> Python script for real-time log monitoring and security automation.</li>
-        </ul>
+    <section id="toolbox">
+      <div class="section-head"><h2>toolbox</h2></div>
+      <div class="section-body">
+        <div class="toolbox-grid">
+          <div class="toolbox-group">
+            <h3>languages</h3>
+            <p>Python, C, Java, JavaScript</p>
+          </div>
+          <div class="toolbox-group">
+            <h3>security</h3>
+            <p>Kali Linux, Burp Suite, Wireshark, Nmap, Git</p>
+          </div>
+          <div class="toolbox-group">
+            <h3>vision / ml</h3>
+            <p>OpenCV, YOLOv8, MediaPipe, CLIP, Flask</p>
+          </div>
+          <div class="toolbox-group">
+            <h3>reach for when bored</h3>
+            <p>Terminal ASCII art, gesture detection, anything with a webcam and no clear reason to exist</p>
+          </div>
+        </div>
+        <p class="toolbox-note">I do bug bounty work on the side on HackerOne as <a href="https://hackerone.com/wrench_was_here" target="_blank">wrench_was_here</a>. No percentages here — either I've shipped something with it or I haven't.</p>
       </div>
-    </section>
+    </section>
 
-    <section id="certifications">
-      <h2>Certifications</h2>
-      <div class="content-wrapper">
-        <ul>
-          <li><strong>Generative AI Training (2025):</strong> Prompt engineering and LLM fundamentals.</li>
-          <li><strong>Brainiacs Competition (2025):</strong> Tech quiz — top 10% performer.</li>
-          <li><strong>Commonwealth Bank of Australia Job Simulation (Forage)</strong></li>
-        </ul>
+    <section id="off-topic">
+      <div class="section-head"><h2>off-topic</h2></div>
+      <div class="section-body">
+        <ul class="offtopic-list">
+          <li><span class="offtopic-tag">f1</span><p>Leclerc, Alonso, Verstappen. Following the sport mostly for the psychology of it.</p></li>
+          <li><span class="offtopic-tag">spider-man</span><p>The handle "Wrench" is Watch Dogs 2, but the mindset is closer to Spider-Man — <strong>Parker Luck</strong>, near-misses, still showing up.</p></li>
+          <li><span class="offtopic-tag">music</span><p>Layered, a little psychedelic, Clairo at the gym. The soundtrack matters as much as the code.</p></li>
+          <li><span class="offtopic-tag">also</span><p>Photography, fashion, and driving solo now that I actually can.</p></li>
+        </ul>
       </div>
-    </section>
-  </main>
+    </section>
 
-  <script src="script.js"></script>
-  <script src="blog.js"></script>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-links">
+        <a href="https://github.com/kirat-singh2006" target="_blank">github</a>
+        <a href="https://linkedin.com/in/kirat-singh-a312a4252" target="_blank">linkedin</a>
+        <a href="https://hackerone.com/wrench_was_here" target="_blank">hackerone</a>
+        <a href="blog.html">blog</a>
+      </div>
+      <p class="footer-sign">wrench out (👉ﾟヮﾟ)👉</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="blog.js"></script>
 </body>
 </html>
-

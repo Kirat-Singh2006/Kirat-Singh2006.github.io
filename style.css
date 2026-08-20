@@ -1,415 +1,753 @@
 /*
  * style.css
- * Kirat Singh's Portfolio Styles - MINIMALIST DARK MODE (Multi-Color Tabbed Layout)
+ * Kirat "Wrench" Singh — personal site
+ *
+ * Design tokens, named on purpose:
+ *   --ink       deep plum-black background — dusk, not a flat #000
+ *   --paper     warm parchment text, not pure #fff
+ *   --dim       dusty lavender-gray secondary text — twilight, not cold gray
+ *   --amber     nostalgic sunset-glow accent (warmth, romance) — desaturated on purpose
+ *   --dusk      slate night-blue counter-accent (the cooler, melancholic half)
+ *   --line      hairline borders, plum-tinted
+ *   --raised    slightly lighter panel background (terminal windows, cards)
+ *   --grain-opacity  tuned low — texture should be felt, not seen
  */
 
-/* --- 1. Global Reset & Typography --- */
 :root {
-    /* Theme Colors */
-    --color-home-blue: #4a90e2;
-    --color-blog-orange: #e67e22;
-    --color-skills-green: #00e676;
-    
-    /* Colors for external links */
-    --color-github-red: #e74c3c; 
-    --color-linkedin-yellow: #f1c40f; 
-    
-    --accent-color: #ffffff;          /* Pure White (Text/Highlight) */
-    --background-dark: #222222;       /* Deep Dark Gray (Base background) */
-    --border-subtle: #444444;         /* Dark border/separator */
-    --text-light: #ffffff;            /* Main text color */
-    --text-subtle: #cccccc;           /* Slightly brighter subdued text color for better readability */
-    --font-stack: 'Poppins', sans-serif;
+  --ink: #100d15;
+  --raised: #1a1520;
+  --paper: #eee3d6;
+  --dim: #9a8ca0;
+  --dimmer: #675a72;
+  --amber: #c98a5c;
+  --amber-bright: #e0a577;
+  --dusk: #5f6f9c;
+  --dusk-bright: #8593ba;
+  --line: #2a2432;
+
+  --mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --serif: 'Literata', Georgia, 'Times New Roman', serif;
+
+  --measure: 640px;
+  --gutter: 24px;
+
+  --grain-opacity: 0.035;
+  --ease-slow: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 body {
-    font-family: var(--font-stack);
-    background-color: #000000 !important;
-    color: var(--text-light);                 
-    line-height: 1.6;
-    padding-bottom: 50px;
-    position: relative; 
+  font-family: var(--serif);
+  background-color: var(--ink);
+  color: var(--paper);
+  line-height: 1.65;
+  font-size: 17px;
+  position: relative;
+}
+
+/* Film-grain texture — a single tiled SVG noise layer, fixed and inert.
+   Meant to be felt at the edge of perception, not seen. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Ambient glow — a soft, low blurred wash of the two accents behind the
+   hero, like light through a window at dusk. No literal shapes, no motion. */
+.hero {
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 500px;
+  max-width: 160vw;
+  background:
+    radial-gradient(ellipse 340px 260px at 30% 30%, rgba(201, 138, 92, 0.10), transparent 70%),
+    radial-gradient(ellipse 380px 300px at 72% 55%, rgba(95, 111, 156, 0.09), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
-/* --- 2. Header & Navigation (Half-Screen Effect & Image-Next-to-Name) --- */
+a {
+  color: inherit;
+  text-decoration-color: var(--dimmer);
+  text-underline-offset: 3px;
+  transition: color 0.4s var(--ease-slow), text-decoration-color 0.4s var(--ease-slow);
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+.terminal,
+.now-line,
+.post-row,
+.project-item,
+.terminal-caption,
+.hero-pic {
+  transition: border-color 0.4s var(--ease-slow), background-color 0.4s var(--ease-slow), opacity 0.4s var(--ease-slow), filter 0.4s var(--ease-slow);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber-bright);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--paper);
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+  text-transform: lowercase;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* --- Header / nav --- */
 
 header {
-    background: var(--background-dark);
-    /* Half-screen height */
-    min-height: 55vh; 
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;     
-    
-    padding: 40px 0 10px 0;
-    text-align: center;
-    margin: 0; 
-    max-width: none;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: rgba(16, 13, 21, 0.88);
+  backdrop-filter: blur(6px);
+  z-index: 10;
 }
 
-.profile-container {
-    /* Set image and text side-by-side and vertically center them */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Ensures text is centered vertically with the image */
-    gap: 20px; 
-    flex-wrap: nowrap; /* Prevent wrapping unless necessary */
-    margin-bottom: 20px; 
-    width: 100%; 
-    max-width: 600px; 
-    margin-top: 20px; 
+.nav-row {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 16px var(--gutter);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
 }
 
-.profile-pic {
-    width: 100px; 
-    height: 100px;
-    border-radius: 50%; 
-    border: 3px solid var(--color-home-blue); 
-    object-fit: cover; 
-    display: block; 
-    flex-shrink: 0; 
+.wordmark {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--paper);
+  text-decoration: none;
+  letter-spacing: 0.01em;
 }
 
-.profile-info {
-    text-align: left; 
-    flex-shrink: 1;
+.wordmark span {
+  color: var(--amber-bright);
 }
 
-header h1 {
-    font-size: 2.8em;
-    color: var(--text-light); 
-    /* KEY FIX: Removing the default bottom margin from h1 */
-    margin-top: 0; 
-    margin-bottom: 5px; 
-    display: inline-block; 
+.nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.85rem;
 }
 
-.subtitle {
-    color: var(--text-subtle); 
-    font-weight: 400;
-    font-style: normal; 
-    margin-bottom: 0; 
+.nav-links a {
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
-.tab-navigation {
-    position: relative; 
-    bottom: auto;
-    left: auto;
-    right: auto;
-    background: transparent; 
-    
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 15px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-bottom: 0; 
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--paper);
 }
 
-.tab-link {
-    color: var(--text-subtle);
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 15px 15px; 
-    padding: 5px 0;
-    transition: color 0.3s, border-bottom 0.3s;
-    border-bottom: 2px solid transparent;
+.nav-links a.ext::after {
+  content: ' ↗';
+  font-size: 0.75em;
+  color: var(--dimmer);
 }
 
+/* --- Hero --- */
 
-/* --- 3. Main Content Layout --- */
-
-main {
-    max-width: 800px; 
-    margin: 0 auto; 
-    padding: 25px 25px 0; 
-    background-color: #000000;
+.hero {
+  padding: 64px var(--gutter) 40px;
+  max-width: var(--measure);
+  margin: 0 auto;
 }
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.25;
+  margin: 14px 0 20px;
+  color: var(--paper);
+  max-width: 11.5ch;
+}
+
+.hero-sub {
+  color: var(--dim);
+  max-width: 56ch;
+  font-size: 1.02rem;
+}
+
+.hero-sub strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.hero-meta {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-pic {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+  filter: sepia(18%) saturate(78%) brightness(92%) hue-rotate(-6deg);
+}
+
+.hero-pic:hover {
+  filter: sepia(8%) saturate(95%) brightness(98%) hue-rotate(-6deg);
+}
+
+.hero-meta-text {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--dimmer);
+  line-height: 1.5;
+}
+
+.hero-meta-text strong {
+  color: var(--dim);
+  font-weight: 700;
+}
+
+/* --- Terminal / donut signature card --- */
+
+.terminal {
+  margin: 32px auto 0;
+  max-width: 340px;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.terminal:hover {
+  border-color: #3a3242;
+}
+
+.terminal-bar {
+  display: flex;
+  gap: 6px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.terminal-bar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dimmer);
+  opacity: 0.5;
+}
+
+.terminal-bar span:nth-child(1) { background: var(--amber); opacity: 0.85; }
+
+.terminal-body {
+  padding: 14px 16px 16px;
+}
+
+.terminal pre {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  line-height: 1.15;
+  color: var(--dim);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.terminal-caption {
+  font-family: var(--mono);
+  font-style: italic;
+  font-size: 0.72rem;
+  color: var(--dimmer);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  text-align: left;
+  width: 100%;
+}
+
+.terminal-caption:hover {
+  color: var(--dim);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s var(--ease-slow), transform 0.8s var(--ease-slow);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Sections --- */
 
 section {
-    padding: 30px 0; 
-    margin-bottom: 40px; 
-    border-left: none; 
-    background-color: #000000;
-    transition: none; 
-    display: none; 
+  padding: 44px var(--gutter);
+  border-top: none;
+  position: relative;
 }
 
-.content-wrapper {
-    max-width: 650px; 
-    margin: 0 auto;
-    text-align: left !important;
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 720px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
 }
 
-section.active {
-    display: block;
+section > .wrap,
+section.full-bleed {
+  max-width: var(--measure);
 }
 
-main p {
-    text-align: left !important;
-    max-width: 650px; 
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+.section-head {
+  max-width: var(--measure);
+  margin: 0 auto 24px;
 }
 
-ul, ol {
-    padding-left: 0; 
-    list-style-type: none; 
-    max-width: 650px; 
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left !important;
+.section-head h2 {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: lowercase;
+  color: var(--paper);
+  letter-spacing: 0.02em;
 }
 
-li {
-    margin-bottom: 15px;
-    text-align: left !important;
+.section-head h2::before {
+  content: '// ';
+  color: var(--dimmer);
 }
 
-h2 {
-    font-size: 2em;
-    border-bottom: 1px solid var(--border-subtle); 
-    padding-bottom: 10px; 
-    margin-bottom: 25px;
-    font-weight: 600;
-    width: fit-content; 
-    margin-left: auto;   
-    margin-right: auto;  
+.section-body {
+  max-width: var(--measure);
+  margin: 0 auto;
 }
 
-/* --- 4. Project & Blog Grids --- */
-
-.project-grid, .blog-grid {
-    text-align: left; 
-    display: block;
-    gap: 30px; 
+.section-body > p {
+  margin-bottom: 16px;
+  max-width: 62ch;
 }
 
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    justify-content: center; 
-    margin: 0 auto;
-    width: fit-content;
+.section-body a {
+  color: var(--amber-bright);
+  font-weight: 500;
 }
 
-.project-card,
-.blog-post-card {
-    background-color: #000000; 
-    padding: 20px 0; 
-    border-radius: 0; 
-    box-shadow: none; 
-    border: none; 
-    border-bottom: 1px solid var(--border-subtle); 
-    margin-bottom: 20px;
-    transition: opacity 0.3s;
-    text-align: left; 
+/* --- Now block --- */
+
+.now-line {
+  font-size: 1.02rem;
+  border-left: 2px solid var(--amber);
+  padding-left: 16px;
 }
 
-.project-card:hover,
-.blog-post-card:hover {
-    transform: none; 
-    box-shadow: none; 
-    opacity: 0.8; 
+.now-line .now-date {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--dimmer);
+  margin-bottom: 6px;
 }
 
-.project-card h3,
-.blog-post-card h3 {
-    color: var(--text-light); 
-    margin-bottom: 5px;
-    font-size: 1.2em;
+/* --- Blog preview list --- */
+
+.post-row {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
 }
 
-.project-card p,
-.blog-post-card p {
-    color: var(--text-subtle); 
+.post-row:first-child {
+  padding-top: 0;
 }
 
-.project-card a,
-.read-more-link {
-    display: block;
-    text-decoration: underline;
-    margin-top: 10px;
-    font-weight: 600;
+.post-row:last-child {
+  border-bottom: none;
 }
 
-.blog-date {
-    display: block;
-    font-size: 0.9em;
-    color: var(--text-subtle); 
-    margin-bottom: 8px;
-    font-weight: 400;
+.post-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-/* --- 5. Skills Section (PROGRESS BAR) --- */
-
-.skills li {
-    list-style: none;
-    margin-bottom: 20px; 
-    text-align: left; 
+.post-row h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--paper);
 }
 
-.skills-other {
-    margin-top: 25px;
-    padding-left: 0;
+.post-row:hover h3 {
+  color: var(--amber-bright);
 }
 
-.progress-bar {
-    background-color: var(--border-subtle); 
-    border-radius: 6px; 
-    height: 10px; 
-    margin-top: 8px; 
-    overflow: hidden;
-    width: 100%; 
+.post-date {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--dimmer);
+  white-space: nowrap;
 }
 
-.progress-bar .bar {
-    height: 100%;
-    width: 0; 
-    transition: width 1.5s ease-out; 
+.post-snippet {
+  color: var(--dim);
+  font-size: 0.95rem;
+  margin-top: 6px;
+  max-width: 58ch;
 }
 
-/* --- 6. Education, Projects (List), Certifications --- */
-
-#projects-list ul li, #certifications ul li {
-    border-left: none; 
-    padding-left: 0;
-    margin-bottom: 10px;
+.view-all {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--dim);
 }
 
-.edu > div {
-    margin-bottom: 20px;
-    border-left: 4px solid var(--border-subtle); 
-    padding-left: 20px;
+.view-all:hover {
+  color: var(--amber-bright);
 }
 
-.date {
-    display: block;
-    font-style: italic;
-    color: var(--text-subtle); 
-    font-size: 0.9em;
-    margin-top: 3px;
+/* --- Projects --- */
+
+.project-group {
+  margin-bottom: 34px;
 }
 
-/* --- 7. DYNAMIC THEME STYLES (Color Application) --- */
-
-/* Home Theme (Blue) - Target: #about */
-html.theme-about h2,
-html.theme-about a,
-html.theme-about .project-card a,
-html.theme-about .read-more-link {
-    color: var(--color-home-blue);
-}
-html.theme-about .tab-link.active {
-    color: var(--color-home-blue);
-    border-bottom-color: var(--color-home-blue);
-}
-html.theme-about .progress-bar .bar {
-    background: var(--color-home-blue);
-}
-html.theme-about .profile-pic {
-    border-color: var(--color-home-blue);
+.project-group:last-child {
+  margin-bottom: 0;
 }
 
-
-/* Blog Theme (Orange) - Target: #blog-posts */
-html.theme-blog-posts h2,
-html.theme-blog-posts a,
-html.theme-blog-posts .project-card a,
-html.theme-blog-posts .read-more-link {
-    color: var(--color-blog-orange);
-}
-html.theme-blog-posts .tab-link.active {
-    color: var(--color-blog-orange);
-    border-bottom-color: var(--color-blog-orange);
-}
-html.theme-blog-posts .progress-bar .bar {
-    background: var(--color-blog-orange);
-}
-html.theme-blog-posts .profile-pic {
-    border-color: var(--color-blog-orange);
+.project-group h3 {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--dusk);
+  text-transform: lowercase;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
 }
 
-
-/* Skills Theme (Green) - Target: #skills */
-html.theme-skills h2,
-html.theme-skills a,
-html.theme-skills .project-card a,
-html.theme-skills .read-more-link {
-    color: var(--color-skills-green);
-}
-html.theme-skills .tab-link.active {
-    color: var(--color-skills-green);
-    border-bottom-color: var(--color-skills-green);
-}
-html.theme-skills .progress-bar .bar {
-    background: var(--color-skills-green);
-}
-html.theme-skills .profile-pic {
-    border-color: var(--color-skills-green);
+.project-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-/* --- 8. COLORED TAB HOVER LOGIC --- */
-
-/* Hover for Home (Blue) */
-.tab-navigation a[href="#about"]:hover {
-    color: var(--color-home-blue);
-    border-bottom-color: var(--color-home-blue) !important;
+.project-group .project-item:last-child {
+  border-bottom: none;
 }
 
-/* Hover for Blog (Orange) */
-.tab-navigation a[href="#blog-posts"]:hover {
-    color: var(--color-blog-orange);
-    border-bottom-color: var(--color-blog-orange) !important;
+.project-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-/* Hover for Skills (Green) */
-.tab-navigation a[href="#skills"]:hover {
-    color: var(--color-skills-green);
-    border-bottom-color: var(--color-skills-green) !important;
+.project-item h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--paper);
 }
 
-/* Hover for GitHub (Red) */
-.tab-navigation a[href*="github"]:hover {
-    color: var(--color-github-red);
-    border-bottom-color: var(--color-github-red) !important;
+.project-item a.repo-link {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--dim);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-/* Hover for LinkedIn (Yellow) */
-.tab-navigation a[href*="linkedin"]:hover {
-    color: var(--color-linkedin-yellow);
-    border-bottom-color: var(--color-linkedin-yellow) !important;
+.project-item a.repo-link:hover {
+  color: var(--amber-bright);
 }
 
+.project-item p {
+  color: var(--dim);
+  font-size: 0.94rem;
+  margin-top: 5px;
+  max-width: 58ch;
+}
 
-/* --- 9. Responsive Adjustments --- */
-@media (max-width: 768px) {
-    main {
-        padding: 0 15px;
-    }
-    header h1 {
-        font-size: 2.2em;
-    }
-    /* On small screens, stack the image and text vertically for readability */
-    .profile-container {
-        flex-direction: column; 
-    }
-    .profile-info {
-        text-align: center; 
-    }
+/* --- Toolbox --- */
+
+.toolbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 32px;
+}
+
+.toolbox-group h3 {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--dusk);
+  text-transform: lowercase;
+  margin-bottom: 8px;
+}
+
+.toolbox-group p {
+  color: var(--dim);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.toolbox-note {
+  margin-top: 22px;
+  font-size: 0.9rem;
+  color: var(--dimmer);
+}
+
+.toolbox-note a {
+  color: var(--amber-bright);
+}
+
+/* --- Off-topic --- */
+
+.offtopic-list {
+  list-style: none;
+}
+
+.offtopic-list li {
+  display: flex;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+
+.offtopic-list li:last-child {
+  border-bottom: none;
+}
+
+.offtopic-tag {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--dusk);
+  text-transform: lowercase;
+  flex-shrink: 0;
+  width: 84px;
+}
+
+.offtopic-list p {
+  color: var(--dim);
+  font-size: 0.94rem;
+}
+
+.offtopic-list strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* --- Footer --- */
+
+footer {
+  padding: 40px var(--gutter) 60px;
+  text-align: center;
+}
+
+footer .wrap {
+  max-width: var(--measure);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  margin-bottom: 14px;
+}
+
+.footer-links a {
+  color: var(--dim);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--amber-bright);
+}
+
+.footer-sign {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--dimmer);
+}
+
+/* --- Blog index / single post page --- */
+
+.blog-page-head {
+  padding: 56px var(--gutter) 24px;
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.blog-page-head h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.blog-page-head p {
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+.blog-list-full {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 60px;
+}
+
+.blog-post {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 60px;
+}
+
+.blog-post h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+  max-width: 20ch;
+}
+
+.post-meta {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--dimmer);
+  margin-bottom: 32px;
+}
+
+.post-body p {
+  margin-bottom: 18px;
+  max-width: 62ch;
+}
+
+.post-body a {
+  color: var(--amber-bright);
+}
+
+.post-body strong { color: var(--paper); }
+.post-body em { color: var(--dim); }
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--dim);
+}
+
+.back-link:hover {
+  color: var(--amber-bright);
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 560px) {
+  body {
+    font-size: 16px;
+  }
+  .hero {
+    padding: 48px var(--gutter) 32px;
+  }
+  .toolbox-grid {
+    grid-template-columns: 1fr;
+  }
+  .offtopic-tag {
+    width: 68px;
+  }
+  section {
+    padding: 36px var(--gutter);
+  }
 }
