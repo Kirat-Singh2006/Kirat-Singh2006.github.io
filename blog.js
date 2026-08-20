@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. SINGLE POST (blog.html with hash) ---
     if (isBlogPage && window.location.hash) {
-        const slug = window.location.hash.substring(1);
+        const slug = decodeURIComponent(window.location.hash.substring(1));
 
         fetch(`blog-data/${slug}.md`)
             .then(response => {
