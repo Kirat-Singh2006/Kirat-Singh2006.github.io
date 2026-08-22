@@ -1,6 +1,12 @@
 /**
  * Kirat Singh Blog Data and Renderer (blog.js)
- * Fetches post metadata from /blog-data/posts.json and post content from /blog-data/[slug].md
+ * Fetches post metadata from blog-data/posts.json and post content from blog-data/[slug].md
+ *
+ * blog.html has a single mount point, #blog-post-content, that this file
+ * routes into based on the URL hash — either the full post archive (no hash)
+ * or a single post (#slug). Because clicking an in-page anchor link only
+ * changes the hash (no full page reload, no fresh DOMContentLoaded), routing
+ * is driven by a 'hashchange' listener as well as the initial load.
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -58,16 +64,74 @@ document.addEventListener('DOMContentLoaded', () => {
         return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
-    // --- Main Logic to Fetch and Display Posts ---
-    const blogListContainer = document.getElementById('blog-list');
-    const blogPostContentContainer = document.getElementById('blog-post-content');
-    const isBlogPage = !!document.getElementById('blog-post-content') || window.location.pathname.includes('blog');
+    function postRowHtml(post) {
+        const postLink = `blog.html#${post.slug}`;
+        return `
+            <a href="${postLink}" class="post-row">
+                <div class="post-row-top">
+                    <h3>${post.title}</h3>
+                    <span class="post-date">${formatDate(post.date)}</span>
+                </div>
+                <p class="post-snippet">${post.snippet || ''}</p>
+            </a>
+        `;
+    }
+
+    function fetchPosts() {
+        const url = `blog-data/posts.json?v=${new Date().getTime()}`;
+        return fetch(url).then(response => {
+            if (!response.ok) throw new Error('Could not load blog-data/posts.json');
+            return response.json();
+        }).then(posts => {
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            return posts;
+        });
+    }
+
+    // --- Homepage preview (index.html): fixed, never routes on hash ---
     const HOMEPAGE_LIMIT = 3;
+    const isBlogPage = !!document.getElementById('blog-post-content') || window.location.pathname.includes('blog');
 
-    // --- 1. SINGLE POST (blog.html with hash) ---
-    if (isBlogPage && window.location.hash) {
-        const slug = decodeURIComponent(window.location.hash.substring(1));
+    if (!isBlogPage) {
+        const blogListContainer = document.getElementById('blog-list');
+        if (blogListContainer) {
+            fetchPosts()
+                .then(posts => {
+                    blogListContainer.innerHTML = posts.slice(0, HOMEPAGE_LIMIT).map(postRowHtml).join('');
+                })
+                .catch(error => {
+                    blogListContainer.innerHTML = `<p>Couldn't load posts right now. Check the console.</p>`;
+                    console.error('Error fetching blog posts index:', error);
+                });
+        }
+        return;
+    }
 
+    // --- blog.html: router driven by the URL hash ---
+    const mount = document.getElementById('blog-post-content');
+    if (!mount) return;
+
+    function renderArchive() {
+        mount.innerHTML = `
+            <div class="blog-page-head">
+              <h1>the blog</h1>
+              <p>experiments, wins, and the occasional "why did i even try this"</p>
+            </div>
+            <div class="blog-list-full"><div id="blog-list">Loading…</div></div>
+        `;
+        const listEl = document.getElementById('blog-list');
+        fetchPosts()
+            .then(posts => {
+                listEl.innerHTML = posts.map(postRowHtml).join('');
+            })
+            .catch(error => {
+                listEl.innerHTML = `<p>Couldn't load posts right now. Check the console.</p>`;
+                console.error('Error fetching blog posts index:', error);
+            });
+    }
+
+    function renderPost(slug) {
+        mount.innerHTML = `<p style="padding:56px 24px 0; max-width:640px; margin:0 auto;">Loading…</p>`;
         fetch(`blog-data/${slug}.md`)
             .then(response => {
                 if (!response.ok) throw new Error(`Post not found at blog-data/${slug}.md`);
@@ -75,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(markdown => {
                 const { data, body } = parseMarkdown(markdown);
-                const postHtml = `
+                mount.innerHTML = `
                     <article class="blog-post">
                         <h2>${data.title}</h2>
                         <p class="post-meta">${formatDate(data.date)}</p>
@@ -83,51 +147,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a class="back-link" href="blog.html">&larr; back to all posts</a>
                     </article>
                 `;
-                if (blogPostContentContainer) {
-                    blogPostContentContainer.innerHTML = postHtml;
-                }
             })
             .catch(error => {
-                if (blogPostContentContainer) {
-                    blogPostContentContainer.innerHTML = `<p style="padding:0 24px;">Couldn't load that post. ${error.message}</p>`;
-                }
+                mount.innerHTML = `<p style="padding:56px 24px 0; max-width:640px; margin:0 auto;">Couldn't load that post. ${error.message}</p>`;
                 console.error('Error fetching post:', error);
             });
     }
 
-    // --- 2. LISTING (index.html preview or blog.html full archive) ---
-    else if (blogListContainer) {
-        const url = `blog-data/posts.json?v=${new Date().getTime()}`;
-        fetch(url)
-            .then(response => {
-                if (!response.ok) throw new Error('Could not load blog-data/posts.json');
-                return response.json();
-            })
-            .then(posts => {
-                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                const postsToDisplay = isBlogPage ? posts : posts.slice(0, HOMEPAGE_LIMIT);
-
-                blogListContainer.innerHTML = '';
-
-                postsToDisplay.forEach(post => {
-                    const postLink = `blog.html#${post.slug}`;
-                    const postDate = formatDate(post.date);
-
-                    const postHtml = `
-                        <a href="${postLink}" class="post-row">
-                            <div class="post-row-top">
-                                <h3>${post.title}</h3>
-                                <span class="post-date">${postDate}</span>
-                            </div>
-                            <p class="post-snippet">${post.snippet || ''}</p>
-                        </a>
-                    `;
-                    blogListContainer.innerHTML += postHtml;
-                });
-            })
-            .catch(error => {
-                blogListContainer.innerHTML = `<p>Couldn't load posts right now. Check the console.</p>`;
-                console.error('Error fetching blog posts index:', error);
-            });
+    function route() {
+        const slug = decodeURIComponent(window.location.hash.substring(1));
+        if (slug) {
+            renderPost(slug);
+        } else {
+            renderArchive();
+        }
+        window.scrollTo(0, 0);
     }
+
+    window.addEventListener('hashchange', route);
+    route();
 });
